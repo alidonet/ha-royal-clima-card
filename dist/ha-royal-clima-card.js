@@ -1,3 +1,4 @@
+const AIRFLOW = "<svg class=\"airflow-art\" x=\"80\" y=\"-16\" xmlns=\"http://www.w3.org/2000/svg\" width=\"640\" height=\"512\" viewBox=\"80 -16 640 512\" role=\"img\" aria-labelledby=\"title\">\n  <title id=\"title\">Температуры и воздушные потоки</title>\n  <defs>\n    <linearGradient id=\"supply\">\n      <stop stop-color=\"#25b9df\" />\n      <stop offset=\"1\" stop-color=\"#ef8450\" />\n    </linearGradient>\n    <linearGradient id=\"exhaust\">\n      <stop stop-color=\"#639ed0\" />\n      <stop offset=\"1\" stop-color=\"#ce6998\" />\n    </linearGradient>\n    <linearGradient id=\"case\" x2=\"0\" y2=\"1\">\n      <stop stop-color=\"#f8fbfe\" />\n      <stop offset=\"1\" stop-color=\"#dce6f0\" />\n    </linearGradient>\n    <linearGradient id=\"rim\" x2=\"0\" y2=\"1\">\n      <stop stop-color=\"#b0c1d1\" />\n      <stop offset=\"1\" stop-color=\"#8da2b8\" />\n    </linearGradient>\n    <linearGradient id=\"cover\" x2=\"0\" y2=\"1\">\n      <stop stop-color=\"#fff\" stop-opacity=\".24\" />\n      <stop offset=\"1\" stop-color=\"#fff\" stop-opacity=\".04\" />\n    </linearGradient>\n    <linearGradient id=\"duct\" x2=\"0\" y2=\"1\">\n      <stop stop-color=\"#fff\" stop-opacity=\".65\" />\n      <stop offset=\".5\" stop-color=\"#d9e3ed\" stop-opacity=\".25\" />\n      <stop offset=\"1\" stop-color=\"#99acc0\" stop-opacity=\".55\" />\n    </linearGradient>\n    <mask id=\"exhaust-gap\" maskUnits=\"userSpaceOnUse\" x=\"265\" y=\"115\" width=\"270\" height=\"190\">\n      <rect x=\"265\" y=\"115\" width=\"270\" height=\"190\" fill=\"#fff\" />\n      <path d=\"M265 170H305C370 170 430 260 495 260H535\" fill=\"none\" stroke=\"#000\" stroke-width=\"32\" />\n    </mask>\n    <linearGradient id=\"off-off-face\" x2=\"0\" y2=\"1\">\n      <stop stop-color=\"#91a4b7\" />\n      <stop offset=\"1\" stop-color=\"#c8d4e0\" />\n    </linearGradient>\n    <path id=\"off-power\" d=\"M34 32A38 38 0 1 0 86 32M60 16V58\" />\n    <filter id=\"off-inset\" x=\"-20%\" y=\"-20%\" width=\"140%\" height=\"140%\" color-interpolation-filters=\"sRGB\">\n      <feComponentTransfer in=\"SourceAlpha\">\n        <feFuncA type=\"table\" tableValues=\"1 0\" />\n      </feComponentTransfer>\n      <feGaussianBlur stdDeviation=\".8\" />\n      <feOffset dx=\"1\" dy=\"1\" />\n      <feComposite in2=\"SourceAlpha\" operator=\"in\" result=\"inner-edge\" />\n      <feFlood flood-color=\"#52687e\" flood-opacity=\".45\" />\n      <feComposite in2=\"inner-edge\" operator=\"in\" />\n      <feMerge>\n        <feMergeNode in=\"SourceGraphic\" />\n        <feMergeNode />\n      </feMerge>\n    </filter>\n    <linearGradient id=\"disconnected-link-face\" x2=\"0\" y2=\"1\">\n      <stop stop-color=\"#91a4b7\" />\n      <stop offset=\"1\" stop-color=\"#c8d4e0\" />\n    </linearGradient>\n    <path id=\"disconnected-broken-link\" d=\"M70 63L84 49A18 18 0 0 0 59 24L45 38M50 57L36 71A18 18 0 0 0 61 96L75 82M34 25 29 18M23 39 15 36M86 95 91 102M97 81 105 84\" />\n    <filter id=\"disconnected-inset\" x=\"-20%\" y=\"-20%\" width=\"140%\" height=\"140%\" color-interpolation-filters=\"sRGB\">\n      <feComponentTransfer in=\"SourceAlpha\">\n        <feFuncA type=\"table\" tableValues=\"1 0\" />\n      </feComponentTransfer>\n      <feGaussianBlur stdDeviation=\".8\" />\n      <feOffset dx=\"1\" dy=\"1\" />\n      <feComposite in2=\"SourceAlpha\" operator=\"in\" result=\"inner-edge\" />\n      <feFlood flood-color=\"#52687e\" flood-opacity=\".45\" />\n      <feComposite in2=\"inner-edge\" operator=\"in\" />\n      <feMerge>\n        <feMergeNode in=\"SourceGraphic\" />\n        <feMergeNode />\n      </feMerge>\n    </filter>\n    <style>\n.when-running,.when-off,.when-disconnected{display:none}\n.airflow-running .when-running{display:inline}\n.airflow-off .when-off{display:inline}\n.airflow-disconnected .when-disconnected{display:inline}\n</style>\n  </defs>\n  <g id=\"idle\" />\n  <g id=\"running\" />\n  <g id=\"off\" />\n  <g id=\"disconnected\" />\n  <g class=\"scene\">\n    <rect class=\"airflow-background\" x=\"80\" y=\"-16\" width=\"640\" height=\"512\" rx=\"22\" fill=\"#f8fafc\" />\n    <g font-family=\"Arial, sans-serif\">\n      <g transform=\"translate(0 -15)\">\n        <rect x=\"265\" y=\"115\" width=\"270\" height=\"190\" rx=\"7\" fill=\"url(#case)\" />\n        <g id=\"internals\" opacity=\".3\" stroke=\"#8da0b3\" stroke-width=\"1\" stroke-linejoin=\"round\" class=\"when-running\">\n          <rect x=\"270\" y=\"120\" width=\"260\" height=\"180\" rx=\"5\" fill=\"#d3dde7\" fill-opacity=\".24\" />\n          <g fill=\"#d3dde7\" fill-opacity=\".45\">\n            <path d=\"M270 208H320L322 210 320 212H270Z\" />\n            <path d=\"M480 208H530V212H480L478 210Z\" />\n            <path d=\"M398 120H402V130L400 132 398 130Z\" />\n            <path d=\"M400 288 402 290V300H398V290Z\" />\n          </g>\n          <path class=\"airflow-exchanger\" d=\"M400 132 478 210 400 288 322 210Z\" fill=\"#cedae7\" fill-opacity=\".45\" />\n          <path d=\"M400 136 474 210 400 284 326 210Z\" fill=\"none\" />\n        </g>\n        <path d=\"M535 170H495C430 170 370 260 305 260H265\" fill=\"none\" stroke=\"url(#exhaust)\" stroke-width=\"22\" opacity=\".45\" mask=\"url(#exhaust-gap)\" class=\"when-running\" />\n        <path d=\"M265 170H305C370 170 430 260 495 260H535\" fill=\"none\" stroke=\"url(#supply)\" stroke-width=\"22\" opacity=\".45\" class=\"when-running\" />\n        <path d=\"M148.5 159H265V181H148.5L156.5 170Z\" fill=\"#25b9df\" class=\"when-running\" />\n        <path d=\"M651.5 159H535V181H651.5L643.5 170Z\" fill=\"#ce6998\" class=\"when-running\" />\n        <path d=\"M265 249H166.5V244L148.5 260 166.5 276V271H265Z\" fill=\"#639ed0\" class=\"when-running\" />\n        <path d=\"M535 249H633.5V244L651.5 260 633.5 276V271H535Z\" fill=\"#ef8450\" class=\"when-running\" />\n        <rect x=\"265\" y=\"115\" width=\"270\" height=\"190\" rx=\"7\" fill=\"url(#cover)\" />\n        <g fill=\"url(#duct)\" stroke=\"#91a5ba\" stroke-opacity=\".65\" stroke-width=\"1.5\">\n          <rect x=\"253\" y=\"151\" width=\"12\" height=\"38\" rx=\"2\" />\n          <rect x=\"535\" y=\"151\" width=\"12\" height=\"38\" rx=\"2\" />\n          <rect x=\"253\" y=\"241\" width=\"12\" height=\"38\" rx=\"2\" />\n          <rect x=\"535\" y=\"241\" width=\"12\" height=\"38\" rx=\"2\" />\n        </g>\n        <rect x=\"265\" y=\"115\" width=\"270\" height=\"190\" rx=\"7\" fill=\"none\" stroke=\"url(#rim)\" stroke-width=\"1.25\" />\n        <rect x=\"267\" y=\"117\" width=\"266\" height=\"186\" rx=\"5\" fill=\"none\" stroke=\"#fff\" stroke-opacity=\".5\" />\n      </g>\n      \n      <g fill=\"#edf2f7\" stroke=\"#dce4ed\">\n        <rect x=\"155\" y=\"430\" width=\"210\" height=\"38\" rx=\"10\" />\n        <rect x=\"381\" y=\"430\" width=\"38\" height=\"38\" rx=\"10\" />\n        <rect x=\"435\" y=\"430\" width=\"210\" height=\"38\" rx=\"10\" />\n      </g>\n      \n      \n      <svg x=\"340\" y=\"135\" width=\"120\" height=\"120\" viewBox=\"0 0 120 120\" class=\"when-off\">\n        <g fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\" opacity=\".5\">\n          <use href=\"#off-power\" transform=\"translate(.7 1)\" stroke=\"#fff\" stroke-width=\"12\" opacity=\".65\" />\n          <use href=\"#off-power\" stroke=\"url(#off-off-face)\" stroke-width=\"10\" filter=\"url(#off-inset)\" />\n        </g>\n      </svg>\n      <svg x=\"340\" y=\"135\" width=\"120\" height=\"120\" viewBox=\"0 0 120 120\" class=\"when-disconnected\">\n        <g fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\" opacity=\".5\">\n          <use href=\"#disconnected-broken-link\" transform=\"translate(.7 1)\" stroke=\"#fff\" stroke-width=\"10\" opacity=\".65\" />\n          <use href=\"#disconnected-broken-link\" stroke=\"url(#disconnected-link-face)\" stroke-width=\"8\" filter=\"url(#disconnected-inset)\" />\n        </g>\n      </svg>\n    </g>\n  </g>\n</svg>";
 const PANEL = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"680\" height=\"681\" viewBox=\"0 0 680 681\"><defs>\n<linearGradient id=\"body\" x2=\"1\" y2=\"1\"><stop stop-color=\"#fafcfd\"/><stop offset=\"1\" stop-color=\"#dce6eb\"/></linearGradient>\n<linearGradient id=\"lcd\" x2=\"0\" y2=\"1\"><stop stop-color=\"#d5decc\"/><stop offset=\".2\" stop-color=\"#edf0e7\"/><stop offset=\"1\" stop-color=\"#e0e6d7\"/></linearGradient>\n<linearGradient id=\"btn\" x2=\"0\" y2=\"1\"><stop stop-color=\"#fff\"/><stop offset=\"1\" stop-color=\"#e3ebef\"/></linearGradient>\n<marker id=\"arrow\" viewBox=\"0 0 10 10\" refX=\"8\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M1 1 9 5 1 9\" fill=\"none\" stroke=\"#505b48\" stroke-width=\"1.5\"/></marker></defs>\n<rect class=\"body-layer\" width=\"680\" height=\"681\" fill=\"#f5f6f7\"/>\n<rect class=\"body-layer\" x=\"22\" y=\"16\" width=\"636\" height=\"649\" rx=\"29\" fill=\"url(#body)\" stroke=\"#c8d3d9\"/>\n\n<g transform=\"translate(0 -35)\"><rect class=\"screen-layer\" data-screen-shell=\"\" x=\"47\" y=\"76\" width=\"586\" height=\"493\" rx=\"9\" fill=\"#c3cdbb\"/>\n<rect class=\"screen-layer\" data-screen-surface=\"\" x=\"51\" y=\"81\" width=\"578\" height=\"483\" rx=\"6\" fill=\"#e9ede2\" stroke=\"#f8faf3\" stroke-width=\"2\"/>\n<path class=\"screen-layer screen-glare\" d=\"M55 87H625V110L55 139Z\" fill=\"#fff\" opacity=\".22\"/>\n<!-- Дом и наружная зона. Левая стена проходит через теплообменник. -->\n\n<g transform=\"translate(0 8)\" fill=\"none\" stroke=\"#a6ae9c\" stroke-width=\"3.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M324 194 466 112Q469 110 472 112L612 194\"/><path d=\"M340 184.76V257 M340 345V434 M598 185.8V434\"/></g>\n\n<g class=\"airflow-lines\" transform=\"translate(38 -56)\" fill=\"none\" stroke=\"#56614d\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n<path d=\"m302 327 38 38-38 38-38-38Z\" stroke-width=\"2\"/>\n<path d=\"M371 335H334L324 344 M318 349 284 380 M278 385 268 394H229\"/>\n<path d=\"M229 335H268L278 344 M285 350 298 362 M305 369 318 380 M325 386 334 394H371\"/><path d=\"m237 390-8 4 8 4 M363 390l8 4-8 4\" stroke-width=\"1.8\"/>\n</g><text class=\"airflow-label\" x=\"276\" y=\"267\" text-anchor=\"middle\" fill=\"#3b4533\" font-family=\"Arial,sans-serif\" font-size=\"16\" font-weight=\"700\">OA</text><text class=\"airflow-label\" x=\"403\" y=\"267\" text-anchor=\"middle\" fill=\"#3b4533\" font-family=\"Arial,sans-serif\" font-size=\"16\" font-weight=\"700\">RA</text><text class=\"airflow-label\" x=\"276\" y=\"362\" text-anchor=\"middle\" fill=\"#3b4533\" font-family=\"Arial,sans-serif\" font-size=\"16\" font-weight=\"700\">FR</text><text class=\"airflow-label\" x=\"403\" y=\"362\" text-anchor=\"middle\" fill=\"#3b4533\" font-family=\"Arial,sans-serif\" font-size=\"16\" font-weight=\"700\">SA</text>\n\n<path class=\"screen-layer fan-divider\" d=\"M74 449H606\" stroke=\"#d0d7ca\"/><path class=\"screen-layer compact-bottom-line\" d=\"M74 552H606\" stroke=\"#c8d0be\" opacity=\".5\"/><rect class=\"body-layer\" x=\"47\" y=\"595\" width=\"184.667\" height=\"77\" rx=\"12\" fill=\"#cbd6dc\"/><rect class=\"body-layer\" x=\"49\" y=\"597\" width=\"180.667\" height=\"72\" rx=\"11\" fill=\"url(#btn)\" stroke=\"#abbac3\"/><rect class=\"body-layer\" x=\"247.667\" y=\"595\" width=\"184.667\" height=\"77\" rx=\"12\" fill=\"#cbd6dc\"/><rect class=\"body-layer\" x=\"249.667\" y=\"597\" width=\"180.667\" height=\"72\" rx=\"11\" fill=\"url(#btn)\" stroke=\"#abbac3\"/><rect class=\"body-layer\" x=\"448.333\" y=\"595\" width=\"184.667\" height=\"77\" rx=\"12\" fill=\"#cbd6dc\"/><rect class=\"body-layer\" x=\"450.333\" y=\"597\" width=\"180.667\" height=\"72\" rx=\"11\" fill=\"url(#btn)\" stroke=\"#abbac3\"/><g class=\"preheater\" transform=\"translate(45.58 -2.1) scale(.82)\" stroke=\"#77836b\" opacity=\".35\" fill=\"none\" stroke-width=\"1.7\" stroke-linecap=\"round\"><path d=\"M274 295q-5-5 0-10t0-10m7 20q-5-5 0-10t0-10m7 20q-5-5 0-10t0-10\"/><rect x=\"269\" y=\"300\" width=\"24\" height=\"5\" rx=\"1\"/></g><g fill=\"#66705d\" font-family=\"Arial,sans-serif\" font-size=\"15\"><text x=\"208\" y=\"245\">°C</text><text x=\"542\" y=\"245\">°C</text><text x=\"208\" y=\"386\">°C</text><text x=\"542\" y=\"386\">°C</text></g></g></svg>";
 const ICONS = {"chip": "<path d=\"M6,4H18V5H21V7H18V9H21V11H18V13H21V15H18V17H21V19H18V20H6V19H3V17H6V15H3V13H6V11H3V9H6V7H3V5H6V4M11,15V18H12V15H11M13,15V18H14V15H13M15,15V18H16V15H15Z\" />", "hvac": "<path d=\"M8.58 14C8.3 13.55 8.11 13.03 8.06 12.5H15.94C15.89 13.03 15.7 13.55 15.47 14H8.58M12 16C10.97 16 10.08 15.61 9.38 15H14.63C13.92 15.61 13.03 16 12 16M12 8C13.03 8 13.92 8.39 14.63 9H9.38C10.08 8.39 10.97 8 12 8M8.58 10H15.42C15.7 10.45 15.89 10.97 15.94 11.5H8.06C8.11 10.97 8.3 10.45 8.58 10M3 3V21H21V3H3M12 18C8.67 18 6 15.33 6 12S8.67 6 12 6 18 8.67 18 12 15.33 18 12 18Z\" />", "air-filter": "<path d=\"M4 3h16v18H4zm2 2v14h12V5zm1 2h10v2H7zm0 4h10v2H7zm0 4h10v2H7z\"/>", "alert-circle-outline": "<path d=\"M11,15H13V17H11V15M11,7H13V13H11V7M12,2C6.47,2 2,6.5 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20Z\" />", "fire-alert": "<path d=\"M15.66 11.2C15.43 10.9 15.15 10.64 14.89 10.38C14.22 9.78 13.46 9.35 12.82 8.72C11.33 7.26 11 4.85 11.95 3C11 3.23 10.17 3.75 9.46 4.32C6.87 6.4 5.85 10.07 7.07 13.22C7.11 13.32 7.15 13.42 7.15 13.55C7.15 13.77 7 13.97 6.8 14.05C6.57 14.15 6.33 14.09 6.14 13.93C6.08 13.88 6.04 13.83 6 13.76C4.87 12.33 4.69 10.28 5.45 8.64C3.78 10 2.87 12.3 3 14.47C3.06 14.97 3.12 15.47 3.29 15.97C3.43 16.57 3.7 17.17 4 17.7C5.08 19.43 6.95 20.67 8.96 20.92C11.1 21.19 13.39 20.8 15.03 19.32C16.86 17.66 17.5 15 16.56 12.72L16.43 12.46C16.22 12 15.66 11.2 15.66 11.2M12.5 17.5C12.22 17.74 11.76 18 11.4 18.1C10.28 18.5 9.16 17.94 8.5 17.28C9.69 17 10.4 16.12 10.61 15.23C10.78 14.43 10.46 13.77 10.33 13C10.21 12.26 10.23 11.63 10.5 10.94C10.69 11.32 10.89 11.7 11.13 12C11.9 13 13.11 13.44 13.37 14.8C13.41 14.94 13.43 15.08 13.43 15.23C13.46 16.05 13.1 16.95 12.5 17.5H12.5M21 13H19V7H21V13M21 17H19V15H21V17Z\" />", "valve": "<path d=\"M4 22H2V2H4M22 2H20V22H22M17.24 5.34L13.24 9.34A3 3 0 0 0 9.24 13.34L5.24 17.34L6.66 18.76L10.66 14.76A3 3 0 0 0 14.66 10.76L18.66 6.76Z\" />", "snowflake-melt": "<path d=\"M8 17.85C8 19.04 7.11 20 6 20S4 19.04 4 17.85C4 16.42 6 14 6 14S8 16.42 8 17.85M16.46 12V10.56L18.46 9.43L20.79 10.05L21.31 8.12L19.54 7.65L20 5.88L18.07 5.36L17.45 7.69L15.45 8.82L13 7.38V5.12L14.71 3.41L13.29 2L12 3.29L10.71 2L9.29 3.41L11 5.12V7.38L8.5 8.82L6.5 7.69L5.92 5.36L4 5.88L4.47 7.65L2.7 8.12L3.22 10.05L5.55 9.43L7.55 10.56V12H2V13H22V12H16.46M9.5 12V10.56L12 9.11L14.5 10.56V12H9.5M20 17.85C20 19.04 19.11 20 18 20S16 19.04 16 17.85C16 16.42 18 14 18 14S20 16.42 20 17.85M14 20.85C14 22.04 13.11 23 12 23S10 22.04 10 20.85C10 19.42 12 17 12 17S14 19.42 14 20.85Z\" />", "fan-plus": "<path d=\"M13 19C13 17.59 13.5 16.3 14.3 15.28C14.17 14.97 14.03 14.65 13.86 14.34C14.26 14 14.57 13.59 14.77 13.11C15.26 13.21 15.78 13.39 16.25 13.67C17.07 13.25 18 13 19 13C20.05 13 21.03 13.27 21.89 13.74C21.95 13.37 22 12.96 22 12.5C22 8.92 18.03 8.13 14.33 10.13C14 9.73 13.59 9.42 13.11 9.22C13.3 8.29 13.74 7.24 14.73 6.75C17.09 5.57 17 2 12.5 2C8.93 2 8.14 5.96 10.13 9.65C9.72 9.97 9.4 10.39 9.21 10.87C8.28 10.68 7.23 10.25 6.73 9.26C5.56 6.89 2 7 2 11.5C2 15.07 5.95 15.85 9.64 13.87C9.96 14.27 10.39 14.59 10.88 14.79C10.68 15.71 10.24 16.75 9.26 17.24C6.9 18.42 7 22 11.5 22C12.31 22 13 21.78 13.5 21.41C13.19 20.67 13 19.86 13 19M12 13C11.43 13 11 12.55 11 12S11.43 11 12 11C12.54 11 13 11.45 13 12S12.54 13 12 13M20 15V18H23V20H20V23H18V20H15V18H18V15H20Z\" />", "molecule-co2": "<path d=\"M5,7A2,2 0 0,0 3,9V15A2,2 0 0,0 5,17H8V15H5V9H8V7H5M11,7A2,2 0 0,0 9,9V15A2,2 0 0,0 11,17H13A2,2 0 0,0 15,15V9A2,2 0 0,0 13,7H11M11,9H13V15H11V9M16,10.5V12H19V13.5H17.5A1.5,1.5 0 0,0 16,15V18H20.5V16.5H17.5V15H19A1.5,1.5 0 0,0 20.5,13.5V12A1.5,1.5 0 0,0 19,10.5H16Z\" />", "power": "<path d=\"M16.56,5.44L15.11,6.89C16.84,7.94 18,9.83 18,12A6,6 0 0,1 12,18A6,6 0 0,1 6,12C6,9.83 7.16,7.94 8.88,6.88L7.44,5.44C5.36,6.88 4,9.28 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12C20,9.28 18.64,6.88 16.56,5.44M13,3H11V13H13\" />", "fan-chevron-up": "<path d=\"M13 19C13 17.59 13.5 16.3 14.3 15.28C14.17 14.97 14.03 14.65 13.86 14.34C14.26 14 14.57 13.59 14.77 13.11C15.26 13.21 15.78 13.39 16.25 13.67C17.07 13.25 18 13 19 13C20.05 13 21.03 13.27 21.89 13.74C21.95 13.37 22 12.96 22 12.5C22 8.92 18.03 8.13 14.33 10.13C14 9.73 13.59 9.42 13.11 9.22C13.3 8.29 13.74 7.24 14.73 6.75C17.09 5.57 17 2 12.5 2C8.93 2 8.14 5.96 10.13 9.65C9.72 9.97 9.4 10.39 9.21 10.87C8.28 10.68 7.23 10.25 6.73 9.26C5.56 6.89 2 7 2 11.5C2 15.07 5.95 15.85 9.64 13.87C9.96 14.27 10.39 14.59 10.88 14.79C10.68 15.71 10.24 16.75 9.26 17.24C6.9 18.42 7 22 11.5 22C12.31 22 13 21.78 13.5 21.41C13.19 20.67 13 19.86 13 19M12 13C11.43 13 11 12.55 11 12S11.43 11 12 11C12.54 11 13 11.45 13 12S12.54 13 12 13M19 17.83L15.83 21L14.41 19.59L19 15L23.59 19.59L22.17 21L19 17.83\" />", "fan-chevron-down": "<path d=\"M13 19C13 17.59 13.5 16.3 14.3 15.28C14.17 14.97 14.03 14.65 13.86 14.34C14.26 14 14.57 13.59 14.77 13.11C15.26 13.21 15.78 13.39 16.25 13.67C17.07 13.25 18 13 19 13C20.05 13 21.03 13.27 21.89 13.74C21.95 13.37 22 12.96 22 12.5C22 8.92 18.03 8.13 14.33 10.13C14 9.73 13.59 9.42 13.11 9.22C13.3 8.29 13.74 7.24 14.73 6.75C17.09 5.57 17 2 12.5 2C8.93 2 8.14 5.96 10.13 9.65C9.72 9.97 9.4 10.39 9.21 10.87C8.28 10.68 7.23 10.25 6.73 9.26C5.56 6.89 2 7 2 11.5C2 15.07 5.95 15.85 9.64 13.87C9.96 14.27 10.39 14.59 10.88 14.79C10.68 15.71 10.24 16.75 9.26 17.24C6.9 18.42 7 22 11.5 22C12.31 22 13 21.78 13.5 21.41C13.19 20.67 13 19.86 13 19M12 13C11.43 13 11 12.55 11 12S11.43 11 12 11C12.54 11 13 11.45 13 12S12.54 13 12 13M19 19.17L22.17 16L23.59 17.41L19 22L14.41 17.41L15.83 16L19 19.17\" />", "water": "<path d=\"M12 2C10 5 5 10.5 5 15a7 7 0 0 0 14 0c0-4.5-5-10-7-13Z\"/>"};
 const VERSION = "0.0.8";
@@ -89,6 +90,9 @@ class RoyalClimaCard extends HTMLElement {
       overlay += `<g class="speed-action" data-speed-action="${role}" role="button" tabindex="0"><title></title><rect x="${x}" y="562" width="181" height="72" rx="11" fill="transparent"/><circle cx="${cx}" cy="598" r="16" fill="none" stroke="#596561" stroke-width="3" stroke-dasharray="62 39" style="transform-origin:${cx}px 598px"/></g>`;
     }
     this.shadowRoot.innerHTML = `<style>
+      .fan-background{display:none}ha-card.airflow .fan-background{display:inline}
+      .airflow-art{display:none}ha-card.airflow .airflow-art{display:inline}ha-card.airflow .panel-art,ha-card.airflow [data-bar],ha-card.airflow [data-speed-icon]{display:none}
+      ha-card.airflow.transparent .airflow-background{display:none}ha-card.airflow .caption{fill:#34465b;font-size:20px}ha-card.airflow [data-fan]{opacity:.38}ha-card.airflow .segments text{font-weight:600}ha-card.airflow [data-power-icon] text{display:none}ha-card.airflow [data-power-icon]{display:inline}ha-card.airflow .speed-action rect{stroke:none}ha-card.airflow .speed-action circle{r:12}
       :host{display:block}ha-card{display:block;background:transparent;border:0;box-shadow:none;overflow:hidden;border-radius:14px}
       ha-card.compact .screen-glare,ha-card.compact .compact-bottom-line,ha-card.compact .body-layer,ha-card.compact .inactive-button,ha-card.compact .speed-action{display:none}
       ha-card.compact [data-screen-shell]{display:none}ha-card.compact [data-screen-surface]{stroke:none}
@@ -101,6 +105,7 @@ class RoyalClimaCard extends HTMLElement {
       .temperature-action,.indicator-action{cursor:pointer}.temperature-action[aria-disabled="true"],.indicator-action[aria-disabled="true"]{cursor:default}
       :where(ha-card.compact) .power-action rect{stroke:#c5cbc2;stroke-width:1.5}
       .power-action{cursor:pointer}.power-action[aria-disabled="true"]{cursor:default}.power-action rect{pointer-events:all}.power-action:focus-visible{outline:none}.power-action:focus-visible rect{stroke:#56614d;stroke-width:2}
+      .exchanger-error{animation:exchanger-pulse 2s ease-in-out infinite}@keyframes exchanger-pulse{50%{stroke-opacity:.55;fill-opacity:.04}}@media(prefers-reduced-motion:reduce){.exchanger-error{animation:none}}
       .command-notice{cursor:pointer;animation:notice-pulse 1.8s ease-in-out 3}.command-notice:focus-visible{outline:none}.command-notice:focus-visible rect{stroke:#56614d;stroke-width:2}@keyframes notice-pulse{50%{opacity:.6}}@media(prefers-reduced-motion:reduce){.command-notice{animation:none}}
       .waiting,.speed-action circle{stroke:#3e9ed6}
       .waiting{display:none;transform-origin:340px 598px;animation:spin 1s linear infinite}.power-action.pending .waiting{display:block}
@@ -109,18 +114,29 @@ class RoyalClimaCard extends HTMLElement {
       .speed-action{cursor:pointer}.speed-action[aria-disabled="true"]{cursor:default}.speed-action rect{pointer-events:all}.speed-action:focus-visible{outline:none}.speed-action:focus-visible rect{stroke:#56614d;stroke-width:2}
       .speed-action circle{display:none;animation:spin 1s linear infinite}.speed-action.pending circle{display:block}
       dialog{border:1px solid var(--divider-color,#ccd3d7);border-radius:16px;padding:24px;max-width:calc(100vw - 32px);width:320px;box-sizing:border-box;background:var(--card-background-color,#fff);color:var(--primary-text-color,#222);font:16px Arial,sans-serif}dialog::backdrop{background:#0006}dialog h3{font-size:20px;margin:0 0 18px;font-weight:500}.speed-choices{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}dialog button{font:inherit;min-height:44px;border:1px solid var(--divider-color,#ccd3d7);border-radius:8px;background:var(--secondary-background-color,#f2f5f5);color:inherit;cursor:pointer}dialog button[aria-pressed="true"]{background:var(--primary-color,#0385bd);color:white}dialog button:disabled{opacity:.35;cursor:default}[data-speed-close]{display:block;margin:18px 0 0 auto;padding:0 14px}
-    </style><ha-card>${PANEL.replace('<svg ', '<svg class="panel" role="img" ').replace('</svg>', overlay + '</svg>')}</ha-card><dialog aria-labelledby="speed-dialog-title"><h3 id="speed-dialog-title"></h3><div class="speed-choices">${Array.from({length:11},(_,i)=>`<button type="button" data-step-choice="${i}">${i}</button>`).join("")}</div><button type="button" data-speed-close></button></dialog>`;
+    </style><ha-card>${PANEL.replace('</svg>', '</g></svg>').replace('</defs>', '</defs><g class="panel-art">').replace('<svg ', '<svg class="panel" role="img" ').replace('</svg>', AIRFLOW + overlay + '</svg>')}</ha-card><dialog aria-labelledby="speed-dialog-title"><h3 id="speed-dialog-title"></h3><div class="speed-choices">${Array.from({length:11},(_,i)=>`<button type="button" data-step-choice="${i}">${i}</button>`).join("")}</div><button type="button" data-speed-close></button></dialog>`;
+    for(const fan of this.shadowRoot.querySelectorAll('[data-fan]')) {
+      const background=document.createElementNS("http://www.w3.org/2000/svg","circle");background.classList.add("fan-background");background.setAttribute("r",28);background.setAttribute("fill","#f8fafc");background.setAttribute("fill-opacity",".65");fan.prepend(background);
+    }
+    const airflowScene=this.shadowRoot.querySelector(".airflow-art .scene");
+    const statusBg=document.createElementNS("http://www.w3.org/2000/svg","rect");statusBg.classList.add("airflow-status-background");statusBg.setAttribute("x",278);statusBg.setAttribute("y",101);statusBg.setAttribute("width",244);statusBg.setAttribute("height",38);statusBg.setAttribute("rx",10);statusBg.setAttribute("fill","#f8fafc");statusBg.setAttribute("fill-opacity",".8");airflowScene.append(statusBg);
+    for(const [x,ru,en] of [[210,"Вытяжка","Exhaust"],[490,"Приток","Supply"]]) {
+      const label=document.createElementNS("http://www.w3.org/2000/svg","text");label.classList.add("caption");label.dataset.ru=ru;label.dataset.en=en;label.setAttribute("x",x);label.setAttribute("y",449);airflowScene.append(label);
+    }
+    const heater = this.shadowRoot.querySelector(".preheater"), heaterWrapper = document.createElementNS("http://www.w3.org/2000/svg","g");
+    heaterWrapper.setAttribute("transform","translate(0 -35)"); heater.parentNode.removeChild(heater); heaterWrapper.append(heater); this.shadowRoot.querySelector("svg.panel").append(heaterWrapper);
     const openHistory = event => {
       const block = event.target.closest?.("[data-history]");
       if (!block || (event.type === "keydown" && !["Enter", " "].includes(event.key))) return;
       if (event.type === "keydown") event.preventDefault();
-      if (this._config?.compact && ["supply_speed", "exhaust_speed"].includes(block.dataset.history)) {
+      if (this._config?.view !== "airflow" && this._config?.compact && ["supply_speed", "exhaust_speed"].includes(block.dataset.history)) {
         this._openSpeed(block.dataset.history); return;
       }
       const entityId = this._ids?.[block.dataset.history];
       if (!entityId || !this._hass?.states?.[entityId]) return;
       this.dispatchEvent(new CustomEvent("hass-more-info", { detail: { entityId }, bubbles: true, composed: true }));
     };
+    this._initialLayout = [...this.shadowRoot.querySelectorAll("svg.panel *")].map(el=>[el,[...el.attributes].map(a=>[a.name,a.value])]);
     this.shadowRoot.addEventListener("click", openHistory);
     this.shadowRoot.addEventListener("keydown", openHistory);
     const powerAction = event => {
@@ -170,6 +186,7 @@ class RoyalClimaCard extends HTMLElement {
       if (value !== null && (typeof value !== "string" || !/^[a-z_]+\.[a-z0-9_]+$/.test(value))) throw new Error(`Invalid entity ID for ${key}`);
       ids[key] = value;
     }
+    if (config.view !== undefined && !["control", "airflow"].includes(config.view)) throw new Error("view must be control or airflow");
     if (config.sensor_boost_icon !== undefined && !["none", "co2", "humidity"].includes(config.sensor_boost_icon)) throw new Error("sensor_boost_icon must be none, co2 or humidity");
     if (config.name !== undefined && typeof config.name !== "string") throw new Error("name must be a string");
     if (config.language !== undefined && typeof config.language !== "string") throw new Error("language must be a string");
@@ -179,9 +196,11 @@ class RoyalClimaCard extends HTMLElement {
     this._config = config; this._ids = ids; this._applyLayout(); this._render();
   }
   _applyLayout() {
-    const compact = !!this._config.compact;
+    for(const [el,attributes] of this._initialLayout) { for(const a of [...el.attributes]) el.removeAttribute(a.name); for(const [name,value] of attributes) el.setAttribute(name,value); }
+    const airflow = this._config.view === "airflow";
+    const compact = !airflow && !!this._config.compact;
     const card = this.shadowRoot.querySelector("ha-card"), svg = this.shadowRoot.querySelector("svg.panel");
-    card.classList.toggle("compact", compact); card.classList.toggle("transparent", compact && !!this._config.transparent);
+    card.classList.toggle("airflow", airflow); card.classList.toggle("compact", compact); card.classList.toggle("transparent", (compact || airflow) && !!this._config.transparent);
     svg.setAttribute("viewBox", compact ? "47 41 586 465" : "0 0 680 681");
     svg.setAttribute("width", compact ? "586" : "680"); svg.setAttribute("height", compact ? "465" : "681");
     this.shadowRoot.querySelector("[data-screen-shell]").setAttribute("height", compact ? "465" : "493");
@@ -203,6 +222,33 @@ class RoyalClimaCard extends HTMLElement {
     for (const [name, value] of Object.entries(compact ? {x:312,y:437,width:56,height:56} : {x:249.5,y:562,width:181,height:72})) rect.setAttribute(name, value);
     spinner.setAttribute("cy", compact ? "465" : "598"); spinner.style.transformOrigin = compact ? "340px 465px" : "340px 598px";
     this.shadowRoot.querySelector(".command-message").setAttribute("y", compact ? "420" : "523");
+    if (airflow) this._applyAirflowLayout();
+  }
+  _applyAirflowLayout() {
+    const root = this.shadowRoot;
+    const attrs = (el, values) => { for (const [key,value] of Object.entries(values)) el.setAttribute(key,value); };
+    attrs(root.querySelector("svg.panel"), {viewBox:"80 -16 640 512",width:640,height:512});
+    const positions = [["outdoor_temperature",205,66,27,"#087f9f"],["return_temperature",595,66,27,"#a34172"],["defrost_temperature",205,324,359,"#3674a7"],["supply_temperature",595,324,359,"#bb5529"],["exhaust_speed",315,449,null,"#34465b"],["supply_speed",595,449,null,"#34465b"]];
+    for (const [role,x,y,labelY,color] of positions) {
+      const display=root.querySelector(`[data-display="${role}"]`);
+      attrs(display,{x:x-65,y:y-23,width:130,height:46,transform:""}); display.dataset.color=color;
+      const hit=root.querySelector(`[data-history="${role}"] rect`);
+      attrs(hit,{x:x-85,y:y-26,width:170,height:52,transform:""});
+      if(labelY!==null) { const caption=root.querySelector(`[data-history="${role}"]`); const index=DISPLAYS.findIndex(d=>d[0]===role); attrs(root.querySelectorAll("svg.panel > .caption")[index],{x,y:labelY}); }
+    }
+    for(const [key,x,y] of [["esp_connection",383,27],["online",417,27],["filter_replacement",298,120],["error",332,120],["fire_alarm",366,120],["bypass",400,120],["defrost",434,120],["external_input_boost",468,120],["sensor_boost",502,120]]) {
+      const spec=INDICATORS.find(d=>d[0]===key);attrs(root.querySelector(`[data-indicator="${key}"]`),{transform:`translate(${x-spec[2]} ${y-spec[3]})`});
+    }
+    for(const [role,x] of [["exhaust_speed",310],["supply_speed",490]]) {
+      attrs(root.querySelector(`[data-fan="${role}"]`),{transform:`translate(${x} 245)`});
+      const button=root.querySelector(`[data-speed-action="${role}"]`), bx=role==="exhaust_speed"?155:435;
+      attrs(button.querySelector("rect"),{x:bx,y:430,width:210,height:38});attrs(button.querySelector("circle"),{cx:bx+105,cy:449});button.querySelector("circle").style.transformOrigin=`${bx+105}px 449px`;
+    }
+    attrs(root.querySelector("[data-power-icon]"),{transform:"translate(400 449) scale(.7) translate(-340 -590)"});
+    attrs(root.querySelector("[data-power] rect"),{x:381,y:430,width:38,height:38});
+    attrs(root.querySelector(".waiting"),{cx:400,cy:449,r:12});root.querySelector(".waiting").style.transformOrigin="400px 449px";
+    attrs(root.querySelector(".command-message"),{x:400,y:417});
+    attrs(root.querySelector(".preheater"),{transform:"translate(6 -80) scale(.82)"});attrs(root.querySelector('[data-history="preheater"] rect'),{x:220,y:140,width:40,height:48});
   }
   set hass(value) { this._hass = value; this._render(); }
   disconnectedCallback() { this._clearPending(); this._clearSpeeds(); this._clearErrors(); this._render(); }
@@ -281,7 +327,7 @@ class RoyalClimaCard extends HTMLElement {
       clearTimeout(pending.timer); delete this._speedPending[role]; this._speedErrors[role] = "failed"; this._render();
     }
   }
-  getCardSize() { return this._config?.compact ? 5 : 7; }
+  getCardSize() { return this._config?.view === "airflow" ? 6 : this._config?.compact ? 5 : 7; }
   getGridOptions() { return { columns: 12, rows: "auto", min_columns: 6 }; }
   _render() {
     if (!this._ids || !this._hass) return;
@@ -298,17 +344,26 @@ class RoyalClimaCard extends HTMLElement {
       if (connected && known(role) && Number(raw(role)) === pending.expected) { clearTimeout(pending.timer); delete this._speedPending[role]; }
     }
     const flowing = connected && on("power");
+    const scene=this.shadowRoot.querySelector(".airflow-art");
+    scene.classList.toggle("airflow-running",flowing);scene.classList.toggle("airflow-off",connected && !on("power"));scene.classList.toggle("airflow-disconnected",!connected);
+    const core=scene.querySelector(".airflow-exchanger");core.classList.toggle("exchanger-error",connected && on("error"));core.setAttribute("stroke",connected && on("error")?"#c24632":"#8da0b3");core.setAttribute("fill",connected && on("error")?"#c24632":"#cedae7");core.setAttribute("fill-opacity",connected && on("error")?".09":".45");
+    scene.querySelector("#internals").style.display = connected && on("error") ? "inline" : "";
     const flow = this.shadowRoot.querySelector(".airflow-lines");
     flow.setAttribute("stroke", flowing ? "#56614d" : "#c2c8bc");
-    flow.querySelector("path").setAttribute("stroke", connected && on("error") ? "#c24632" : flowing ? "#56614d" : "#c2c8bc");
+    const exchanger = flow.querySelector("path"), exchangerError = connected && on("error");
+    exchanger.classList.toggle("exchanger-error", exchangerError);
+    exchanger.setAttribute("stroke", exchangerError ? "#c24632" : flowing ? "#56614d" : "#c2c8bc");
+    exchanger.setAttribute("fill", exchangerError ? "#c24632" : "none");
+    exchanger.setAttribute("fill-opacity", exchangerError ? ".09" : "0");
     for (const label of this.shadowRoot.querySelectorAll(".airflow-label")) label.setAttribute("fill", flowing ? "#3b4533" : "#c2c8bc");
     this.shadowRoot.querySelector("ha-card").setAttribute("aria-label", this._config.name || "Royal Clima ERV");
     for (const el of this.shadowRoot.querySelectorAll(".caption")) el.textContent = el.dataset[ru ? "ru" : "en"];
+    if(this._config.view === "airflow") for(const [i,suffix] of ["OA","RA","FR","SA"].entries()) this.shadowRoot.querySelectorAll("svg.panel > .caption")[i].textContent += ` · ${suffix}`;
     for (const [role] of DISPLAYS) {
       let value = connected && known(role) && String(raw(role)).trim() !== "" ? Number(raw(role)) : NaN;
       if (!Number.isFinite(value) || (role.endsWith("speed") && (!Number.isInteger(value) || value < 0 || value > 10))) value = null;
       const el = this.shadowRoot.querySelector(`[data-display="${role}"]`);
-      const content = digits(value, !role.endsWith("speed"));
+      const content = this._config.view === "airflow" ? `<text x="50" y="31" text-anchor="middle" font-family="Arial,sans-serif" font-size="${role.endsWith("speed") ? 21 : 32}" fill="${el.dataset.color}">${value === null ? "—" : value}${value === null ? "" : role.endsWith("speed") ? " / 10" : " °C"}</text>` : digits(value, !role.endsWith("speed"));
       const segments = el.querySelector(".segments");
       if (segments.innerHTML !== content) segments.innerHTML = content;
       el.dataset.value = value === null ? "unknown" : String(value);
@@ -317,7 +372,7 @@ class RoyalClimaCard extends HTMLElement {
     for (const [key, , , , russian, english] of INDICATORS) {
       const el = this.shadowRoot.querySelector(`[data-indicator="${key}"]`);
       const boostIcon = this._config.sensor_boost_icon ?? "co2";
-      const hidden = (key === "sensor_boost" && boostIcon === "none") || (key === "fire_alarm" && this._config.show_fire_alarm === false) || (key === "external_input_boost" && this._config.show_external_input_boost === false);
+      const hidden = (this._config.view === "airflow" && !["esp_connection", "online"].includes(key) && !(connected && on(key))) || (key === "sensor_boost" && boostIcon === "none") || (key === "fire_alarm" && this._config.show_fire_alarm === false) || (key === "external_input_boost" && this._config.show_external_input_boost === false);
       el.style.display = hidden ? "none" : "";
       if (key === "sensor_boost" && el.dataset.boostIcon !== boostIcon) {
         el.querySelector("g").outerHTML = icon(boostIcon === "humidity" ? "water" : "molecule-co2", 207.5, 116.5, boostIcon === "humidity" ? 25 : 32);
@@ -341,6 +396,17 @@ class RoyalClimaCard extends HTMLElement {
       fan.querySelector(".rotor").style.animationPlayState = running ? "running" : "paused";
       fan.querySelector(".rotor").style.animationDuration = `${(5 - (Math.max(1, Math.min(10, Number.isFinite(speed) ? speed : 1)) - 1) * (4.3 / 9)).toFixed(2)}s`;
       for (const bar of this.shadowRoot.querySelectorAll(`[data-bar="${role}"]`)) bar.setAttribute("opacity", running && speed >= Number(bar.dataset.step) ? "1" : ".18");
+    }
+    if (this._config.view === "airflow") {
+      const active = [...this.shadowRoot.querySelectorAll("[data-indicator]")].filter(el => !["esp_connection", "online"].includes(el.dataset.indicator) && el.style.display !== "none");
+      active.forEach((el, i) => {
+        const spec = INDICATORS.find(d => d[0] === el.dataset.indicator);
+        el.setAttribute("transform", `translate(${400 + (i - (active.length - 1) / 2) * 34 - spec[2]} ${120 - spec[3]})`);
+      });
+      const background = this.shadowRoot.querySelector(".airflow-status-background");
+      background.style.display = active.length ? "" : "none";
+      background.setAttribute("x", 400 - (active.length * 34 + 6) / 2);
+      background.setAttribute("width", active.length * 34 + 6);
     }
     const preheater = this.shadowRoot.querySelector(".preheater");
     const heaterAvailable = !!this._ids.preheater;
@@ -374,8 +440,8 @@ class RoyalClimaCard extends HTMLElement {
     power.querySelector("title").textContent = this._pending ? (ru ? "Ожидание подтверждения" : "Waiting for confirmation") : (ru ? "Включить / выключить ПВУ" : "Turn ventilation on / off");
     power.setAttribute("aria-label", power.querySelector("title").textContent);
     const powerGlyph = this.shadowRoot.querySelector("[data-power-icon]");
-    powerGlyph.setAttribute("opacity", this._pending ? "0" : this._config.compact ? "1" : this._powerReady() ? "1" : ".4");
-    powerGlyph.setAttribute("fill", this._config.compact ? (!this._powerReady() ? "#9a9a9a" : on("power") ? "#23863f" : "#111111") : "#596561");
+    powerGlyph.setAttribute("opacity", this._pending ? "0" : (this._config.compact || this._config.view === "airflow") ? "1" : this._powerReady() ? "1" : ".4");
+    powerGlyph.setAttribute("fill", (this._config.compact || this._config.view === "airflow") ? (!this._powerReady() ? "#9a9a9a" : on("power") ? "#23863f" : "#111111") : "#596561");
     let error = this._powerError, context = "";
     for (const [role, message] of Object.entries(this._speedErrors || {})) {
       error = message; context = role === "supply_speed" ? (ru ? "Приток: " : "Supply: ") : (ru ? "Вытяжка: " : "Exhaust: ");
@@ -406,9 +472,9 @@ class RoyalClimaCard extends HTMLElement {
       button.setAttribute("aria-label", label); button.querySelector("title").textContent = hint ? `${label}: ${hint}` : label;
       this.shadowRoot.querySelector(`[data-speed-icon="${role}"]`).setAttribute("opacity", pending ? "0" : ready ? "1" : ".4");
       const block = this.shadowRoot.querySelector(`[data-history="${role}"]`);
-      block.classList.toggle("pending", !!this._config.compact && pending);
-      block.setAttribute("aria-busy", String(!!this._config.compact && pending));
-      if (this._config.compact) {
+      block.classList.toggle("pending", this._config.view !== "airflow" && !!this._config.compact && pending);
+      block.setAttribute("aria-busy", String(this._config.view !== "airflow" && !!this._config.compact && pending));
+      if (this._config.view !== "airflow" && this._config.compact) {
         block.setAttribute("aria-disabled", String(pending || !ready)); block.setAttribute("tabindex", ready && !pending ? "0" : "-1");
         block.setAttribute("aria-label", label); block.querySelector("title").textContent = button.querySelector("title").textContent;
       }

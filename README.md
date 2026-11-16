@@ -22,6 +22,7 @@ Options can be set independently, except that transparency requires compact mode
 
 | Option | Type / default | Purpose |
 |---|---|---|
+| `view` | string, `control` | `control` for the control panel; `airflow` for the airflow diagram. |
 | `prefix` | string, `ventilation_system` | Prefix for ventilation entities. |
 | `esp_prefix` | string, `royal_clima` | Prefix for ESP32 diagnostics and the filter reminder. |
 | `entities` | mapping, `{}` | Individual entity ID overrides; see the table below. |
@@ -121,3 +122,15 @@ show_external_input_boost: false
 ```
 
 The heat exchanger diamond outline turns red when `entities.error` is active and the ventilation unit is connected. This firmware binary sensor represents a nonzero error code; the raw code sensor does not need to be enabled. The normal color returns when the error clears; loss of connection makes the outline pale.
+
+### Airflow diagram
+
+```yaml
+type: custom:royal-clima-card
+view: airflow
+transparent: false
+```
+
+The default remains `control`. The airflow view keeps the previous diagram geometry and supports shared entity bindings, language, history, power and fan controls with confirmation, error notices, animated fans, preheater and optional indicators. Speed readings open history; the surrounding bottom buttons open speed selection.
+
+`transparent: true` works independently of `compact`; `compact` is ignored in the airflow view. No external SVG assets, fonts or third-party cards are required.
