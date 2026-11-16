@@ -83,7 +83,7 @@ class RoyalClimaCard extends HTMLElement {
     for (const [role, x] of [["exhaust_speed", 82], ["supply_speed", 378.5]]) {
       overlay += `<g class="temperature-action" data-history="${role}" role="button" tabindex="0"><title></title><rect x="${x}" y="435" width="225" height="74" rx="8" fill="transparent"/></g>`;
     }
-    overlay += `<g class="power-action" data-power="" role="button" tabindex="0"><title></title><rect x="249.5" y="562" width="181" height="72" rx="11" fill="transparent"/><circle class="waiting" cx="340" cy="598" r="16" fill="none" stroke="#596561" stroke-width="3" stroke-dasharray="62 39"/></g><text class="command-message" x="340" y="549" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" fill="#a43b2c" role="status"></text>`;
+    overlay += `<g class="power-action" data-power="" role="button" tabindex="0"><title></title><rect x="249.5" y="562" width="181" height="72" rx="11" fill="transparent"/><circle class="waiting" cx="340" cy="598" r="16" fill="none" stroke="#596561" stroke-width="3" stroke-dasharray="62 39"/></g><g class="command-notice" role="button" tabindex="0" style="display:none"><title></title><rect fill="white" stroke="#c5cbc2" stroke-width="1" rx="9"/><text class="command-message" x="340" y="549" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" fill="#a43b2c" role="status"></text></g>`;
     overlay += `<g class="temperature-action" data-history="preheater" role="button" tabindex="0"><title></title><rect x="260" y="173" width="40" height="48" rx="4" fill="transparent"/></g>`;
     for (const [role, x, cx] of [["exhaust_speed", 49, 139.333], ["supply_speed", 450, 540.667]]) {
       overlay += `<g class="speed-action" data-speed-action="${role}" role="button" tabindex="0"><title></title><rect x="${x}" y="562" width="181" height="72" rx="11" fill="transparent"/><circle cx="${cx}" cy="598" r="16" fill="none" stroke="#596561" stroke-width="3" stroke-dasharray="62 39" style="transform-origin:${cx}px 598px"/></g>`;
@@ -91,6 +91,7 @@ class RoyalClimaCard extends HTMLElement {
     this.shadowRoot.innerHTML = `<style>
       :host{display:block}ha-card{display:block;background:transparent;border:0;box-shadow:none;overflow:hidden;border-radius:14px}
       ha-card.compact .compact-bottom-line,ha-card.compact .body-layer,ha-card.compact .inactive-button,ha-card.compact .speed-action{display:none}
+      ha-card.compact [data-screen-shell]{display:none}ha-card.compact [data-screen-surface]{stroke:none}
       ha-card.compact [data-power-icon]{display:inline}ha-card.compact [data-power-icon] text{display:none}
       ha-card.transparent .screen-layer:not(.fan-divider){display:none}ha-card.transparent{border-radius:0}
       .temperature-action.pending rect{stroke:#56614d;stroke-width:1.5;stroke-dasharray:4 4}
@@ -100,6 +101,8 @@ class RoyalClimaCard extends HTMLElement {
       .temperature-action,.indicator-action{cursor:pointer}.temperature-action[aria-disabled="true"],.indicator-action[aria-disabled="true"]{cursor:default}
       :where(ha-card.compact) .power-action rect{stroke:#c5cbc2;stroke-width:1.5}
       .power-action{cursor:pointer}.power-action[aria-disabled="true"]{cursor:default}.power-action rect{pointer-events:all}.power-action:focus-visible{outline:none}.power-action:focus-visible rect{stroke:#56614d;stroke-width:2}
+      .command-notice{cursor:pointer;animation:notice-pulse 1.8s ease-in-out 3}.command-notice:focus-visible{outline:none}.command-notice:focus-visible rect{stroke:#56614d;stroke-width:2}@keyframes notice-pulse{50%{opacity:.6}}@media(prefers-reduced-motion:reduce){.command-notice{animation:none}}
+      .waiting,.speed-action circle{stroke:#3e9ed6}
       .waiting{display:none;transform-origin:340px 598px;animation:spin 1s linear infinite}.power-action.pending .waiting{display:block}
       .indicator-action{pointer-events:none}.indicator-hit{pointer-events:all}.indicator-action:focus-visible{outline:2px solid #56614d;outline-offset:3px}
       .temperature-action rect{pointer-events:all}.temperature-action:focus-visible{outline:none}.temperature-action:focus-visible rect{stroke:#56614d;stroke-width:2}
@@ -135,6 +138,12 @@ class RoyalClimaCard extends HTMLElement {
     };
     this.shadowRoot.addEventListener("click", speedAction);
     this.shadowRoot.addEventListener("keydown", speedAction);
+    const notice = this.shadowRoot.querySelector(".command-notice");
+    const dismissError = event => {
+      if (event.type === "keydown" && !["Enter", " "].includes(event.key)) return;
+      event.preventDefault(); this._clearErrors(); this._render();
+    };
+    notice.addEventListener("click", dismissError); notice.addEventListener("keydown", dismissError);
     const dialog = this.shadowRoot.querySelector("dialog");
     dialog.addEventListener("click", event => {
       const choice = event.target.closest?.("[data-step-choice]");
@@ -164,7 +173,7 @@ class RoyalClimaCard extends HTMLElement {
     if (config.name !== undefined && typeof config.name !== "string") throw new Error("name must be a string");
     if (config.language !== undefined && typeof config.language !== "string") throw new Error("language must be a string");
     for (const key of ["compact", "transparent"]) if (config[key] !== undefined && typeof config[key] !== "boolean") throw new Error(`${key} must be true or false`);
-    this._clearPending(); this._clearSpeeds(); this._powerError = null; this._speedErrors = {};
+    this._clearPending(); this._clearSpeeds(); this._clearErrors();
     this.dataset.version = VERSION;
     this._config = config; this._ids = ids; this._applyLayout(); this._render();
   }
@@ -175,13 +184,16 @@ class RoyalClimaCard extends HTMLElement {
     svg.setAttribute("viewBox", compact ? "47 41 586 465" : "0 0 680 681");
     svg.setAttribute("width", compact ? "586" : "680"); svg.setAttribute("height", compact ? "465" : "681");
     this.shadowRoot.querySelector("[data-screen-shell]").setAttribute("height", compact ? "465" : "493");
-    this.shadowRoot.querySelector("[data-screen-surface]").setAttribute("height", compact ? "455" : "483");
+    const surface = this.shadowRoot.querySelector("[data-screen-surface]");
+    for (const [name, value] of Object.entries(compact ? {x:47,y:76,width:586,height:465} : {x:51,y:81,width:578,height:483})) surface.setAttribute(name, value);
     for (const [role, x] of [["exhaust_speed", 111.5], ["supply_speed", 408]]) {
-      this.shadowRoot.querySelector(`[data-fan="${role}"]`).setAttribute("transform", `translate(${x + (compact ? 6 : 0)} ${compact ? 465 : 473})`);
+      const dx = compact ? 0 : role === "exhaust_speed" ? -5.5 : -9;
+      this.shadowRoot.querySelector(`[data-fan="${role}"]`).setAttribute("transform", `translate(${x + (compact ? 6 : dx)} ${compact ? 465 : 473})`);
       const display = this.shadowRoot.querySelector(`[data-display="${role}"]`);
-      display.setAttribute("transform", compact ? "translate(0 -8)" : "translate(0 0)");
-      for (const bar of this.shadowRoot.querySelectorAll(`[data-bar="${role}"]`)) bar.setAttribute("transform", compact ? "translate(0 -8)" : "translate(0 0)");
-      this.shadowRoot.querySelector(`[data-history="${role}"] rect`).setAttribute("y", compact ? "427" : "435");
+      display.setAttribute("transform", `translate(${dx} ${compact ? -8 : 0})`);
+      for (const bar of this.shadowRoot.querySelectorAll(`[data-bar="${role}"]`)) bar.setAttribute("transform", `translate(${dx} ${compact ? -8 : 0})`);
+      const hit = this.shadowRoot.querySelector(`[data-history="${role}"] rect`);
+      hit.setAttribute("y", compact ? "427" : "435"); hit.setAttribute("transform", `translate(${dx} 0)`);
     }
     const glyph = this.shadowRoot.querySelector("[data-power-icon]");
     if (compact) glyph.setAttribute("transform", "translate(340 465) scale(1.5) translate(-340 -590)");
@@ -189,10 +201,14 @@ class RoyalClimaCard extends HTMLElement {
     const power = this.shadowRoot.querySelector("[data-power]"), rect = power.querySelector("rect"), spinner = power.querySelector("circle");
     for (const [name, value] of Object.entries(compact ? {x:312,y:437,width:56,height:56} : {x:249.5,y:562,width:181,height:72})) rect.setAttribute(name, value);
     spinner.setAttribute("cy", compact ? "465" : "598"); spinner.style.transformOrigin = compact ? "340px 465px" : "340px 598px";
-    this.shadowRoot.querySelector(".command-message").setAttribute("y", compact ? "495" : "549");
+    this.shadowRoot.querySelector(".command-message").setAttribute("y", compact ? "420" : "549");
   }
   set hass(value) { this._hass = value; this._render(); }
-  disconnectedCallback() { this._clearPending(); this._clearSpeeds(); this._render(); }
+  disconnectedCallback() { this._clearPending(); this._clearSpeeds(); this._clearErrors(); this._render(); }
+  _clearErrors() {
+    clearTimeout(this._errorTimer); this._errorTimer = null; this._errorKey = null;
+    this._powerError = null; this._speedErrors = {};
+  }
   _clearPending() {
     if (this._pending) clearTimeout(this._pending.timer);
     this._pending = null;
@@ -206,7 +222,7 @@ class RoyalClimaCard extends HTMLElement {
   async _togglePower() {
     if (this._pending || !this._powerReady()) return;
     const expected = this._hass.states[this._ids.power].state === "on" ? "off" : "on";
-    this._powerError = null; this._speedErrors = {};
+    this._clearErrors();
     const pending = { expected };
     this._pending = pending;
     pending.timer = setTimeout(() => {
@@ -248,7 +264,7 @@ class RoyalClimaCard extends HTMLElement {
     if (Array.isArray(entity.attributes?.options) && !entity.attributes.options.includes(String(step))) return;
     this.shadowRoot.querySelector("dialog").close();
     if (Number(this._hass.states[this._ids[role]].state) === step) return;
-    this._powerError = null; this._speedErrors = {};
+    this._clearErrors();
     this._speedPending ||= {};
     const pending = { expected: step };
     this._speedPending[role] = pending;
@@ -354,7 +370,20 @@ class RoyalClimaCard extends HTMLElement {
     for (const [role, message] of Object.entries(this._speedErrors || {})) {
       error = message; context = role === "supply_speed" ? (ru ? "Приток: " : "Supply: ") : (ru ? "Вытяжка: " : "Exhaust: ");
     }
-    this.shadowRoot.querySelector(".command-message").textContent = !error ? "" : context + (error === "timeout" ? (ru ? "Команда не подтверждена" : "Command not confirmed") : (ru ? "Ошибка отправки команды" : "Could not send command"));
+    const notice = this.shadowRoot.querySelector(".command-notice"), message = notice.querySelector("text");
+    message.textContent = !error ? "" : context + (error === "timeout" ? (ru ? "Команда не подтверждена" : "Command not confirmed") : (ru ? "Ошибка отправки команды" : "Could not send command"));
+    notice.style.display = error ? "" : "none";
+    if (error) {
+      const box = message.getBBox(), frame = notice.querySelector("rect");
+      for (const [name, value] of Object.entries({x:box.x-12,y:box.y-6,width:box.width+24,height:box.height+12})) frame.setAttribute(name,value);
+      const label = ru ? "Скрыть сообщение об ошибке" : "Dismiss error message";
+      notice.setAttribute("aria-label",label); notice.querySelector("title").textContent=label;
+      const key = context + error;
+      if (this._errorKey !== key) {
+        clearTimeout(this._errorTimer); this._errorKey = key;
+        this._errorTimer = setTimeout(() => { this._clearErrors(); this._render(); }, 45000);
+      }
+    }
     for (const role of ["exhaust_speed", "supply_speed"]) {
       const button = this.shadowRoot.querySelector(`[data-speed-action="${role}"]`);
       const pending = !!this._speedPending?.[role], ready = this._speedReady(role);
