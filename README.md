@@ -2,10 +2,90 @@
 
 [Русский](README.ru.md)
 
-A Home Assistant dashboard card intended for monitoring and controlling a Royal Clima SOFFIO Primo ventilation unit connected through an ESP32 running ESPHome. The card is under development; the current test version displays the value of a selected sensor. Firmware, hardware wiring instructions and dashboard examples are available in the main repository: [ESPHome-RoyalClima](https://github.com/alidonet/ESPHome-RoyalClima).
+A Home Assistant dashboard card intended for monitoring and controlling a Royal Clima SOFFIO Primo ventilation unit connected through an ESP32 running ESPHome. The card is under development and provides a control panel with temperatures, status indicators, power control and fan step selection. Firmware, hardware wiring instructions and dashboard examples are available in the main repository: [ESPHome-RoyalClima](https://github.com/alidonet/ESPHome-RoyalClima).
 
 Example cards from the firmware repository (Russian labels):
 
 ![Royal Clima control panel](images/control_work.png)
 
 ![Royal Clima airflow diagram](images/flow_work.png)
+
+## Card configuration
+
+All card settings are optional. YAML only needs Home Assistant's card type identifier:
+
+```yaml
+type: custom:royal-clima-card
+```
+
+Options can be set independently, except that transparency requires compact mode. The card uses the default entity IDs below when those entities exist in HA.
+
+| Option | Type / default | Purpose |
+|---|---|---|
+| `prefix` | string, `ventilation_system` | Prefix for ventilation entities. |
+| `esp_prefix` | string, `royal_clima` | Prefix for ESP32 diagnostics and the filter reminder. |
+| `entities` | mapping, `{}` | Individual entity ID overrides; see the table below. |
+| `entity` | string or `null`, unset | Compatibility with the first test version: overrides only the supply temperature sensor. `entities.supply_temperature` takes precedence. |
+| `name` | string, `Royal Clima ERV` | Accessible card name (aria-label), without a visible heading. An empty string falls back to the default. |
+| `language` | string, HA language | Language of card labels, tooltips and dialogs; see below. |
+| `compact` | boolean, `false` | Removes the case and bottom button row, retaining the screen and controls on it. |
+| `transparent` | boolean, `false` | Removes the screen background only with `compact: true`. |
+
+### Language and appearance
+
+When `language` is omitted, the card follows the HA profile language: Russian (including `ru-*` variants) uses Russian labels; all other languages use English. Set `language: ru` or `language: en` to force a language independently of the profile. Any other explicitly supplied string, including `auto`, selects English; remove the option to restore automatic selection. This setting does not change firmware messages or entity names.
+
+In compact mode, tapping a speed block opens step selection instead of history; the power icon at the bottom of the screen toggles power. Normal mode uses the bottom button row for these controls.
+
+With `compact: true`, `transparent: true` hides the screen background, frame and decorative lines, revealing the dashboard behind the content. Readings and icons remain opaque; their colors do not automatically adapt to the theme. With `compact: false`, `transparent` has no effect. Use unquoted YAML booleans `true` / `false`.
+
+```yaml
+type: custom:royal-clima-card
+language: en
+compact: true
+transparent: true
+```
+
+### Entities
+
+Every key inside `entities` is optional. Set a full `entity_id` to override the generated ID, or `null` to disable its binding. Omitted keys retain their defaults. Overrides take precedence over prefixes and `entity`; `null` does not remove the corresponding panel element.
+
+Supply prefixes without the domain or trailing underscore, for example `prefix: ventilation_system`. Surrounding whitespace and trailing underscores are stripped. Lowercase ASCII letters, digits and underscores are accepted.
+
+The table shows full IDs with the default prefixes:
+
+| Key in `entities` | Default | Purpose |
+|---|---|---|
+| `preheater` | `null` | Preheater active; bind explicitly if available. |
+| `outdoor_temperature` | `sensor.ventilation_system_outdoor_air_temperature` | Outdoor air temperature. |
+| `return_temperature` | `sensor.ventilation_system_return_air_temperature` | Return air temperature. |
+| `defrost_temperature` | `sensor.ventilation_system_defrost_temperature` | Defrost sensor temperature, displayed as EXHAUST. |
+| `supply_temperature` | `sensor.ventilation_system_supply_air_temperature` | Supply air temperature (SA). |
+| `exhaust_speed` | `sensor.ventilation_system_exhaust_fan_speed` | Exhaust fan step, 0–10. |
+| `exhaust_speed_control` | `select.ventilation_system_exhaust_speed_control` | Select entity for setting the exhaust step. |
+| `supply_speed_control` | `select.ventilation_system_supply_speed_control` | Select entity for setting the supply step. |
+| `supply_speed` | `sensor.ventilation_system_supply_fan_speed` | Supply fan step, 0–10. |
+| `power` | `binary_sensor.ventilation_system_ventilation_power` | Actual ventilation power state. |
+| `power_control` | `switch.ventilation_system_ventilation_control` | Switch entity for power commands. |
+| `online` | `binary_sensor.ventilation_system_vent_system_online` | Ventilation / Modbus connection. |
+| `esp_connection` | `binary_sensor.royal_clima_esp32_connection` | ESP32 connection. |
+| `error` | `binary_sensor.ventilation_system_ventilation_error` | Ventilation error flag. |
+| `fire_alarm` | `binary_sensor.ventilation_system_fire_alarm` | Fire input. |
+| `bypass` | `binary_sensor.ventilation_system_bypass_open` | Bypass open. |
+| `defrost` | `binary_sensor.ventilation_system_defrost_active` | Defrost active. |
+| `external_boost` | `binary_sensor.ventilation_system_external_boost_active` | External boost active. |
+| `co2_boost` | `binary_sensor.ventilation_system_co2_boost_active` | CO₂ boost flag, not a ppm reading. |
+| `filter_replacement` | `binary_sensor.royal_clima_filter_replacement_recommended` | Filter replacement reminder. |
+
+For example, to use existing control wrappers and your own preheater sensor:
+
+```yaml
+type: custom:royal-clima-card
+entities:
+  power_control: switch.royal_clima_power
+  supply_speed_control: select.royal_clima_supply_speed
+  exhaust_speed_control: select.royal_clima_exhaust_speed
+  preheater: binary_sensor.my_preheater_active
+```
+
+Readings and controls are separate: `power` / `power_control`, `supply_speed` / `supply_speed_control`, and `exhaust_speed` / `exhaust_speed_control`. Power control requires a `switch`; fan step selection requires a `select` with options `0`–`10` (unavailable options are disabled). Speeds represent steps, not RPM or percentages. The preheater is unbound by default: its icon is hidden unless an entity is explicitly configured.
