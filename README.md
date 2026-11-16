@@ -31,13 +31,15 @@ Options can be set independently, except that transparency requires compact mode
 | `compact` | boolean, `false` | Removes the case and bottom button row, retaining the screen and controls on it. |
 | `transparent` | boolean, `false` | Removes the screen background only with `compact: true`. |
 
+| `sensor_boost_icon` | string, `co2` | Sensor boost icon: `none` hides it, `co2` shows CO₂, `humidity` shows a water drop. |
+
 ### Language and appearance
 
 When `language` is omitted, the card follows the HA profile language: Russian (including `ru-*` variants) uses Russian labels; all other languages use English. Set `language: ru` or `language: en` to force a language independently of the profile. Any other explicitly supplied string, including `auto`, selects English; remove the option to restore automatic selection. This setting does not change firmware messages or entity names.
 
 In compact mode, tapping a speed block opens step selection instead of history; the power icon at the bottom of the screen toggles power. Normal mode uses the bottom button row for these controls.
 
-With `compact: true`, `transparent: true` hides the screen background, frame and decorative lines, revealing the dashboard behind the content. Readings and icons remain opaque; their colors do not automatically adapt to the theme. With `compact: false`, `transparent` has no effect. Use unquoted YAML booleans `true` / `false`.
+With `compact: true`, `transparent: true` hides the screen background while retaining the divider above the fans, revealing the dashboard behind the content. Readings and icons remain opaque; their colors do not automatically adapt to the theme. With `compact: false`, `transparent` has no effect. Use unquoted YAML booleans `true` / `false`.
 
 ```yaml
 type: custom:royal-clima-card
@@ -48,7 +50,7 @@ transparent: true
 
 ### Entities
 
-Every key inside `entities` is optional. Set a full `entity_id` to override the generated ID, or `null` to disable its binding. Omitted keys retain their defaults. Overrides take precedence over prefixes and `entity`; `null` does not remove the corresponding panel element.
+Every key inside `entities` is optional. Set a full `entity_id` to override the generated ID, or `null` to disable its binding. Omitted keys retain their defaults. Overrides take precedence over prefixes and `entity`; `null` does not remove the corresponding panel element, except for the preheater icon.
 
 Supply prefixes without the domain or trailing underscore, for example `prefix: ventilation_system`. Surrounding whitespace and trailing underscores are stripped. Lowercase ASCII letters, digits and underscores are accepted.
 
@@ -73,8 +75,8 @@ The table shows full IDs with the default prefixes:
 | `fire_alarm` | `binary_sensor.ventilation_system_fire_alarm` | Fire input. |
 | `bypass` | `binary_sensor.ventilation_system_bypass_open` | Bypass open. |
 | `defrost` | `binary_sensor.ventilation_system_defrost_active` | Defrost active. |
-| `external_boost` | `binary_sensor.ventilation_system_external_boost_active` | External boost active. |
-| `co2_boost` | `binary_sensor.ventilation_system_co2_boost_active` | CO₂ boost flag, not a ppm reading. |
+| `external_input_boost` | `binary_sensor.ventilation_system_external_input_boost_active` | External boost active. |
+| `sensor_boost` | `binary_sensor.ventilation_system_sensor_boost_active` | CO₂ or humidity sensor boost flag; not a ppm or humidity measurement. |
 | `filter_replacement` | `binary_sensor.royal_clima_filter_replacement_recommended` | Filter replacement reminder. |
 
 For example, to use existing control wrappers and your own preheater sensor:
@@ -89,3 +91,16 @@ entities:
 ```
 
 Readings and controls are separate: `power` / `power_control`, `supply_speed` / `supply_speed_control`, and `exhaust_speed` / `exhaust_speed_control`. Power control requires a `switch`; fan step selection requires a `select` with options `0`–`10` (unavailable options are disabled). Speeds represent steps, not RPM or percentages. The preheater is unbound by default: its icon is hidden unless an entity is explicitly configured.
+
+### Sensor boost
+
+`sensor_boost_icon` changes only the icon and tooltip; the card cannot detect the connected sensor type. State and history use `entities.sensor_boost`. `none` hides both the icon and its click area. The flag is not a CO₂ or humidity measurement.
+
+```yaml
+sensor_boost_icon: humidity
+entities:
+  sensor_boost: binary_sensor.ventilation_system_sensor_boost_active
+  external_input_boost: binary_sensor.ventilation_system_external_input_boost_active
+```
+
+When upgrading, rename entity override keys `co2_boost` → `sensor_boost` and `external_boost` → `external_input_boost`. Generated IDs match the updated firmware. For older firmware, explicitly bind the previous entity IDs using the new keys.
