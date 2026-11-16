@@ -90,9 +90,10 @@ class RoyalClimaCard extends HTMLElement {
       overlay += `<g class="speed-action" data-speed-action="${role}" role="button" tabindex="0"><title></title><rect x="${x}" y="562" width="181" height="72" rx="11" fill="transparent"/><circle cx="${cx}" cy="598" r="16" fill="none" stroke="#596561" stroke-width="3" stroke-dasharray="62 39" style="transform-origin:${cx}px 598px"/></g>`;
     }
     this.shadowRoot.innerHTML = `<style>
+      ha-card.airflow #internals:has(.exchanger-error){opacity:1}ha-card.airflow .airflow-exchanger.exchanger-error{stroke-width:3;animation:airflow-error 1.4s ease-in-out infinite}@keyframes airflow-error{0%,100%{stroke-opacity:1;fill-opacity:.2}50%{stroke-opacity:.25;fill-opacity:.02}}@media(prefers-reduced-motion:reduce){ha-card.airflow .airflow-exchanger.exchanger-error{animation:none}}
       .fan-background{display:none}ha-card.airflow .fan-background{display:inline}
       .airflow-art{display:none}ha-card.airflow .airflow-art{display:inline}ha-card.airflow .panel-art,ha-card.airflow [data-bar],ha-card.airflow [data-speed-icon]{display:none}
-      ha-card.airflow.transparent .airflow-background{display:none}ha-card.airflow .caption{fill:#34465b;font-size:20px}ha-card.airflow [data-fan]{opacity:.38}ha-card.airflow .segments text{font-weight:600}ha-card.airflow [data-power-icon] text{display:none}ha-card.airflow [data-power-icon]{display:inline}ha-card.airflow .speed-action rect{stroke:none}ha-card.airflow .speed-action circle{r:12}
+      ha-card.airflow.transparent .airflow-background{display:none}ha-card.airflow .caption{fill:#34465b;font-size:20px}ha-card.airflow [data-fan]{opacity:.38}ha-card.airflow .segments text{font-weight:600}ha-card.airflow [data-power-icon] text{display:none}ha-card.airflow [data-power-icon]{display:inline}ha-card.airflow .power-action{pointer-events:none}ha-card.airflow .power-action rect{pointer-events:all}ha-card.airflow .speed-action rect{stroke:none}ha-card.airflow .speed-action circle{r:12}
       :host{display:block}ha-card{display:block;background:transparent;border:0;box-shadow:none;overflow:hidden;border-radius:14px}
       ha-card.compact .screen-glare,ha-card.compact .compact-bottom-line,ha-card.compact .body-layer,ha-card.compact .inactive-button,ha-card.compact .speed-action{display:none}
       ha-card.compact [data-screen-shell]{display:none}ha-card.compact [data-screen-surface]{stroke:none}
@@ -247,8 +248,21 @@ class RoyalClimaCard extends HTMLElement {
     attrs(root.querySelector("[data-power-icon]"),{transform:"translate(400 449) scale(.7) translate(-340 -590)"});
     attrs(root.querySelector("[data-power] rect"),{x:381,y:430,width:38,height:38});
     attrs(root.querySelector(".waiting"),{cx:400,cy:449,r:12});root.querySelector(".waiting").style.transformOrigin="400px 449px";
-    attrs(root.querySelector(".command-message"),{x:400,y:417});
-    attrs(root.querySelector(".preheater"),{transform:"translate(6 -80) scale(.82)"});attrs(root.querySelector('[data-history="preheater"] rect'),{x:220,y:140,width:40,height:48});
+    for(const el of root.querySelectorAll('.airflow-art .scene > g > g, .airflow-art .scene > g > path')) {
+      if(el.querySelector('rect[y="430"]') || el.querySelector('text[y="449"]')) el.setAttribute("transform","translate(0 -35)");
+    }
+    for(const el of root.querySelectorAll('.airflow-art .scene > text.caption')) el.setAttribute("transform","translate(0 -35)");
+    for(const role of ["exhaust_speed","supply_speed"]) {
+      root.querySelector(`[data-display="${role}"]`).setAttribute("transform","translate(0 -35)");
+      root.querySelector(`[data-history="${role}"]`).setAttribute("transform","translate(0 -35)");
+      root.querySelector(`[data-speed-action="${role}"]`).setAttribute("transform","translate(0 -35)");
+    }
+    root.querySelector('[data-power]').setAttribute("transform","translate(0 -35)");
+    root.querySelector('[data-power-icon]').setAttribute("transform","translate(400 414) scale(.7) translate(-340 -590)");
+    attrs(root.querySelector(".command-message"),{x:400,y:382});
+    attrs(root.querySelector("svg.panel"),{viewBox:"80 -16 640 477",height:477});
+    root.querySelector('.airflow-background').setAttribute("height",477);
+    attrs(root.querySelector(".preheater"),{transform:"translate(6 -80) scale(.82)"});attrs(root.querySelector('[data-history="preheater"] rect'),{x:220,y:104,width:40,height:48});
   }
   set hass(value) { this._hass = value; this._render(); }
   disconnectedCallback() { this._clearPending(); this._clearSpeeds(); this._clearErrors(); this._render(); }

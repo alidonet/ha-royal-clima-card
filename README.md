@@ -8,7 +8,7 @@ Example cards from the firmware repository (Russian labels):
 
 ![Royal Clima control panel](images/control_work.png)
 
-![Royal Clima airflow diagram](images/flow_work.png)
+![Royal Clima control panel](images/control_work_compact.png)
 
 ## Card configuration
 
@@ -124,6 +124,8 @@ show_external_input_boost: false
 The heat exchanger diamond outline turns red when `entities.error` is active and the ventilation unit is connected. This firmware binary sensor represents a nonzero error code; the raw code sensor does not need to be enabled. The normal color returns when the error clears; loss of connection makes the outline pale.
 
 ### Airflow diagram
+
+![Royal Clima airflow diagram](images/flow_work.png)
 
 ```yaml
 type: custom:royal-clima-card

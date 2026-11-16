@@ -8,7 +8,7 @@
 
 ![Пульт управления Royal Clima](images/control_work.png)
 
-![Схема воздушных потоков Royal Clima](images/flow_work.png)
+![Пульт управления Royal Clima](images/control_work_compact.png)
 
 ## Настройка карточки
 
@@ -124,6 +124,8 @@ show_external_input_boost: false
 При активном `entities.error` контур ромба рекуператора становится красным, если есть связь с ПВУ. В прошивке этот бинарный сенсор означает ненулевой код ошибки; отдельный сырой сенсор кода включать не требуется. При отсутствии ошибки возвращается обычный цвет, при потере связи — бледный.
 
 ### Схема потоков
+
+![Royal Clima airflow diagram](images/flow_work.png)
 
 ```yaml
 type: custom:royal-clima-card
