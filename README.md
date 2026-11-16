@@ -33,6 +33,10 @@ Options can be set independently, except that transparency requires compact mode
 
 | `sensor_boost_icon` | string, `co2` | Sensor boost icon: `none` hides it, `co2` shows CO₂, `humidity` shows a water drop. |
 
+| `show_fire_alarm` | boolean, `true` | Show the fire input indicator. |
+| `show_external_input_boost` | boolean, `true` | Show the external input boost indicator. |
+
+
 ### Language and appearance
 
 When `language` is omitted, the card follows the HA profile language: Russian (including `ru-*` variants) uses Russian labels; all other languages use English. Set `language: ru` or `language: en` to force a language independently of the profile. Any other explicitly supplied string, including `auto`, selects English; remove the option to restore automatic selection. This setting does not change firmware messages or entity names.
@@ -104,3 +108,16 @@ entities:
 ```
 
 When upgrading, rename entity override keys `co2_boost` → `sensor_boost` and `external_boost` → `external_input_boost`. Generated IDs match the updated firmware. For older firmware, explicitly bind the previous entity IDs using the new keys.
+
+Setting `show_fire_alarm: false` or `show_external_input_boost: false` hides the corresponding indicator, click area and keyboard focus without changing entity states.
+
+When `entities.error` is active, the heat exchanger diamond outline turns red. The firmware derives this binary flag from a nonzero error code; no separate numeric sensor is required. With no connection, the diamond uses its inactive appearance.
+
+Both indicators are shown by default. Setting either option to `false` hides its icon and click area without changing the entity binding.
+
+```yaml
+show_fire_alarm: false
+show_external_input_boost: false
+```
+
+The heat exchanger diamond outline turns red when `entities.error` is active and the ventilation unit is connected. This firmware binary sensor represents a nonzero error code; the raw code sensor does not need to be enabled. The normal color returns when the error clears; loss of connection makes the outline pale.
