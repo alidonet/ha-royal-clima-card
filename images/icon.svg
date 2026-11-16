@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 128 128" role="img" aria-labelledby="title">
+  <title id="title">Royal Clima heat recovery</title>
+  <defs>
+    <linearGradient id="supply" x1="12" y1="0" x2="116" y2="0" gradientUnits="userSpaceOnUse"><stop stop-color="#25b9df"/><stop offset="1" stop-color="#ef8450"/></linearGradient>
+    <linearGradient id="exhaust" x1="12" y1="0" x2="116" y2="0" gradientUnits="userSpaceOnUse"><stop stop-color="#639ed0"/><stop offset="1" stop-color="#ce6998"/></linearGradient>
+  </defs>
+  <path d="M64 27 101 64 64 101 27 64Z" fill="none" stroke="#b2c1ce" stroke-width="3.5" stroke-linejoin="round"/>
+  <g fill="none" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M114 39H94L34 89H14" stroke="url(#exhaust)"/>
+    <path d="M14 39H34L94 89H114" stroke="url(#supply)"/>
+  </g>
+  <path d="m22 81-10 8 10 8" fill="none" stroke="#639ed0" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="m106 81 10 8-10 8" fill="none" stroke="#ef8450" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
