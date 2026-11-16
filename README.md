@@ -8,7 +8,7 @@ Example cards from the firmware repository (Russian labels):
 
 ![Royal Clima control panel](images/control_work.png)
 
-![Royal Clima control panel](images/control_work_compact.png)
+![Royal Clima control panel](images/control_work-compact.png)
 
 ## Card configuration
 
@@ -18,10 +18,12 @@ All card settings are optional. YAML only needs Home Assistant's card type ident
 type: custom:royal-clima-card
 ```
 
-Options can be set independently, except that transparency requires compact mode. The card uses the default entity IDs below when those entities exist in HA.
+Options can be set independently. In the control view, transparency requires compact mode; in the airflow view, it works independently of compact mode. The card uses the default entity IDs below when those entities exist in HA.
 
 | Option | Type / default | Purpose |
 |---|---|---|
+| `flow_animation` | boolean, `true` | Subtle slow highlights on airflow arrows while running; respects reduced motion. |
+| `flow_colors` | string, `fixed` | Airflow colors: `fixed` for original colors, `temperature` for the −30…+40 °C palette. |
 | `view` | string, `control` | `control` for the control panel; `airflow` for the airflow diagram. |
 | `prefix` | string, `ventilation_system` | Prefix for ventilation entities. |
 | `esp_prefix` | string, `royal_clima` | Prefix for ESP32 diagnostics and the filter reminder. |
@@ -29,11 +31,9 @@ Options can be set independently, except that transparency requires compact mode
 | `entity` | string or `null`, unset | Compatibility with the first test version: overrides only the supply temperature sensor. `entities.supply_temperature` takes precedence. |
 | `name` | string, `Royal Clima ERV` | Accessible card name (aria-label), without a visible heading. An empty string falls back to the default. |
 | `language` | string, HA language | Language of card labels, tooltips and dialogs; see below. |
-| `compact` | boolean, `false` | Removes the case and bottom button row, retaining the screen and controls on it. |
-| `transparent` | boolean, `false` | Removes the screen background only with `compact: true`. |
-
+| `compact` | boolean, `false` | In the control view, removes the case and bottom button row, retaining the screen and controls on it. Ignored in the airflow view. |
+| `transparent` | boolean, `false` | Removes the background. Requires `compact: true` in the control view; works independently in the airflow view. |
 | `sensor_boost_icon` | string, `co2` | Sensor boost icon: `none` hides it, `co2` shows CO₂, `humidity` shows a water drop. |
-
 | `show_fire_alarm` | boolean, `true` | Show the fire input indicator. |
 | `show_external_input_boost` | boolean, `true` | Show the external input boost indicator. |
 
@@ -44,7 +44,7 @@ When `language` is omitted, the card follows the HA profile language: Russian (i
 
 In compact mode, tapping a speed block opens step selection instead of history; the power icon at the bottom of the screen toggles power. Normal mode uses the bottom button row for these controls.
 
-With `compact: true`, `transparent: true` hides the screen background while retaining the divider above the fans, revealing the dashboard behind the content. Readings and icons remain opaque; their colors do not automatically adapt to the theme. With `compact: false`, `transparent` has no effect. Use unquoted YAML booleans `true` / `false`.
+In the control view, `transparent: true` with `compact: true` hides the screen background while retaining the divider above the fans, revealing the dashboard behind the content. Readings and icons remain opaque; their colors do not automatically adapt to the theme. In this view, `transparent` has no effect with `compact: false`. In the airflow view, transparency works independently of `compact`. Use unquoted YAML booleans `true` / `false`.
 
 ```yaml
 type: custom:royal-clima-card
@@ -110,11 +110,7 @@ entities:
 
 When upgrading, rename entity override keys `co2_boost` → `sensor_boost` and `external_boost` → `external_input_boost`. Generated IDs match the updated firmware. For older firmware, explicitly bind the previous entity IDs using the new keys.
 
-Setting `show_fire_alarm: false` or `show_external_input_boost: false` hides the corresponding indicator, click area and keyboard focus without changing entity states.
-
-When `entities.error` is active, the heat exchanger diamond outline turns red. The firmware derives this binary flag from a nonzero error code; no separate numeric sensor is required. With no connection, the diamond uses its inactive appearance.
-
-Both indicators are shown by default. Setting either option to `false` hides its icon and click area without changing the entity binding.
+The fire input and external input boost indicators are shown by default. Setting `show_fire_alarm: false` or `show_external_input_boost: false` hides the corresponding indicator, click area and keyboard focus without changing entity states or bindings.
 
 ```yaml
 show_fire_alarm: false
@@ -136,3 +132,7 @@ transparent: false
 The default remains `control`. The airflow view keeps the previous diagram geometry and supports shared entity bindings, language, history, power and fan controls with confirmation, error notices, animated fans, preheater and optional indicators. Speed readings open history; the surrounding bottom buttons open speed selection.
 
 `transparent: true` works independently of `compact`; `compact` is ignored in the airflow view. No external SVG assets, fonts or third-party cards are required.
+
+![Airflow temperature palette](images/colormap.png)
+
+`flow_colors: temperature` maps airflow lines and arrows to a shared blue-violet → blue → cyan → green → orange → red scale from −30 to +40 °C. Gradients include intermediate palette colors. Colors clamp outside this range; readings do not. A flow falls back to its original colors if either endpoint temperature is unavailable. Labels and readings keep their original styling.

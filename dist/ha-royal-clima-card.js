@@ -60,6 +60,17 @@ function digits(value, right) {
 function icon(name, x, y, size = 25) {
   return `<g transform="translate(${x - size / 2} ${y - size / 2}) scale(${size / 24})">${ICONS[name]}</g>`;
 }
+const TEMPERATURE_COLORS = [[-30,"#4810DF"],[-20,"#305FEA"],[-10,"#209DE8"],[0,"#20C8D0"],[10,"#50CF85"],[20,"#BCD34B"],[25,"#EDC33C"],[30,"#F79132"],[40,"#D90818"]];
+function temperatureColor(value) {
+  const t = Math.max(-30, Math.min(40, value));
+  for(let i=1;i<TEMPERATURE_COLORS.length;i++) {
+    const [a,ca]=TEMPERATURE_COLORS[i-1], [b,cb]=TEMPERATURE_COLORS[i];
+    if(t<=b) {
+      const ratio=(t-a)/(b-a);
+      return "#"+[1,3,5].map(j=>Math.round(parseInt(ca.slice(j,j+2),16)*(1-ratio)+parseInt(cb.slice(j,j+2),16)*ratio).toString(16).padStart(2,"0")).join("");
+    }
+  }
+}
 class RoyalClimaCard extends HTMLElement {
   constructor() {
     super();
@@ -91,6 +102,7 @@ class RoyalClimaCard extends HTMLElement {
     }
     this.shadowRoot.innerHTML = `<style>
       ha-card.airflow #internals:has(.exchanger-error){opacity:1}ha-card.airflow .airflow-exchanger.exchanger-error{stroke-width:3;animation:airflow-error 1.4s ease-in-out infinite}@keyframes airflow-error{0%,100%{stroke-opacity:1;fill-opacity:.2}50%{stroke-opacity:.25;fill-opacity:.02}}@media(prefers-reduced-motion:reduce){ha-card.airflow .airflow-exchanger.exchanger-error{animation:none}}
+      .flow-highlight{display:none;pointer-events:none}ha-card.airflow .airflow-running.flow-animated .flow-highlight{display:inline}.flow-highlight rect{animation:flow-shine-travel 8s linear infinite}@keyframes flow-shine-travel{from{transform:translateX(var(--shine-start))}to{transform:translateX(var(--shine-end))}}@media(prefers-reduced-motion:reduce){ha-card.airflow .flow-highlight{display:none!important}}
       .fan-background{display:none}ha-card.airflow .fan-background{display:inline}
       .airflow-art{display:none}ha-card.airflow .airflow-art{display:inline}ha-card.airflow .panel-art,ha-card.airflow [data-bar],ha-card.airflow [data-speed-icon]{display:none}
       ha-card.airflow.transparent .airflow-background{display:none}ha-card.airflow .caption{fill:#34465b;font-size:20px}ha-card.airflow [data-fan]{opacity:.38}ha-card.airflow .segments text{font-weight:600}ha-card.airflow [data-power-icon] text{display:none}ha-card.airflow [data-power-icon]{display:inline}ha-card.airflow .power-action{pointer-events:none}ha-card.airflow .power-action rect{pointer-events:all}ha-card.airflow .speed-action rect{stroke:none}ha-card.airflow .speed-action circle{r:12}
@@ -118,6 +130,20 @@ class RoyalClimaCard extends HTMLElement {
     </style><ha-card>${PANEL.replace('</svg>', '</g></svg>').replace('</defs>', '</defs><g class="panel-art">').replace('<svg ', '<svg class="panel" role="img" ').replace('</svg>', AIRFLOW + overlay + '</svg>')}</ha-card><dialog aria-labelledby="speed-dialog-title"><h3 id="speed-dialog-title"></h3><div class="speed-choices">${Array.from({length:11},(_,i)=>`<button type="button" data-step-choice="${i}">${i}</button>`).join("")}</div><button type="button" data-speed-close></button></dialog>`;
     for(const fan of this.shadowRoot.querySelectorAll('[data-fan]')) {
       const background=document.createElementNS("http://www.w3.org/2000/svg","circle");background.classList.add("fan-background");background.setAttribute("r",28);background.setAttribute("fill","#f8fafc");background.setAttribute("fill-opacity",".65");fan.prepend(background);
+    }
+    const flowArtwork=this.shadowRoot.querySelector(".airflow-art");
+    const svgNS="http://www.w3.org/2000/svg";
+    const shine=document.createElementNS(svgNS,"linearGradient");shine.id="flow-shine";
+    shine.innerHTML='<stop stop-color="white" stop-opacity="0"/><stop offset=".5" stop-color="white" stop-opacity=".23"/><stop offset="1" stop-color="white" stop-opacity="0"/>';
+    flowArtwork.querySelector("defs").append(shine);
+    for(const [i,prefix,reverse] of [[0,"M148.5 159",false],[1,"M651.5 159",true],[2,"M265 249",true],[3,"M535 249",false]]) {
+      const arrow=flowArtwork.querySelector(`path[d^="${prefix}"]`), box=arrow.getAttribute("d");
+      const clip=document.createElementNS(svgNS,"clipPath");clip.id=`flow-shine-clip-${i}`;
+      const shape=document.createElementNS(svgNS,"path");shape.setAttribute("d",box);clip.append(shape);flowArtwork.querySelector("defs").append(clip);
+      const group=document.createElementNS(svgNS,"g");group.classList.add("flow-highlight");group.setAttribute("clip-path",`url(#${clip.id})`);
+      const left=i===0||i===2, x=left?148.5:535, y=i<2?150:240;
+      group.innerHTML=`<rect x="${x-65}" y="${y}" width="65" height="40" fill="url(#flow-shine)" style="animation-delay:-${i*1.7}s;--shine-start:${reverse?200:0}px;--shine-end:${reverse?0:200}px"/>`;
+      arrow.after(group);
     }
     const airflowScene=this.shadowRoot.querySelector(".airflow-art .scene");
     const statusBg=document.createElementNS("http://www.w3.org/2000/svg","rect");statusBg.classList.add("airflow-status-background");statusBg.setAttribute("x",278);statusBg.setAttribute("y",101);statusBg.setAttribute("width",244);statusBg.setAttribute("height",38);statusBg.setAttribute("rx",10);statusBg.setAttribute("fill","#f8fafc");statusBg.setAttribute("fill-opacity",".8");airflowScene.append(statusBg);
@@ -188,10 +214,11 @@ class RoyalClimaCard extends HTMLElement {
       ids[key] = value;
     }
     if (config.view !== undefined && !["control", "airflow"].includes(config.view)) throw new Error("view must be control or airflow");
+    if (config.flow_colors !== undefined && !["fixed", "temperature"].includes(config.flow_colors)) throw new Error("flow_colors must be fixed or temperature");
     if (config.sensor_boost_icon !== undefined && !["none", "co2", "humidity"].includes(config.sensor_boost_icon)) throw new Error("sensor_boost_icon must be none, co2 or humidity");
     if (config.name !== undefined && typeof config.name !== "string") throw new Error("name must be a string");
     if (config.language !== undefined && typeof config.language !== "string") throw new Error("language must be a string");
-    for (const key of ["compact", "transparent", "show_fire_alarm", "show_external_input_boost"]) if (config[key] !== undefined && typeof config[key] !== "boolean") throw new Error(`${key} must be true or false`);
+    for (const key of ["compact", "transparent", "show_fire_alarm", "show_external_input_boost", "flow_animation"]) if (config[key] !== undefined && typeof config[key] !== "boolean") throw new Error(`${key} must be true or false`);
     this._clearPending(); this._clearSpeeds(); this._clearErrors();
     this.dataset.version = VERSION;
     this._config = config; this._ids = ids; this._applyLayout(); this._render();
@@ -358,6 +385,22 @@ class RoyalClimaCard extends HTMLElement {
       if (connected && known(role) && Number(raw(role)) === pending.expected) { clearTimeout(pending.timer); delete this._speedPending[role]; }
     }
     const flowing = connected && on("power");
+    const artwork=this.shadowRoot.querySelector(".airflow-art");
+    artwork.classList.toggle("flow-animated",this._config.flow_animation !== false);
+    for(const [gradient,left,right,defaults,arrows] of [
+      ["supply","outdoor_temperature","supply_temperature",["#25b9df","#ef8450"],["M148.5 159","M535 249"]],
+      ["exhaust","defrost_temperature","return_temperature",["#639ed0","#ce6998"],["M265 249","M651.5 159"]]
+    ]) {
+      const valid = key => known(key) && String(raw(key)).trim()!=="" && Number.isFinite(Number(raw(key)));
+      const dynamic=this._config.flow_colors === "temperature" && connected && valid(left) && valid(right);
+      const a=Number(raw(left)), b=Number(raw(right));
+      const colors=dynamic ? Array.from({length:17},(_,i)=>temperatureColor(a+(b-a)*i/16)) : defaults;
+      const markup=colors.map((color,i)=>`<stop offset="${i/(colors.length-1)}" stop-color="${color}"/>`).join("");
+      const element=artwork.querySelector(`[id="${gradient}"]`);
+      if(element.innerHTML!==markup) element.innerHTML=markup;
+      arrows.forEach((prefix,i)=>artwork.querySelector(`path[d^="${prefix}"]`).setAttribute("fill",colors[i===0?0:colors.length-1]));
+    }
+
     const scene=this.shadowRoot.querySelector(".airflow-art");
     scene.classList.toggle("airflow-running",flowing);scene.classList.toggle("airflow-off",connected && !on("power"));scene.classList.toggle("airflow-disconnected",!connected);
     const core=scene.querySelector(".airflow-exchanger");core.classList.toggle("exchanger-error",connected && on("error"));core.setAttribute("stroke",connected && on("error")?"#c24632":"#8da0b3");core.setAttribute("fill",connected && on("error")?"#c24632":"#cedae7");core.setAttribute("fill-opacity",connected && on("error")?".09":".45");
