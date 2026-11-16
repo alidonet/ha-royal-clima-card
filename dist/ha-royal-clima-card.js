@@ -102,7 +102,6 @@ class RoyalClimaCard extends HTMLElement {
     }
     this.shadowRoot.innerHTML = `<style>
       ha-card.airflow #internals:has(.exchanger-error){opacity:1}ha-card.airflow .airflow-exchanger.exchanger-error{stroke-width:3;animation:airflow-error 1.4s ease-in-out infinite}@keyframes airflow-error{0%,100%{stroke-opacity:1;fill-opacity:.2}50%{stroke-opacity:.25;fill-opacity:.02}}@media(prefers-reduced-motion:reduce){ha-card.airflow .airflow-exchanger.exchanger-error{animation:none}}
-      .flow-highlight{display:none;pointer-events:none}ha-card.airflow .airflow-running.flow-animated .flow-highlight{display:inline}.flow-highlight rect{animation:flow-shine-travel 8s linear infinite}@keyframes flow-shine-travel{from{transform:translateX(var(--shine-start))}to{transform:translateX(var(--shine-end))}}@media(prefers-reduced-motion:reduce){ha-card.airflow .flow-highlight{display:none!important}}
       .fan-background{display:none}ha-card.airflow .fan-background{display:inline}
       .airflow-art{display:none}ha-card.airflow .airflow-art{display:inline}ha-card.airflow .panel-art,ha-card.airflow [data-bar],ha-card.airflow [data-speed-icon]{display:none}
       ha-card.airflow.transparent .airflow-background{display:none}ha-card.airflow .caption{fill:#34465b;font-size:20px}ha-card.airflow [data-fan]{opacity:.38}ha-card.airflow .segments text{font-weight:600}ha-card.airflow [data-power-icon] text{display:none}ha-card.airflow [data-power-icon]{display:inline}ha-card.airflow .power-action{pointer-events:none}ha-card.airflow .power-action rect{pointer-events:all}ha-card.airflow .speed-action rect{stroke:none}ha-card.airflow .speed-action circle{r:12}
@@ -130,20 +129,6 @@ class RoyalClimaCard extends HTMLElement {
     </style><ha-card>${PANEL.replace('</svg>', '</g></svg>').replace('</defs>', '</defs><g class="panel-art">').replace('<svg ', '<svg class="panel" role="img" ').replace('</svg>', AIRFLOW + overlay + '</svg>')}</ha-card><dialog aria-labelledby="speed-dialog-title"><h3 id="speed-dialog-title"></h3><div class="speed-choices">${Array.from({length:11},(_,i)=>`<button type="button" data-step-choice="${i}">${i}</button>`).join("")}</div><button type="button" data-speed-close></button></dialog>`;
     for(const fan of this.shadowRoot.querySelectorAll('[data-fan]')) {
       const background=document.createElementNS("http://www.w3.org/2000/svg","circle");background.classList.add("fan-background");background.setAttribute("r",28);background.setAttribute("fill","#f8fafc");background.setAttribute("fill-opacity",".65");fan.prepend(background);
-    }
-    const flowArtwork=this.shadowRoot.querySelector(".airflow-art");
-    const svgNS="http://www.w3.org/2000/svg";
-    const shine=document.createElementNS(svgNS,"linearGradient");shine.id="flow-shine";
-    shine.innerHTML='<stop stop-color="white" stop-opacity="0"/><stop offset=".5" stop-color="white" stop-opacity=".23"/><stop offset="1" stop-color="white" stop-opacity="0"/>';
-    flowArtwork.querySelector("defs").append(shine);
-    for(const [i,prefix,reverse] of [[0,"M148.5 159",false],[1,"M651.5 159",true],[2,"M265 249",true],[3,"M535 249",false]]) {
-      const arrow=flowArtwork.querySelector(`path[d^="${prefix}"]`), box=arrow.getAttribute("d");
-      const clip=document.createElementNS(svgNS,"clipPath");clip.id=`flow-shine-clip-${i}`;
-      const shape=document.createElementNS(svgNS,"path");shape.setAttribute("d",box);clip.append(shape);flowArtwork.querySelector("defs").append(clip);
-      const group=document.createElementNS(svgNS,"g");group.classList.add("flow-highlight");group.setAttribute("clip-path",`url(#${clip.id})`);
-      const left=i===0||i===2, x=left?148.5:535, y=i<2?150:240;
-      group.innerHTML=`<rect x="${x-65}" y="${y}" width="65" height="40" fill="url(#flow-shine)" style="animation-delay:-${i*1.7}s;--shine-start:${reverse?200:0}px;--shine-end:${reverse?0:200}px"/>`;
-      arrow.after(group);
     }
     const airflowScene=this.shadowRoot.querySelector(".airflow-art .scene");
     const statusBg=document.createElementNS("http://www.w3.org/2000/svg","rect");statusBg.classList.add("airflow-status-background");statusBg.setAttribute("x",278);statusBg.setAttribute("y",101);statusBg.setAttribute("width",244);statusBg.setAttribute("height",38);statusBg.setAttribute("rx",10);statusBg.setAttribute("fill","#f8fafc");statusBg.setAttribute("fill-opacity",".8");airflowScene.append(statusBg);
@@ -218,12 +203,13 @@ class RoyalClimaCard extends HTMLElement {
     if (config.sensor_boost_icon !== undefined && !["none", "co2", "humidity"].includes(config.sensor_boost_icon)) throw new Error("sensor_boost_icon must be none, co2 or humidity");
     if (config.name !== undefined && typeof config.name !== "string") throw new Error("name must be a string");
     if (config.language !== undefined && typeof config.language !== "string") throw new Error("language must be a string");
-    for (const key of ["compact", "transparent", "show_fire_alarm", "show_external_input_boost", "flow_animation"]) if (config[key] !== undefined && typeof config[key] !== "boolean") throw new Error(`${key} must be true or false`);
+    for (const key of ["compact", "transparent", "show_fire_alarm", "show_external_input_boost"]) if (config[key] !== undefined && typeof config[key] !== "boolean") throw new Error(`${key} must be true or false`);
     this._clearPending(); this._clearSpeeds(); this._clearErrors();
     this.dataset.version = VERSION;
     this._config = config; this._ids = ids; this._applyLayout(); this._render();
   }
   _applyLayout() {
+    this._gradientKeys = {}; this._displayKeys = {}; this._captionKey = null; this._noticeKey = null;
     for(const [el,attributes] of this._initialLayout) { for(const a of [...el.attributes]) el.removeAttribute(a.name); for(const [name,value] of attributes) el.setAttribute(name,value); }
     const airflow = this._config.view === "airflow";
     const compact = !airflow && !!this._config.compact;
@@ -291,7 +277,14 @@ class RoyalClimaCard extends HTMLElement {
     root.querySelector('.airflow-background').setAttribute("height",477);
     attrs(root.querySelector(".preheater"),{transform:"translate(6 -80) scale(.82)"});attrs(root.querySelector('[data-history="preheater"] rect'),{x:220,y:104,width:40,height:48});
   }
-  set hass(value) { this._hass = value; this._render(); }
+  set hass(value) {
+    const previous=this._hass;
+    this._hass=value;
+    if (!this._ids || !previous || !value ||
+        previous.locale?.language !== value.locale?.language || previous.language !== value.language ||
+        previous.callService !== value.callService ||
+        Object.values(this._ids).some(id => id && previous.states?.[id] !== value.states?.[id])) this._render();
+  }
   disconnectedCallback() { this._clearPending(); this._clearSpeeds(); this._clearErrors(); this._render(); }
   _clearErrors() {
     clearTimeout(this._errorTimer); this._errorTimer = null; this._errorKey = null;
@@ -370,6 +363,16 @@ class RoyalClimaCard extends HTMLElement {
   }
   getCardSize() { return this._config?.view === "airflow" ? 6 : this._config?.compact ? 5 : 7; }
   getGridOptions() { return { columns: 12, rows: "auto", min_columns: 6 }; }
+  _node(selector) {
+    this._nodes ||= new Map();
+    if (!this._nodes.has(selector)) this._nodes.set(selector,this.shadowRoot.querySelector(selector));
+    return this._nodes.get(selector);
+  }
+  _nodesFor(selector) {
+    this._nodeLists ||= new Map();
+    if (!this._nodeLists.has(selector)) this._nodeLists.set(selector,[...this.shadowRoot.querySelectorAll(selector)]);
+    return this._nodeLists.get(selector);
+  }
   _render() {
     if (!this._ids || !this._hass) return;
     const systemLanguage = (this._hass.locale?.language || this._hass.language || "en").toLowerCase();
@@ -385,49 +388,69 @@ class RoyalClimaCard extends HTMLElement {
       if (connected && known(role) && Number(raw(role)) === pending.expected) { clearTimeout(pending.timer); delete this._speedPending[role]; }
     }
     const flowing = connected && on("power");
-    const artwork=this.shadowRoot.querySelector(".airflow-art");
-    artwork.classList.toggle("flow-animated",this._config.flow_animation !== false);
-    for(const [gradient,left,right,defaults,arrows] of [
+    const artwork=this._node(".airflow-art");
+    if (this._config.view === "airflow") for(const [gradient,left,right,defaults,arrows] of [
       ["supply","outdoor_temperature","supply_temperature",["#25b9df","#ef8450"],["M148.5 159","M535 249"]],
       ["exhaust","defrost_temperature","return_temperature",["#639ed0","#ce6998"],["M265 249","M651.5 159"]]
     ]) {
       const valid = key => known(key) && String(raw(key)).trim()!=="" && Number.isFinite(Number(raw(key)));
       const dynamic=this._config.flow_colors === "temperature" && connected && valid(left) && valid(right);
       const a=Number(raw(left)), b=Number(raw(right));
+      this._gradientKeys ||= {};
+      const gradientKey=dynamic ? `${a}:${b}` : "fixed";
+      if(this._gradientKeys[gradient] === gradientKey) continue;
+      this._gradientKeys[gradient]=gradientKey;
       const colors=dynamic ? Array.from({length:17},(_,i)=>temperatureColor(a+(b-a)*i/16)) : defaults;
-      const markup=colors.map((color,i)=>`<stop offset="${i/(colors.length-1)}" stop-color="${color}"/>`).join("");
       const element=artwork.querySelector(`[id="${gradient}"]`);
-      if(element.innerHTML!==markup) element.innerHTML=markup;
+      while(element.children.length>colors.length) element.lastElementChild.remove();
+      colors.forEach((color,i)=> {
+        let stop=element.children[i];
+        if(!stop) { stop=document.createElementNS("http://www.w3.org/2000/svg","stop");element.append(stop); }
+        stop.setAttribute("offset",i/(colors.length-1));stop.setAttribute("stop-color",color);
+      });
       arrows.forEach((prefix,i)=>artwork.querySelector(`path[d^="${prefix}"]`).setAttribute("fill",colors[i===0?0:colors.length-1]));
     }
 
-    const scene=this.shadowRoot.querySelector(".airflow-art");
+    if(this._config.view === "airflow") {
+    const scene=this._node(".airflow-art");
     scene.classList.toggle("airflow-running",flowing);scene.classList.toggle("airflow-off",connected && !on("power"));scene.classList.toggle("airflow-disconnected",!connected);
     const core=scene.querySelector(".airflow-exchanger");core.classList.toggle("exchanger-error",connected && on("error"));core.setAttribute("stroke",connected && on("error")?"#c24632":"#8da0b3");core.setAttribute("fill",connected && on("error")?"#c24632":"#cedae7");core.setAttribute("fill-opacity",connected && on("error")?".09":".45");
     scene.querySelector("#internals").style.display = connected && on("error") ? "inline" : "";
-    const flow = this.shadowRoot.querySelector(".airflow-lines");
+    } else {
+    const flow = this._node(".airflow-lines");
     flow.setAttribute("stroke", flowing ? "#56614d" : "#c2c8bc");
     const exchanger = flow.querySelector("path"), exchangerError = connected && on("error");
     exchanger.classList.toggle("exchanger-error", exchangerError);
     exchanger.setAttribute("stroke", exchangerError ? "#c24632" : flowing ? "#56614d" : "#c2c8bc");
     exchanger.setAttribute("fill", exchangerError ? "#c24632" : "none");
     exchanger.setAttribute("fill-opacity", exchangerError ? ".09" : "0");
-    for (const label of this.shadowRoot.querySelectorAll(".airflow-label")) label.setAttribute("fill", flowing ? "#3b4533" : "#c2c8bc");
-    this.shadowRoot.querySelector("ha-card").setAttribute("aria-label", this._config.name || "Royal Clima ERV");
-    for (const el of this.shadowRoot.querySelectorAll(".caption")) el.textContent = el.dataset[ru ? "ru" : "en"];
-    if(this._config.view === "airflow") for(const [i,suffix] of ["OA","RA","FR","SA"].entries()) this.shadowRoot.querySelectorAll("svg.panel > .caption")[i].textContent += ` · ${suffix}`;
+    for (const label of this._nodesFor(".airflow-label")) label.setAttribute("fill", flowing ? "#3b4533" : "#c2c8bc");
+    }
+    this._node("ha-card").setAttribute("aria-label", this._config.name || "Royal Clima ERV");
+    const captionKey=`${ru}:${this._config.view}`;
+    if(this._captionKey !== captionKey) {
+    this._captionKey=captionKey;
+    for (const el of this._nodesFor(".caption")) el.textContent = el.dataset[ru ? "ru" : "en"];
+    if(this._config.view === "airflow") for(const [i,suffix] of ["OA","RA","FR","SA"].entries()) this._nodesFor("svg.panel > .caption")[i].textContent += ` · ${suffix}`;
+    }
     for (const [role] of DISPLAYS) {
       let value = connected && known(role) && String(raw(role)).trim() !== "" ? Number(raw(role)) : NaN;
       if (!Number.isFinite(value) || (role.endsWith("speed") && (!Number.isInteger(value) || value < 0 || value > 10))) value = null;
-      const el = this.shadowRoot.querySelector(`[data-display="${role}"]`);
+      const el = this._node(`[data-display="${role}"]`);
+      this._displayKeys ||= {};
+      const displayKey=`${value}:${ru}:${this._config.view}`;
+      if(this._displayKeys[role] === displayKey) continue;
+      this._displayKeys[role]=displayKey;
       const content = this._config.view === "airflow" ? `<text x="50" y="31" text-anchor="middle" font-family="Arial,sans-serif" font-size="${role.endsWith("speed") ? 21 : 32}" fill="${el.dataset.color}">${value === null ? "—" : value}${value === null ? "" : role.endsWith("speed") ? " / 10" : " °C"}</text>` : digits(value, !role.endsWith("speed"));
       const segments = el.querySelector(".segments");
-      if (segments.innerHTML !== content) segments.innerHTML = content;
+      if(this._config.view === "airflow" && segments.firstElementChild?.tagName.toLowerCase() === "text") {
+        segments.firstElementChild.textContent = value === null ? "—" : `${value}${role.endsWith("speed") ? " / 10" : " °C"}`;
+      } else segments.innerHTML = content;
       el.dataset.value = value === null ? "unknown" : String(value);
       el.querySelector("title").textContent = `${value === null ? (ru ? "Нет данных" : "No data") : value}`;
     }
     for (const [key, , , , russian, english] of INDICATORS) {
-      const el = this.shadowRoot.querySelector(`[data-indicator="${key}"]`);
+      const el = this._node(`[data-indicator="${key}"]`);
       const boostIcon = this._config.sensor_boost_icon ?? "co2";
       const hidden = (this._config.view === "airflow" && !["esp_connection", "online"].includes(key) && !(connected && on(key))) || (key === "sensor_boost" && boostIcon === "none") || (key === "fire_alarm" && this._config.show_fire_alarm === false) || (key === "external_input_boost" && this._config.show_external_input_boost === false);
       el.style.display = hidden ? "none" : "";
@@ -448,31 +471,31 @@ class RoyalClimaCard extends HTMLElement {
     for (const role of ["exhaust_speed", "supply_speed"]) {
       const speed = Number(raw(role));
       const running = connected && on("power") && known(role) && Number.isInteger(speed) && speed > 0 && speed <= 10;
-      const fan = this.shadowRoot.querySelector(`[data-fan="${role}"]`);
+      const fan = this._node(`[data-fan="${role}"]`);
       fan.setAttribute("opacity", running ? "1" : ".3");
       fan.querySelector(".rotor").style.animationPlayState = running ? "running" : "paused";
       fan.querySelector(".rotor").style.animationDuration = `${(5 - (Math.max(1, Math.min(10, Number.isFinite(speed) ? speed : 1)) - 1) * (4.3 / 9)).toFixed(2)}s`;
-      for (const bar of this.shadowRoot.querySelectorAll(`[data-bar="${role}"]`)) bar.setAttribute("opacity", running && speed >= Number(bar.dataset.step) ? "1" : ".18");
+      if(this._config.view !== "airflow") for (const bar of this._nodesFor(`[data-bar="${role}"]`)) bar.setAttribute("opacity", running && speed >= Number(bar.dataset.step) ? "1" : ".18");
     }
     if (this._config.view === "airflow") {
-      const active = [...this.shadowRoot.querySelectorAll("[data-indicator]")].filter(el => !["esp_connection", "online"].includes(el.dataset.indicator) && el.style.display !== "none");
+      const active = [...this._nodesFor("[data-indicator]")].filter(el => !["esp_connection", "online"].includes(el.dataset.indicator) && el.style.display !== "none");
       active.forEach((el, i) => {
         const spec = INDICATORS.find(d => d[0] === el.dataset.indicator);
         el.setAttribute("transform", `translate(${400 + (i - (active.length - 1) / 2) * 34 - spec[2]} ${120 - spec[3]})`);
       });
-      const background = this.shadowRoot.querySelector(".airflow-status-background");
+      const background = this._node(".airflow-status-background");
       background.style.display = active.length ? "" : "none";
       background.setAttribute("x", 400 - (active.length * 34 + 6) / 2);
       background.setAttribute("width", active.length * 34 + 6);
     }
-    const preheater = this.shadowRoot.querySelector(".preheater");
+    const preheater = this._node(".preheater");
     const heaterAvailable = !!this._ids.preheater;
     preheater.style.display = heaterAvailable ? "" : "none";
     const heating = connected && on("preheater");
     preheater.setAttribute("opacity", heating ? "1" : ".35");
     preheater.setAttribute("stroke", heating ? "#c24632" : "#77836b");
     for (const [role, , , , russian, english] of DISPLAYS) {
-      const block = this.shadowRoot.querySelector(`[data-history="${role}"]`);
+      const block = this._node(`[data-history="${role}"]`);
       const exists = !!this._hass.states?.[this._ids[role]];
       block.setAttribute("aria-disabled", String(!exists));
       block.setAttribute("tabindex", exists ? "0" : "-1");
@@ -480,7 +503,7 @@ class RoyalClimaCard extends HTMLElement {
       block.setAttribute("aria-label", label);
       block.querySelector("title").textContent = label;
     }
-    const heaterAction = this.shadowRoot.querySelector('[data-history="preheater"]');
+    const heaterAction = this._node('[data-history="preheater"]');
     const heaterExists = heaterAvailable;
     heaterAction.style.display = heaterAvailable ? "" : "none";
     heaterAction.setAttribute("aria-disabled", String(!heaterExists));
@@ -488,7 +511,7 @@ class RoyalClimaCard extends HTMLElement {
     const heaterLabel = ru ? "Предподогрев: история" : "Preheater: history";
     heaterAction.setAttribute("aria-label", heaterLabel);
     heaterAction.querySelector("title").textContent = heaterLabel;
-    const power = this.shadowRoot.querySelector("[data-power]");
+    const power = this._node("[data-power]");
     const disabled = !!this._pending || !this._powerReady();
     power.setAttribute("aria-disabled", String(disabled));
     power.setAttribute("aria-busy", String(!!this._pending));
@@ -496,19 +519,24 @@ class RoyalClimaCard extends HTMLElement {
     power.classList.toggle("pending", !!this._pending);
     power.querySelector("title").textContent = this._pending ? (ru ? "Ожидание подтверждения" : "Waiting for confirmation") : (ru ? "Включить / выключить ПВУ" : "Turn ventilation on / off");
     power.setAttribute("aria-label", power.querySelector("title").textContent);
-    const powerGlyph = this.shadowRoot.querySelector("[data-power-icon]");
+    const powerGlyph = this._node("[data-power-icon]");
     powerGlyph.setAttribute("opacity", this._pending ? "0" : (this._config.compact || this._config.view === "airflow") ? "1" : this._powerReady() ? "1" : ".4");
     powerGlyph.setAttribute("fill", (this._config.compact || this._config.view === "airflow") ? (!this._powerReady() ? "#9a9a9a" : on("power") ? "#23863f" : "#111111") : "#596561");
     let error = this._powerError, context = "";
     for (const [role, message] of Object.entries(this._speedErrors || {})) {
       error = message; context = role === "supply_speed" ? (ru ? "Приток: " : "Supply: ") : (ru ? "Вытяжка: " : "Exhaust: ");
     }
-    const notice = this.shadowRoot.querySelector(".command-notice"), message = notice.querySelector("text");
-    message.textContent = !error ? "" : context + (error === "timeout" ? (ru ? "Команда не подтверждена" : "Command not confirmed") : (ru ? "Ошибка отправки команды" : "Could not send command"));
+    const notice = this._node(".command-notice"), message = notice.querySelector("text");
+    const messageText = !error ? "" : context + (error === "timeout" ? (ru ? "Команда не подтверждена" : "Command not confirmed") : (ru ? "Ошибка отправки команды" : "Could not send command"));
+    if(message.textContent !== messageText) message.textContent=messageText;
     notice.style.display = error ? "" : "none";
     if (error) {
+      const noticeKey=`${message.textContent}:${message.getAttribute("x")}:${message.getAttribute("y")}`;
+      if(this._noticeKey !== noticeKey) {
+      this._noticeKey=noticeKey;
       const box = message.getBBox(), frame = notice.querySelector("rect");
       for (const [name, value] of Object.entries({x:box.x-12,y:box.y-6,width:box.width+24,height:box.height+12})) frame.setAttribute(name,value);
+      }
       const label = ru ? "Скрыть сообщение об ошибке" : "Dismiss error message";
       notice.setAttribute("aria-label",label); notice.querySelector("title").textContent=label;
       const key = context + error;
@@ -518,7 +546,7 @@ class RoyalClimaCard extends HTMLElement {
       }
     }
     for (const role of ["exhaust_speed", "supply_speed"]) {
-      const button = this.shadowRoot.querySelector(`[data-speed-action="${role}"]`);
+      const button = this._node(`[data-speed-action="${role}"]`);
       const pending = !!this._speedPending?.[role], ready = this._speedReady(role);
       button.setAttribute("aria-disabled", String(pending || !ready)); button.setAttribute("aria-busy", String(pending));
       button.setAttribute("tabindex", ready && !pending ? "0" : "-1"); button.classList.toggle("pending", pending);
@@ -527,8 +555,8 @@ class RoyalClimaCard extends HTMLElement {
       const reasons = ru ? { connection: "Нет связи с ПВУ", reading: "Нет корректного показания скорости 0–10", control: "Сущность управления select недоступна или не настроена", service: "Вызов действия HA недоступен" } : { connection: "No ventilation connection", reading: "No valid speed reading 0–10", control: "Control select entity unavailable or not configured", service: "HA action unavailable" };
       const hint = pending ? (ru ? "Ожидание подтверждения" : "Waiting for confirmation") : reasons[problem];
       button.setAttribute("aria-label", label); button.querySelector("title").textContent = hint ? `${label}: ${hint}` : label;
-      this.shadowRoot.querySelector(`[data-speed-icon="${role}"]`).setAttribute("opacity", pending ? "0" : ready ? "1" : ".4");
-      const block = this.shadowRoot.querySelector(`[data-history="${role}"]`);
+      this._node(`[data-speed-icon="${role}"]`).setAttribute("opacity", pending ? "0" : ready ? "1" : ".4");
+      const block = this._node(`[data-history="${role}"]`);
       block.classList.toggle("pending", this._config.view !== "airflow" && !!this._config.compact && pending);
       block.setAttribute("aria-busy", String(this._config.view !== "airflow" && !!this._config.compact && pending));
       if (this._config.view !== "airflow" && this._config.compact) {
@@ -536,7 +564,7 @@ class RoyalClimaCard extends HTMLElement {
         block.setAttribute("aria-label", label); block.querySelector("title").textContent = button.querySelector("title").textContent;
       }
     }
-    const dialog = this.shadowRoot.querySelector("dialog"), role = dialog.dataset.role;
+    const dialog = this._node("dialog"), role = dialog.dataset.role;
     dialog.querySelector("h3").textContent = role === "supply_speed" ? (ru ? "Скорость притока" : "Supply speed") : (ru ? "Скорость вытяжки" : "Exhaust speed");
     dialog.querySelector("[data-speed-close]").textContent = ru ? "Отмена" : "Cancel";
     const options = this._hass.states?.[this._ids[role + "_control"]]?.attributes?.options;

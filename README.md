@@ -22,7 +22,6 @@ Options can be set independently. In the control view, transparency requires com
 
 | Option | Type / default | Purpose |
 |---|---|---|
-| `flow_animation` | boolean, `true` | Subtle slow highlights on airflow arrows while running; respects reduced motion. |
 | `flow_colors` | string, `fixed` | Airflow colors: `fixed` for original colors, `temperature` for the −30…+40 °C palette. |
 | `view` | string, `control` | `control` for the control panel; `airflow` for the airflow diagram. |
 | `prefix` | string, `ventilation_system` | Prefix for ventilation entities. |
