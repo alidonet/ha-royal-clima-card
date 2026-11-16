@@ -68,7 +68,7 @@ class RoyalClimaCard extends HTMLElement {
       overlay += `<svg data-display="${role}" x="${x - width / 2}" y="${y - width * .23}" width="${width}" height="${width * .46}" viewBox="0 0 100 46" aria-label="${role}"><title></title><g class="segments"></g></svg>`;
       if (ru) overlay += `<text class="caption" data-ru="${ru}" data-en="${en}" x="${lx}" y="${ly}"/>`;
     }
-    for (const [role, name, x, y] of INDICATORS) overlay += `<g class="indicator-action" data-indicator="${role}" data-history="${role}" role="button" tabindex="0"><title></title>${icon(name, x, y, name === "molecule-co2" ? 32 : 24)}</g>`;
+    for (const [role, name, x, y] of INDICATORS) overlay += `<g class="indicator-action" data-indicator="${role}" data-history="${role}" role="button" tabindex="0"><title></title>${icon(name, x, y, name === "molecule-co2" ? 32 : 24)}<rect class="indicator-hit" x="${x - 17}" y="${y - 17}" width="34" height="34" rx="4" fill="transparent"/></g>`;
     for (const [role, x] of [["exhaust_speed", 111.5], ["supply_speed", 408]]) {
       overlay += `<g data-fan="${role}" transform="translate(${x} 473)"><g class="rotor"><svg x="-22" y="-22" width="44" height="44" viewBox="0 0 40 40"><g fill="#42483b"><path id="${role}-blade" d="M20 18C12 16 9 8 15 5C22 1 29 8 23 18Z"/><use href="#${role}-blade" transform="rotate(120 20 20)"/><use href="#${role}-blade" transform="rotate(240 20 20)"/><circle cx="20" cy="20" r="4"/></g></svg></g></g>`;
       const start = role === "exhaust_speed" ? 144.5 : 441;
@@ -96,7 +96,7 @@ class RoyalClimaCard extends HTMLElement {
       .temperature-action,.indicator-action{cursor:pointer}.temperature-action[aria-disabled="true"],.indicator-action[aria-disabled="true"]{cursor:default}
       .power-action{cursor:pointer}.power-action[aria-disabled="true"]{cursor:default}.power-action rect{pointer-events:all}.power-action:focus-visible{outline:none}.power-action:focus-visible rect{stroke:#56614d;stroke-width:2}
       .waiting{display:none;transform-origin:340px 598px;animation:spin 1s linear infinite}.power-action.pending .waiting{display:block}
-      .indicator-action{pointer-events:bounding-box}.indicator-action:focus-visible{outline:2px solid #56614d;outline-offset:3px}
+      .indicator-action{pointer-events:none}.indicator-hit{pointer-events:all}.indicator-action:focus-visible{outline:2px solid #56614d;outline-offset:3px}
       .temperature-action rect{pointer-events:all}.temperature-action:focus-visible{outline:none}.temperature-action:focus-visible rect{stroke:#56614d;stroke-width:2}
       .speed-action{cursor:pointer}.speed-action[aria-disabled="true"]{cursor:default}.speed-action rect{pointer-events:all}.speed-action:focus-visible{outline:none}.speed-action:focus-visible rect{stroke:#56614d;stroke-width:2}
       .speed-action circle{display:none;animation:spin 1s linear infinite}.speed-action.pending circle{display:block}
@@ -193,14 +193,17 @@ class RoyalClimaCard extends HTMLElement {
     this._speedPending = {};
     this.shadowRoot.querySelector("dialog").close();
   }
-  _speedReady(role) {
-    if (!["supply_speed", "exhaust_speed"].includes(role)) return false;
+  _speedProblem(role) {
+    if (!["supply_speed", "exhaust_speed"].includes(role)) return "control";
     const state = key => this._hass?.states?.[this._ids?.[key]]?.state;
-    const speed = state(role), target = state(role + "_control");
-    return state("esp_connection") === "on" && state("online") === "on" && speed != null && String(speed).trim() !== "" &&
-      Number.isInteger(Number(speed)) && Number(speed) >= 0 && Number(speed) <= 10 && target != null &&
-      !["unknown", "unavailable"].includes(target) && this._ids[role + "_control"].startsWith("select.") && typeof this._hass.callService === "function";
+    if (state("esp_connection") !== "on" || state("online") !== "on") return "connection";
+    const speed = state(role);
+    if (speed == null || String(speed).trim() === "" || !Number.isInteger(Number(speed)) || Number(speed) < 0 || Number(speed) > 10) return "reading";
+    const target = state(role + "_control");
+    if (target == null || ["unknown", "unavailable"].includes(target) || !this._ids[role + "_control"].startsWith("select.")) return "control";
+    return typeof this._hass.callService === "function" ? null : "service";
   }
+  _speedReady(role) { return this._speedProblem(role) === null; }
   _openSpeed(role) {
     if (!this._speedReady(role) || this._speedPending?.[role]) return;
     const dialog = this.shadowRoot.querySelector("dialog");
@@ -266,7 +269,7 @@ class RoyalClimaCard extends HTMLElement {
       el.setAttribute("aria-disabled", String(!exists));
       el.setAttribute("tabindex", exists ? "0" : "-1");
       el.setAttribute("aria-label", ru ? russian : english);
-      el.querySelector("title").textContent = `${ru ? russian : english}: ${known(key) ? raw(key) : ru ? "Нет данных" : "No data"}`;
+      el.querySelector("title").textContent = `${ru ? russian : english}: ${known(key) ? (ru && ["on", "off"].includes(raw(key)) ? (on(key) ? "Включено" : "Выключено") : raw(key)) : ru ? "Нет данных" : "No data"}`;
     }
     for (const role of ["exhaust_speed", "supply_speed"]) {
       const speed = Number(raw(role));
@@ -316,8 +319,11 @@ class RoyalClimaCard extends HTMLElement {
       const pending = !!this._speedPending?.[role], ready = this._speedReady(role);
       button.setAttribute("aria-disabled", String(pending || !ready)); button.setAttribute("aria-busy", String(pending));
       button.setAttribute("tabindex", ready && !pending ? "0" : "-1"); button.classList.toggle("pending", pending);
-      const label = role === "supply_speed" ? (ru ? "Ступень притока" : "Supply step") : (ru ? "Ступень вытяжки" : "Exhaust step");
-      button.setAttribute("aria-label", label); button.querySelector("title").textContent = label;
+      const label = role === "supply_speed" ? (ru ? "Скорость притока" : "Supply speed") : (ru ? "Скорость вытяжки" : "Exhaust speed");
+      const problem = this._speedProblem(role);
+      const reasons = ru ? { connection: "Нет связи с ПВУ", reading: "Нет корректного показания скорости 0–10", control: "Сущность управления select недоступна или не настроена", service: "Вызов действия HA недоступен" } : { connection: "No ventilation connection", reading: "No valid speed reading 0–10", control: "Control select entity unavailable or not configured", service: "HA action unavailable" };
+      const hint = pending ? (ru ? "Ожидание подтверждения" : "Waiting for confirmation") : reasons[problem];
+      button.setAttribute("aria-label", label); button.querySelector("title").textContent = hint ? `${label}: ${hint}` : label;
       this.shadowRoot.querySelector(`[data-speed-icon="${role}"]`).setAttribute("opacity", pending ? "0" : ready ? "1" : ".4");
     }
     const dialog = this.shadowRoot.querySelector("dialog"), role = dialog.dataset.role;
