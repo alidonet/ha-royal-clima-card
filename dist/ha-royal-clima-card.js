@@ -157,6 +157,7 @@ class RoyalClimaCard extends HTMLElement {
       .speed-action{cursor:pointer}.speed-action[aria-disabled="true"]{cursor:default}.speed-action rect{pointer-events:all}.speed-action:focus-visible{outline:none}.speed-action:focus-visible rect{stroke:#56614d;stroke-width:2}
       .speed-action circle{display:none;animation:spin 1s linear infinite}.speed-action.pending circle{display:block}
       dialog{border:1px solid var(--divider-color,#ccd3d7);border-radius:16px;padding:24px;max-width:calc(100vw - 32px);width:380px;box-sizing:border-box;background:var(--card-background-color,#fff);color:var(--primary-text-color,#222);font:16px Arial,sans-serif}dialog::backdrop{background:#0006}dialog h3{font-size:20px;margin:0 0 18px;font-weight:500}.speed-choices{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:6px}.speed-choices button{min-height:36px;font-size:14px;padding:0 2px}.speed-choices [data-step-choice="6"]{grid-column:2}.speed-choices [data-step-choice="0"]{font-size:12px}dialog button{font:inherit;min-height:44px;border:1px solid var(--divider-color,#ccd3d7);border-radius:8px;background:var(--secondary-background-color,#f2f5f5);color:inherit;cursor:pointer}dialog button[aria-pressed="true"]{background:var(--primary-color,#0385bd);color:white}dialog button:disabled{opacity:.35;cursor:default}[data-speed-close]{display:block;margin:18px 0 0 auto;padding:0 14px}
+ha-card.dark{background:#19212c}ha-card.dark.compact:not(.transparent){background:#24362a}ha-card.dark.transparent{background:transparent}ha-card.dark .caption,ha-card.dark.airflow .caption{fill:#d5ded8}ha-card.dark .flow-port-label{fill:#9baebf}ha-card.dark [fill="#30392b"]{fill:#d5dfcb}ha-card.dark [stroke="#30392b"]{stroke:#d5dfcb}ha-card.dark [stop-color="#30392b"]{stop-color:#d5dfcb}ha-card.dark [fill="#444e3c"]{fill:#c6d1c2}ha-card.dark [stroke="#444e3c"]{stroke:#c6d1c2}ha-card.dark [stop-color="#444e3c"]{stop-color:#c6d1c2}ha-card.dark [fill="#66705d"]{fill:#9aab94}ha-card.dark [stroke="#66705d"]{stroke:#9aab94}ha-card.dark [stop-color="#66705d"]{stop-color:#9aab94}ha-card.dark [fill="#77836b"]{fill:#b0bdb0}ha-card.dark [stroke="#77836b"]{stroke:#b0bdb0}ha-card.dark [stop-color="#77836b"]{stop-color:#b0bdb0}ha-card.dark [fill="#a6ae9c"]{fill:#697d6c}ha-card.dark [stroke="#a6ae9c"]{stroke:#697d6c}ha-card.dark [stop-color="#a6ae9c"]{stop-color:#697d6c}ha-card.dark [fill="#56614d"]{fill:#b0c3a5}ha-card.dark [stroke="#56614d"]{stroke:#b0c3a5}ha-card.dark [stop-color="#56614d"]{stop-color:#b0c3a5}ha-card.dark [fill="#3b4533"]{fill:#becdb4}ha-card.dark [stroke="#3b4533"]{stroke:#becdb4}ha-card.dark [stop-color="#3b4533"]{stop-color:#becdb4}ha-card.dark [fill="#42483b"]{fill:#bfccbc}ha-card.dark [stroke="#42483b"]{stroke:#bfccbc}ha-card.dark [stop-color="#42483b"]{stop-color:#bfccbc}ha-card.dark [fill="#c2c8bc"]{fill:#77867b}ha-card.dark [stroke="#c2c8bc"]{stroke:#77867b}ha-card.dark [stop-color="#c2c8bc"]{stop-color:#77867b}ha-card.dark [fill="#34465b"]{fill:#d1dfed}ha-card.dark [stroke="#34465b"]{stroke:#d1dfed}ha-card.dark [stop-color="#34465b"]{stop-color:#d1dfed}ha-card.dark [fill="#52677a"]{fill:#9ab0c4}ha-card.dark [stroke="#52677a"]{stroke:#9ab0c4}ha-card.dark [stop-color="#52677a"]{stop-color:#9ab0c4}ha-card.dark [fill="#edf2f7"]{fill:#2b3849}ha-card.dark [stroke="#edf2f7"]{stroke:#2b3849}ha-card.dark [stop-color="#edf2f7"]{stop-color:#2b3849}ha-card.dark [fill="#dce4ed"]{fill:#46566a}ha-card.dark [stroke="#dce4ed"]{stroke:#46566a}ha-card.dark [stop-color="#dce4ed"]{stop-color:#46566a}ha-card.dark [fill="#c8d0d7"]{fill:#556372}ha-card.dark [stroke="#c8d0d7"]{stroke:#556372}ha-card.dark [stop-color="#c8d0d7"]{stop-color:#556372}ha-card.dark [fill="#aeb9c2"]{fill:#738190}ha-card.dark [stroke="#aeb9c2"]{stroke:#738190}ha-card.dark [stop-color="#aeb9c2"]{stop-color:#738190}ha-card.dark [fill="#e5e8ea"]{fill:#26303d}ha-card.dark [stroke="#e5e8ea"]{stroke:#26303d}ha-card.dark [stop-color="#e5e8ea"]{stop-color:#26303d}ha-card.dark [fill="#596561"]{fill:#b2c2b6}ha-card.dark [stroke="#596561"]{stroke:#b2c2b6}ha-card.dark [stop-color="#596561"]{stop-color:#b2c2b6}ha-card.dark [fill="#c5cbc2"]{fill:#526054}ha-card.dark [stroke="#c5cbc2"]{stroke:#526054}ha-card.dark [stop-color="#c5cbc2"]{stop-color:#526054}ha-card.dark [fill="#f8fbfe"]{fill:#35475a}ha-card.dark [stroke="#f8fbfe"]{stroke:#35475a}ha-card.dark [stop-color="#f8fbfe"]{stop-color:#35475a}ha-card.dark [fill="#dce6f0"]{fill:#253443}ha-card.dark [stroke="#dce6f0"]{stroke:#253443}ha-card.dark [stop-color="#dce6f0"]{stop-color:#253443}ha-card.dark [fill="#b0c1d1"]{fill:#6b8197}ha-card.dark [stroke="#b0c1d1"]{stroke:#6b8197}ha-card.dark [stop-color="#b0c1d1"]{stop-color:#6b8197}ha-card.dark [fill="#8da2b8"]{fill:#50677d}ha-card.dark [stroke="#8da2b8"]{stroke:#50677d}ha-card.dark [stop-color="#8da2b8"]{stop-color:#50677d}ha-card.dark [fill="#d3dde7"]{fill:#7e94a9}ha-card.dark [stroke="#d3dde7"]{stroke:#7e94a9}ha-card.dark [stop-color="#d3dde7"]{stop-color:#7e94a9}ha-card.dark [fill="#cedae7"]{fill:#6d8298}ha-card.dark [stroke="#cedae7"]{stroke:#6d8298}ha-card.dark [stop-color="#cedae7"]{stop-color:#6d8298}ha-card.dark [fill="#8da0b3"]{fill:#71899e}ha-card.dark [stroke="#8da0b3"]{stroke:#71899e}ha-card.dark [stop-color="#8da0b3"]{stop-color:#71899e}ha-card.dark [data-indicator][opacity=".35"],ha-card.dark .preheater[opacity=".35"]{opacity:.55}ha-card.dark .fan-background{fill:#273442}ha-card.dark [data-power-icon][fill="#23863f"]{fill:#51dc7d}ha-card.dark [data-power-icon][fill="#111111"]{fill:#c5d2ca}ha-card.dark .power-action rect{stroke:#58685c}ha-card.dark .segments g[opacity=".04"]{opacity:.065}ha-card.dark.airflow [data-fan]{opacity:.56}ha-card.dark.airflow [data-speed-pixels] rect[opacity=".38"]{fill:#c4d0d8;opacity:.66}ha-card.dark.airflow [data-speed-pixels] rect[opacity=".65"]{fill:#8b9ba8;opacity:.48}ha-card.dark.airflow rect[fill="url(#case)"]{fill-opacity:.48}ha-card.dark.airflow rect[fill="url(#cover)"]{opacity:.4}ha-card.dark.airflow [data-display="outdoor_temperature"] text{fill:#42c5e9}ha-card.dark.airflow [data-display="return_temperature"] text{fill:#ed82b6}ha-card.dark.airflow [data-display="exhaust_temperature"] text{fill:#79b6ed}ha-card.dark.airflow [data-display="supply_temperature"] text{fill:#ffad72}ha-card.dark .command-notice rect{fill:#273442;stroke:#627080}ha-card.dark .command-message{fill:#ff9b8a}
     </style><ha-card>${PANEL.replace('</svg>', '</g></svg>').replace('</defs>', '</defs><g class="panel-art">').replace('<svg ', '<svg class="panel" role="img" ').replace('</svg>', AIRFLOW + overlay + '</svg>')}</ha-card><dialog aria-labelledby="speed-dialog-title"><h3 id="speed-dialog-title"></h3><div class="speed-choices">${Array.from({length:11},(_,i)=>`<button type="button" data-step-choice="${i}">${i}</button>`).join("")}</div><button type="button" data-speed-close></button></dialog>`;
     for(const fan of this.shadowRoot.querySelectorAll('[data-fan]')) {
       const background=document.createElementNS("http://www.w3.org/2000/svg","circle");background.classList.add("fan-background");background.setAttribute("r",28);background.setAttribute("fill","#f8fafc");background.setAttribute("fill-opacity",".65");fan.prepend(background);
@@ -281,6 +282,7 @@ class RoyalClimaCard extends HTMLElement {
       ids[key] = value;
     }
     if (config.view !== undefined && !["control", "airflow"].includes(config.view)) throw new Error("view must be control or airflow");
+    if(config.theme !== undefined && !["auto","light","dark"].includes(config.theme)) throw new Error("theme must be auto, light or dark");
     if (config.language !== undefined && typeof config.language !== "string") throw new Error("language must be a string");
     config = { ...config };
     for (const key of ["transparent", "flow_colormap", "sensor_boost_co2"]) if (config[key] !== undefined) config[key] = configBoolean(config[key], key);
@@ -471,11 +473,17 @@ class RoyalClimaCard extends HTMLElement {
     const previous=this._hass;
     this._hass=value;
     if (!this._ids || !previous || !value ||
-        previous.locale?.language !== value.locale?.language || previous.language !== value.language ||
+        this._lastDarkMode !== value.themes?.darkMode || previous.locale?.language !== value.locale?.language || previous.language !== value.language ||
         previous.callService !== value.callService ||
         Object.values(this._ids).some(id => id && previous.states?.[id] !== value.states?.[id])) this._render();
   }
-  disconnectedCallback() { this._clearPending(); this._clearSpeeds(); this._clearErrors(); this._render(); }
+  connectedCallback() {
+    this._colorScheme ||= window.matchMedia("(prefers-color-scheme: dark)");
+    this._themeListener ||= () => this._render();
+    this._colorScheme.addEventListener("change",this._themeListener);
+    this._render();
+  }
+  disconnectedCallback() { this._colorScheme?.removeEventListener("change",this._themeListener); this._clearPending(); this._clearSpeeds(); this._clearErrors(); this._render(); }
   _clearErrors() {
     clearTimeout(this._errorTimer); this._errorTimer = null; this._errorKey = null;
     this._powerError = null; this._speedErrors = {};
@@ -567,16 +575,21 @@ class RoyalClimaCard extends HTMLElement {
   _render() {
     if (!this._ids || !this._hass) return;
     const systemLanguage = String(this._hass.locale?.language || this._hass.language || "en").toLowerCase();
-    const ru = this._config.language === undefined
+    const ru = this._config.language === undefined || this._config.language.trim().toLowerCase() === "auto"
       ? systemLanguage.startsWith("ru")
       : this._config.language.trim().toLowerCase() === "ru";
+    this._lastDarkMode=this._hass.themes?.darkMode;
+    const theme=this._config.theme ?? "auto";
+    const dark=theme === "dark" || (theme === "auto" && (this._lastDarkMode ?? this._colorScheme?.matches ?? false));
+    this._node('ha-card').classList.toggle('dark',dark);
     const raw = key => this._hass.states?.[this._ids[key]]?.state;
     const known = key => raw(key) != null && !["unknown", "unavailable", ""].includes(raw(key));
     const on = key => raw(key) === "on";
     const numberCache = new Map();
     const number = key => { if(!numberCache.has(key)) numberCache.set(key,stateNumber(raw(key)));return numberCache.get(key); };
     const numeric = key => Number.isFinite(number(key));
-    const extra = (key, russian, english, unit="") => (unit ? numeric(key) : known(key) && ["string","number"].includes(typeof raw(key))) ? `${ru?russian:english}: ${raw(key)}${unit ? " "+unit : ""}` : null;
+    const rounded = value => Number.isFinite(value) ? Number(value.toFixed(1)) : value;
+    const extra = (key, russian, english, unit="") => (unit ? numeric(key) : known(key) && ["string","number"].includes(typeof raw(key))) ? `${ru?russian:english}: ${numeric(key) ? rounded(number(key)) : raw(key)}${unit ? " "+unit : ""}` : null;
     const duration = seconds => { const n=Math.max(0,Math.floor(seconds));return `${Math.floor(n/86400)}${ru?" д":"d"} ${Math.floor(n%86400/3600)}${ru?" ч":"h"} ${Math.floor(n%3600/60)}${ru?" мин":"m"}`; };
 
     const connected = on("esp_connection") && on("vent_system_online");
@@ -585,6 +598,7 @@ class RoyalClimaCard extends HTMLElement {
       if (connected && known(role) && number(role) === pending.expected) { clearTimeout(pending.timer); delete this._speedPending[role]; }
     }
     const flowing = connected && on("power");
+    if(this._config.view === 'airflow') for(const label of this._nodesFor('.flow-port-label')) label.style.display=flowing?'':'none';
     const bypassActive=connected && on("bypass");
     const diamondColor=connected?"#56614d":"#c2c8bc";
     const diamondHint=bypassActive?(ru?"Байпас включён":"Bypass is on"):(ru?"Теплообменник":"Heat exchanger");
@@ -693,7 +707,7 @@ class RoyalClimaCard extends HTMLElement {
       setAttributeIfChanged(el,"aria-disabled", String(!exists));
       setAttributeIfChanged(el,"tabindex", exists && !hidden ? "0" : "-1");
       setAttributeIfChanged(el,"aria-label", label);
-      el.querySelector("title").textContent = key === "filter_usage" ? `${label}: ${filterValid ? `${usage} %` : ru ? "Нет данных" : "No data"}` : `${label}: ${known(key) ? (ru && ["on", "off"].includes(raw(key)) ? (on(key) ? "Включено" : "Выключено") : raw(key)) : ru ? "Нет данных" : "No data"}`;
+      el.querySelector("title").textContent = key === "filter_usage" ? `${label}: ${filterValid ? `${rounded(usage)} %` : ru ? "Нет данных" : "No data"}` : `${label}: ${known(key) ? (ru && ["on", "off"].includes(raw(key)) ? (on(key) ? "Включено" : "Выключено") : raw(key)) : ru ? "Нет данных" : "No data"}`;
     }
     for(const [key] of INDICATORS) {
       const el=this._node(`[data-indicator="${key}"]`), title=el.querySelector("title"), lines=[title.textContent];
@@ -726,6 +740,17 @@ class RoyalClimaCard extends HTMLElement {
       fanTitle.textContent += "\n"+directionHint;
       setAttributeIfChanged(fan,'aria-label',fanTitle.textContent);setAttributeIfChanged(fan,'tabindex',known(role)?'0':'-1');
       setAttributeIfChanged(fan,"opacity", running ? "1" : ".3");
+      if(this._config.view !== "airflow") {
+        const arrow=this._node(`[data-fan-direction="${role}"]`);
+        setAttributeIfChanged(arrow,"stroke",COLORS.fan);setAttributeIfChanged(arrow,"opacity",running?"1":".3");
+      } else {
+        const enabled=connected && on("power");
+        setAttributeIfChanged(this._node(`[data-display="${role}"]`),"opacity",enabled?"1":".4");
+        const backgrounds=this._nodesFor('.airflow-art .scene > g > g[fill="#edf2f7"] rect');
+        const background=backgrounds[role === "exhaust_speed"?0:2];
+        if(background) setAttributeIfChanged(background,"fill",enabled?"#edf2f7":"#e5e8ea");
+      }
+
       fan.querySelector(".rotor").style.animationPlayState = running ? "running" : "paused";
       fan.querySelector(".rotor").style.animationDuration = `${(5 - (Math.max(1, Math.min(10, Number.isFinite(speed) ? speed : 1)) - 1) * (4.3 / 9)).toFixed(2)}s`;
       if(this._config.view === "airflow") for(const [i,pixel] of [...this._node(`[data-speed-pixels="${role}"]`).children].entries()) { setAttributeIfChanged(pixel,"fill",running && speed>=i+1?COLORS.fan:"#aeb9c2");setAttributeIfChanged(pixel,"opacity",running && speed>=i+1?".38":".65"); }

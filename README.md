@@ -5,8 +5,10 @@
 A Home Assistant card for Royal Clima SOFFIO Primo ventilation units: temperatures, status indicators, power control and fan step selection. Two views: a control panel and an airflow diagram. ESPHome firmware for ESP32 and hardware wiring instructions: [ESPHome-RoyalClima](https://github.com/alidonet/ESPHome-RoyalClima).
 
 ![Control panel](images/control_panel.png)
+![Control panel](images/control_panel_dark.png)
 
 ![Airflow diagram](images/flows_panel.png)
+![Airflow diagram](images/flows_panel_dark.png)
 
 ## Installation
 
@@ -27,7 +29,7 @@ type: custom:royal-clima-card
 
 ## Full configuration
 
-All settings are shown below with their defaults and English explicitly selected (`language: en`). Without `language`, the card follows the HA profile language. Usually the minimal YAML or a change of prefixes is enough. Explicit `entities` override prefixes: if you copy the full example, update the corresponding entity IDs too.
+All settings are shown below with their defaults and English explicitly selected (`language: auto`). Without `language`, the card follows the HA profile language. Usually the minimal YAML or a change of prefixes is enough. Explicit `entities` override prefixes: if you copy the full example, update the corresponding entity IDs too.
 
 ```yaml
 type: custom:royal-clima-card
@@ -38,7 +40,7 @@ transparent: false
 flow_colormap: false
 sensor_boost_co2: true
 
-language: en
+language: auto
 
 show_icons:
   esp_connection: true
@@ -92,7 +94,8 @@ entities:
 | `type` | Required: `custom:royal-clima-card`. |
 | `view` | `control` — control panel; `airflow` — airflow diagram. |
 | `prefix`, `esp_prefix` | Ventilation and ESP32 entity prefixes: `ventilation_system`, `royal_clima`. Omit the domain; lowercase ASCII letters, digits and underscores are accepted. |
-| `language` | Unset: Russian for an HA profile language of `ru` / `ru-*`, otherwise English. `ru` and `en` force the card language; any other explicit string, including `auto`, selects English. Does not change firmware messages or entity names. |
+| `theme` | `auto` by default follows HA; `light` / `dark` force a theme. Falls back to the system preference when HA theme information is unavailable. |
+| `language` | `auto` by default follows HA; `ru` / `en` force a language. Other values select English. |
 | `transparent` | `false`; `true` removes the background. Text and icon colors do not automatically adapt to the theme. |
 | `flow_colormap` | `false` — standard flow colors; `true` — temperature palette. |
 | `sensor_boost_co2` | `true` — CO₂ icon; `false` — humidity icon. Changes the icon and tooltip; does not detect the sensor type. |
@@ -126,5 +129,4 @@ If you use custom control wrappers, set them in `entities.power_control`, `entit
 - Tapping a temperature, indicator or fan opens entity details and history. In the control panel, speed digits and bars open step selection; in the airflow diagram, use the bottom control tiles. Speed changes require the unit to be powered on and connected; commands wait up to 20 seconds for confirmation.
 - Filter icon: below 80% — green; 80% to below 100% — orange; 100% and above — red. With no data, the color does not indicate a healthy state.
 - The temperature palette covers −30…+40 °C. Outside this range, only the color is clamped. If an endpoint temperature is unavailable, the flow uses its standard colors.
-
-![Airflow temperature palette](images/colormap.png)
+  ![Airflow temperature palette](images/colormap.png)
