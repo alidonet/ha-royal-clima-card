@@ -84,7 +84,7 @@ entities:
   external_boost: binary_sensor.vent_external_boost
   sensor_boost: binary_sensor.vent_sensor_boost
   filter_usage: sensor.vent_filter_usage
-  preheater: null
+  preheater: ""
 ```
 
 ## Parameters
@@ -100,7 +100,7 @@ entities:
 | `flow_colormap` | `false` — standard flow colors; `true` — temperature palette. |
 | `sensor_boost_co2` | `true` — CO₂ icon; `false` — humidity icon. Changes the icon and tooltip; does not detect the sensor type. |
 | `show_icons` | All icons are enabled. Set a key from the full YAML to `false` to hide its icon and click area. Entity state is unchanged. |
-| `entities` | Full entity ID overrides. Omitted keys are generated from the prefixes; `null` disables a binding. Keys are listed below. |
+| `entities` | Full entity ID overrides. Omitted keys are generated from the prefixes; Empty fields use the default entity ID. Keys are listed below. |
 
 ### Entity bindings
 
@@ -116,7 +116,7 @@ Domains and full default IDs are shown in the YAML above. Readings and controls 
 | `fault`, `fault_details`, `status` | Error flag, error description and ventilation status text. |
 | `bypass`, `defrost`, `fire_alarm` | Open bypass, defrost and fire input. |
 | `sensor_boost`, `external_boost` | Sensor boost and external input boost. |
-| `preheater`, `heater_target` | Preheater state and heater setpoint. `preheater` is unbound by default (`null`). |
+| `preheater`, `heater_target` | Preheater state and heater setpoint. Preheating is hidden unless an explicit entity is configured and exists. |
 | `filter_usage`, `filter_interval`, `fan_runtime` | Filter usage percentage, configured reminder interval and fan operating hours. |
 | `humidity_target` | Humidity setpoint. |
 | `uptime`, `wifi_signal`, `data_age`, `offline_count` | ESP32 uptime in seconds, Wi-Fi signal, time since the last data and connection loss count; used in tooltips. |
@@ -130,3 +130,5 @@ If you use custom control wrappers, set them in `entities.power_control`, `entit
 - Filter icon: below 80% — green; 80% to below 100% — orange; 100% and above — red. With no data, the color does not indicate a healthy state.
 - The temperature palette covers −30…+40 °C. Outside this range, only the color is clamped. If an endpoint temperature is unavailable, the flow uses its standard colors.
   ![Airflow temperature palette](images/colormap.png)
+
+A blue dot in the upper-right corner flashes on received changes to primary ventilation readings and fades over one second. It indicates HA entity updates, not every Modbus packet; unchanged readings may not reach the frontend.

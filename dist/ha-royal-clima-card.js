@@ -136,7 +136,8 @@ class RoyalClimaCard extends HTMLElement {
       .preheater{pointer-events:none}
       ha-card.compact:not(.transparent){background:#e9ede2}
       [data-screen-surface],.airflow-background{display:none}
-      :host{display:block}ha-card{display:block;background:#f8fafc;border:0;box-shadow:none;overflow:hidden;border-radius:10px}
+      .data-flash{position:absolute;top:10px;right:10px;width:12px;height:12px;border-radius:50%;background:#35a9ed;opacity:0;pointer-events:none}
+      :host{display:block}ha-card{position:relative;display:block;background:#f8fafc;border:0;box-shadow:none;overflow:hidden;border-radius:10px}
       ha-card.compact .speed-action{display:none}
       ha-card.compact [data-screen-surface]{stroke:none}
       ha-card.compact [data-power-icon]{display:inline}
@@ -158,7 +159,7 @@ class RoyalClimaCard extends HTMLElement {
       .speed-action circle{display:none;animation:spin 1s linear infinite}.speed-action.pending circle{display:block}
       dialog{border:1px solid var(--divider-color,#ccd3d7);border-radius:16px;padding:24px;max-width:calc(100vw - 32px);width:380px;box-sizing:border-box;background:var(--card-background-color,#fff);color:var(--primary-text-color,#222);font:16px Arial,sans-serif}dialog::backdrop{background:#0006}dialog h3{font-size:20px;margin:0 0 18px;font-weight:500}.speed-choices{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:6px}.speed-choices button{min-height:36px;font-size:14px;padding:0 2px}.speed-choices [data-step-choice="6"]{grid-column:2}.speed-choices [data-step-choice="0"]{font-size:12px}dialog button{font:inherit;min-height:44px;border:1px solid var(--divider-color,#ccd3d7);border-radius:8px;background:var(--secondary-background-color,#f2f5f5);color:inherit;cursor:pointer}dialog button[aria-pressed="true"]{background:var(--primary-color,#0385bd);color:white}dialog button:disabled{opacity:.35;cursor:default}[data-speed-close]{display:block;margin:18px 0 0 auto;padding:0 14px}
 ha-card.dark{background:#19212c}ha-card.dark.compact:not(.transparent){background:#24362a}ha-card.dark.transparent{background:transparent}ha-card.dark .caption,ha-card.dark.airflow .caption{fill:#d5ded8}ha-card.dark .flow-port-label{fill:#9baebf}ha-card.dark [fill="#30392b"]{fill:#d5dfcb}ha-card.dark [stroke="#30392b"]{stroke:#d5dfcb}ha-card.dark [stop-color="#30392b"]{stop-color:#d5dfcb}ha-card.dark [fill="#444e3c"]{fill:#c6d1c2}ha-card.dark [stroke="#444e3c"]{stroke:#c6d1c2}ha-card.dark [stop-color="#444e3c"]{stop-color:#c6d1c2}ha-card.dark [fill="#66705d"]{fill:#9aab94}ha-card.dark [stroke="#66705d"]{stroke:#9aab94}ha-card.dark [stop-color="#66705d"]{stop-color:#9aab94}ha-card.dark [fill="#77836b"]{fill:#b0bdb0}ha-card.dark [stroke="#77836b"]{stroke:#b0bdb0}ha-card.dark [stop-color="#77836b"]{stop-color:#b0bdb0}ha-card.dark [fill="#a6ae9c"]{fill:#697d6c}ha-card.dark [stroke="#a6ae9c"]{stroke:#697d6c}ha-card.dark [stop-color="#a6ae9c"]{stop-color:#697d6c}ha-card.dark [fill="#56614d"]{fill:#b0c3a5}ha-card.dark [stroke="#56614d"]{stroke:#b0c3a5}ha-card.dark [stop-color="#56614d"]{stop-color:#b0c3a5}ha-card.dark [fill="#3b4533"]{fill:#becdb4}ha-card.dark [stroke="#3b4533"]{stroke:#becdb4}ha-card.dark [stop-color="#3b4533"]{stop-color:#becdb4}ha-card.dark [fill="#42483b"]{fill:#bfccbc}ha-card.dark [stroke="#42483b"]{stroke:#bfccbc}ha-card.dark [stop-color="#42483b"]{stop-color:#bfccbc}ha-card.dark [fill="#c2c8bc"]{fill:#77867b}ha-card.dark [stroke="#c2c8bc"]{stroke:#77867b}ha-card.dark [stop-color="#c2c8bc"]{stop-color:#77867b}ha-card.dark [fill="#34465b"]{fill:#d1dfed}ha-card.dark [stroke="#34465b"]{stroke:#d1dfed}ha-card.dark [stop-color="#34465b"]{stop-color:#d1dfed}ha-card.dark [fill="#52677a"]{fill:#9ab0c4}ha-card.dark [stroke="#52677a"]{stroke:#9ab0c4}ha-card.dark [stop-color="#52677a"]{stop-color:#9ab0c4}ha-card.dark [fill="#edf2f7"]{fill:#2b3849}ha-card.dark [stroke="#edf2f7"]{stroke:#2b3849}ha-card.dark [stop-color="#edf2f7"]{stop-color:#2b3849}ha-card.dark [fill="#dce4ed"]{fill:#46566a}ha-card.dark [stroke="#dce4ed"]{stroke:#46566a}ha-card.dark [stop-color="#dce4ed"]{stop-color:#46566a}ha-card.dark [fill="#c8d0d7"]{fill:#556372}ha-card.dark [stroke="#c8d0d7"]{stroke:#556372}ha-card.dark [stop-color="#c8d0d7"]{stop-color:#556372}ha-card.dark [fill="#aeb9c2"]{fill:#738190}ha-card.dark [stroke="#aeb9c2"]{stroke:#738190}ha-card.dark [stop-color="#aeb9c2"]{stop-color:#738190}ha-card.dark [fill="#e5e8ea"]{fill:#26303d}ha-card.dark [stroke="#e5e8ea"]{stroke:#26303d}ha-card.dark [stop-color="#e5e8ea"]{stop-color:#26303d}ha-card.dark [fill="#596561"]{fill:#b2c2b6}ha-card.dark [stroke="#596561"]{stroke:#b2c2b6}ha-card.dark [stop-color="#596561"]{stop-color:#b2c2b6}ha-card.dark [fill="#c5cbc2"]{fill:#526054}ha-card.dark [stroke="#c5cbc2"]{stroke:#526054}ha-card.dark [stop-color="#c5cbc2"]{stop-color:#526054}ha-card.dark [fill="#f8fbfe"]{fill:#35475a}ha-card.dark [stroke="#f8fbfe"]{stroke:#35475a}ha-card.dark [stop-color="#f8fbfe"]{stop-color:#35475a}ha-card.dark [fill="#dce6f0"]{fill:#253443}ha-card.dark [stroke="#dce6f0"]{stroke:#253443}ha-card.dark [stop-color="#dce6f0"]{stop-color:#253443}ha-card.dark [fill="#b0c1d1"]{fill:#6b8197}ha-card.dark [stroke="#b0c1d1"]{stroke:#6b8197}ha-card.dark [stop-color="#b0c1d1"]{stop-color:#6b8197}ha-card.dark [fill="#8da2b8"]{fill:#50677d}ha-card.dark [stroke="#8da2b8"]{stroke:#50677d}ha-card.dark [stop-color="#8da2b8"]{stop-color:#50677d}ha-card.dark [fill="#d3dde7"]{fill:#7e94a9}ha-card.dark [stroke="#d3dde7"]{stroke:#7e94a9}ha-card.dark [stop-color="#d3dde7"]{stop-color:#7e94a9}ha-card.dark [fill="#cedae7"]{fill:#6d8298}ha-card.dark [stroke="#cedae7"]{stroke:#6d8298}ha-card.dark [stop-color="#cedae7"]{stop-color:#6d8298}ha-card.dark [fill="#8da0b3"]{fill:#71899e}ha-card.dark [stroke="#8da0b3"]{stroke:#71899e}ha-card.dark [stop-color="#8da0b3"]{stop-color:#71899e}ha-card.dark [data-indicator][opacity=".35"],ha-card.dark .preheater[opacity=".35"]{opacity:.55}ha-card.dark .fan-background{fill:#273442}ha-card.dark [data-power-icon][fill="#23863f"]{fill:#51dc7d}ha-card.dark [data-power-icon][fill="#111111"]{fill:#c5d2ca}ha-card.dark .power-action rect{stroke:#58685c}ha-card.dark .segments g[opacity=".04"]{opacity:.065}ha-card.dark.airflow [data-fan]{opacity:.56}ha-card.dark.airflow [data-speed-pixels] rect[opacity=".38"]{fill:#c4d0d8;opacity:.66}ha-card.dark.airflow [data-speed-pixels] rect[opacity=".65"]{fill:#8b9ba8;opacity:.48}ha-card.dark.airflow rect[fill="url(#case)"]{fill-opacity:.48}ha-card.dark.airflow rect[fill="url(#cover)"]{opacity:.4}ha-card.dark.airflow [data-display="outdoor_temp"] text{fill:#42c5e9}ha-card.dark.airflow [data-display="return_temp"] text{fill:#ed82b6}ha-card.dark.airflow [data-display="exhaust_temp"] text{fill:#79b6ed}ha-card.dark.airflow [data-display="supply_temp"] text{fill:#ffad72}ha-card.dark .command-notice rect{fill:#273442;stroke:#627080}ha-card.dark .command-message{fill:#ff9b8a}
-    </style><ha-card>${PANEL.replace('</svg>', '</g></svg>').replace('</defs>', '</defs><g class="panel-art">').replace('<svg ', '<svg class="panel" role="img" ').replace('</svg>', AIRFLOW + overlay + '</svg>')}</ha-card><dialog aria-labelledby="speed-dialog-title"><h3 id="speed-dialog-title"></h3><div class="speed-choices">${Array.from({length:11},(_,i)=>`<button type="button" data-step-choice="${i}">${i}</button>`).join("")}</div><button type="button" data-speed-close></button></dialog>`;
+    </style><ha-card>${PANEL.replace('</svg>', '</g></svg>').replace('</defs>', '</defs><g class="panel-art">').replace('<svg ', '<svg class="panel" role="img" ').replace('</svg>', AIRFLOW + overlay + '</svg>')}<span class="data-flash" aria-hidden="true"></span></ha-card><dialog aria-labelledby="speed-dialog-title"><h3 id="speed-dialog-title"></h3><div class="speed-choices">${Array.from({length:11},(_,i)=>`<button type="button" data-step-choice="${i}">${i}</button>`).join("")}</div><button type="button" data-speed-close></button></dialog>`;
     for(const fan of this.shadowRoot.querySelectorAll('[data-fan]')) {
       const background=document.createElementNS("http://www.w3.org/2000/svg","circle");background.classList.add("fan-background");background.setAttribute("r",28);background.setAttribute("fill","#f8fafc");background.setAttribute("fill-opacity",".65");fan.prepend(background);
     }
@@ -277,8 +278,10 @@ ha-card.dark{background:#19212c}ha-card.dark.compact:not(.transparent){backgroun
     const main = prefix("prefix", "vent"), esp = prefix("esp_prefix", "royalclima");
     const ids = {};
     for (const [key, [domain, suffix, group]] of Object.entries(ROLES)) {
-      const value = overrides[key] !== undefined ? overrides[key] : key === "preheater" ? null : `${domain}.${group === "esp" ? esp : main}_${suffix}`;
-      if (value !== null && (typeof value !== "string" || !/^[a-z_]+\.[a-z0-9_]+$/.test(value))) throw new Error(`Invalid entity ID for ${key}`);
+      const supplied = overrides[key] ?? "";
+      if(typeof supplied !== "string") throw new Error(`Invalid entity ID for ${key}`);
+      const value = supplied.trim() || (key === "preheater" ? undefined : `${domain}.${group === "esp" ? esp : main}_${suffix}`);
+      if (value !== undefined && !/^[a-z_]+\.[a-z0-9_]+$/.test(value)) throw new Error(`Invalid entity ID for ${key}`);
       ids[key] = value;
     }
     if (config.view !== undefined && !["control", "airflow"].includes(config.view)) throw new Error("view must be control or airflow");
@@ -471,7 +474,16 @@ ha-card.dark{background:#19212c}ha-card.dark.compact:not(.transparent){backgroun
   }
   set hass(value) {
     const previous=this._hass;
+    const telemetry=["outdoor_temp","return_temp","exhaust_temp","supply_temp","exhaust_speed","supply_speed","power","bypass","defrost","external_boost","sensor_boost","fault","fire_alarm"];
+    const received=previous && value && this._ids && value.states?.[this._ids.api_connected]?.state === "on" && telemetry.some(key=>{
+      const id=this._ids[key],a=previous.states?.[id],b=value.states?.[id];
+      return a && b && !["unknown","unavailable"].includes(b.state) && (a.state!==b.state || (a.last_updated && b.last_updated && a.last_updated!==b.last_updated));
+    });
     this._hass=value;
+    if(received && this.isConnected) {
+      const dot=this._node('.data-flash');
+      if(dot) { this._dataFlash?.cancel();this._dataFlash=dot.animate([{opacity:.5},{opacity:0}],{duration:1000,easing:'ease-out'}); }
+    }
     if (!this._ids || !previous || !value ||
         this._lastDarkMode !== value.themes?.darkMode || previous.locale?.language !== value.locale?.language || previous.language !== value.language ||
         previous.callService !== value.callService ||
@@ -483,7 +495,7 @@ ha-card.dark{background:#19212c}ha-card.dark.compact:not(.transparent){backgroun
     this._colorScheme.addEventListener("change",this._themeListener);
     this._render();
   }
-  disconnectedCallback() { this._colorScheme?.removeEventListener("change",this._themeListener); this._clearPending(); this._clearSpeeds(); this._clearErrors(); this._render(); }
+  disconnectedCallback() { this._dataFlash?.cancel();this._colorScheme?.removeEventListener("change",this._themeListener); this._clearPending(); this._clearSpeeds(); this._clearErrors(); this._render(); }
   _clearErrors() {
     clearTimeout(this._errorTimer); this._errorTimer = null; this._errorKey = null;
     this._powerError = null; this._speedErrors = {};
@@ -641,12 +653,12 @@ ha-card.dark{background:#19212c}ha-card.dark.compact:not(.transparent){backgroun
     } else {
     const flow = this._node(".airflow-lines");
     flow.setAttribute("stroke", flowing ? "#56614d" : "#c2c8bc");
-    const heatColors=this._config.flow_colormap === true && connected;
+    const heatColors=this._config.flow_colormap === true && flowing;
     const miniPaths=flow.querySelectorAll('path');
-    miniPaths[1].setAttribute('stroke',heatColors?'url(#mini-exhaust)':'inherit');
-    miniPaths[2].setAttribute('stroke',heatColors?'url(#mini-supply)':'inherit');
-    this._node('.exchanger-crossing').setAttribute('stroke',heatColors?'url(#mini-exhaust)':'inherit');
-    this._node('.supply-crossing').setAttribute('stroke',heatColors?'url(#mini-supply)':'inherit');
+    miniPaths[1].setAttribute('stroke',heatColors?'url(#mini-exhaust)':flowing?'#56614d':'#c2c8bc');
+    miniPaths[2].setAttribute('stroke',heatColors?'url(#mini-supply)':flowing?'#56614d':'#c2c8bc');
+    this._node('.exchanger-crossing').setAttribute('stroke',heatColors?'url(#mini-exhaust)':flowing?'#56614d':'#c2c8bc');
+    this._node('.supply-crossing').setAttribute('stroke',heatColors?'url(#mini-supply)':flowing?'#56614d':'#c2c8bc');
     const exchanger = flow.querySelector("path"), exchangerError = false;
     exchanger.classList.toggle("exchanger-error", exchangerError);
     setAttributeIfChanged(exchanger,"stroke", connected ? "#56614d" : "#c2c8bc");
@@ -773,7 +785,7 @@ ha-card.dark{background:#19212c}ha-card.dark.compact:not(.transparent){backgroun
       this._node(`[data-indicator="${key}"]`).setAttribute("transform",`translate(${(airflowView?568:416)+i*28-spec[2]} ${(airflowView?212:256)-spec[3]})`);
     }
     const preheater = this._node(".preheater");
-    const heaterAvailable = this._config.show_icons?.preheater !== false;
+    const heaterAvailable = this._config.show_icons?.preheater !== false && !!this._ids.preheater && !!this._hass.states?.[this._ids.preheater];
     preheater.style.display = heaterAvailable ? "" : "none";
     const heating = connected && on("preheater");
     const setpoint = this._node(".heater-setpoint");
