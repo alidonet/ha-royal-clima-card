@@ -203,7 +203,8 @@ ha-card.dark{background:#19212c}ha-card.dark.compact:not(.transparent){backgroun
     }
     for(const name of ['supply','exhaust']) {
       const gradient=this.shadowRoot.querySelector(`.airflow-art [id="${name}"]`).cloneNode(true);
-      gradient.replaceChildren();gradient.setAttribute("href",`#${name}`);
+      // Keep local stops: referencing a gradient inside the nested airflow SVG is unreliable in HA.
+      gradient.removeAttribute("href");
       gradient.id=`mini-${name}`;gradient.setAttribute('gradientUnits','userSpaceOnUse');gradient.setAttribute('x1',209);gradient.setAttribute('x2',391);gradient.setAttribute('y1',365);gradient.setAttribute('y2',365);
       this.shadowRoot.querySelector('svg.panel defs').append(gradient);
     }
@@ -634,14 +635,20 @@ ha-card.dark{background:#19212c}ha-card.dark.compact:not(.transparent){backgroun
       const gradientKey=dynamic ? `${a}:${b}` : "fixed";
       if(this._gradientKeys[gradient] === gradientKey) continue;
       this._gradientKeys[gradient]=gradientKey;
-      const colors=dynamic ? Array.from({length:17},(_,i)=>temperatureColor(a+(b-a)*i/16)) : defaults;
+      // Boost small temperature differences around the real midpoint; equal readings remain uniform.
+      const middle=(a+b)/2, gain=1+Math.exp(-Math.abs(b-a)/10);
+      const colorStart=middle+(a-middle)*gain, colorEnd=middle+(b-middle)*gain;
+      const colors=dynamic ? Array.from({length:17},(_,i)=>temperatureColor(colorStart+(colorEnd-colorStart)*i/16)) : defaults;
       const element=artwork.querySelector(`[id="${gradient}"]`);
-      while(element.children.length>colors.length) element.lastElementChild.remove();
-      colors.forEach((color,i)=> {
-        let stop=element.children[i];
-        if(!stop) { stop=document.createElementNS("http://www.w3.org/2000/svg","stop");element.append(stop); }
-        stop.setAttribute("offset",i/(colors.length-1));stop.setAttribute("stop-color",color);
-      });
+      const mini=this._node(`[id="mini-${gradient}"]`);
+      for(const target of [element,mini]) {
+        while(target.children.length>colors.length) target.lastElementChild.remove();
+        colors.forEach((color,i)=> {
+          let stop=target.children[i];
+          if(!stop) {stop=document.createElementNS("http://www.w3.org/2000/svg","stop");target.append(stop);}
+          setAttributeIfChanged(stop,"offset",i/(colors.length-1));setAttributeIfChanged(stop,"stop-color",color);
+        });
+      }
 
       arrows.forEach((prefix,i)=>artwork.querySelector(`path[d^="${prefix}"]`).setAttribute("fill",colors[i===0?0:colors.length-1]));
     }
