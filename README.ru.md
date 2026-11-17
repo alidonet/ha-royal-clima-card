@@ -34,8 +34,8 @@ type: custom:royal-clima-card
 ```yaml
 type: custom:royal-clima-card
 view: control
-prefix: ventilation_system
-esp_prefix: royal_clima
+prefix: vent
+esp_prefix: royalclima
 transparent: false
 flow_colormap: false
 sensor_boost_co2: true
@@ -43,47 +43,47 @@ sensor_boost_co2: true
 language: auto
 
 show_icons:
-  esp_connection: true
-  vent_system_online: true
+  api_connected: true
+  online: true
   filter_usage: true
   bypass: true
-  error: true
+  fault: true
   fire_alarm: true
   preheater: true
   defrost: true
   sensor_boost: true
-  external_input_boost: true
+  external_boost: true
 
 entities:
-  uptime: sensor.royal_clima_uptime
-  wifi_signal: sensor.royal_clima_wifi_signal
-  seconds_since_last_data: sensor.ventilation_system_seconds_since_last_data
-  offline_events: sensor.ventilation_system_offline_events
-  fan_runtime: sensor.ventilation_system_fan_runtime
-  filter_reminder_interval: sensor.ventilation_system_filter_reminder_interval
-  ventilation_state: sensor.ventilation_system_ventilation_status
-  error_description: sensor.ventilation_system_error_description
-  humidity_setpoint: sensor.ventilation_system_humidity_setpoint
-  heater_temperature_setpoint: sensor.ventilation_system_heater_temperature_setpoint
-  outdoor_temperature: sensor.ventilation_system_outdoor_air_temperature
-  return_temperature: sensor.ventilation_system_return_air_temperature
-  exhaust_temperature: sensor.ventilation_system_exhaust_air_temperature
-  supply_temperature: sensor.ventilation_system_supply_air_temperature
-  exhaust_speed: sensor.ventilation_system_exhaust_fan_speed
-  exhaust_speed_control: select.ventilation_system_exhaust_speed_control
-  supply_speed_control: select.ventilation_system_supply_speed_control
-  supply_speed: sensor.ventilation_system_supply_fan_speed
-  power: binary_sensor.ventilation_system_ventilation_power
-  power_control: switch.ventilation_system_ventilation_control
-  vent_system_online: binary_sensor.ventilation_system_vent_system_online
-  esp_connection: binary_sensor.royal_clima_esp32_connection
-  error: binary_sensor.ventilation_system_ventilation_error
-  fire_alarm: binary_sensor.ventilation_system_fire_alarm
-  bypass: binary_sensor.ventilation_system_bypass_open
-  defrost: binary_sensor.ventilation_system_defrost_active
-  external_input_boost: binary_sensor.ventilation_system_external_input_boost_active
-  sensor_boost: binary_sensor.ventilation_system_sensor_boost_active
-  filter_usage: sensor.ventilation_system_filter_usage
+  uptime: sensor.royalclima_uptime
+  wifi_signal: sensor.royalclima_wifi_signal
+  data_age: sensor.vent_data_age
+  offline_count: sensor.vent_offline_count
+  fan_runtime: sensor.vent_runtime
+  filter_interval: sensor.vent_filter_interval
+  status: sensor.vent_status
+  fault_details: sensor.vent_fault_details
+  humidity_target: sensor.vent_humidity_target
+  heater_target: sensor.vent_heater_target
+  outdoor_temp: sensor.vent_outdoor_temp
+  return_temp: sensor.vent_return_temp
+  exhaust_temp: sensor.vent_exhaust_temp
+  supply_temp: sensor.vent_supply_temp
+  exhaust_speed: sensor.vent_exhaust_speed
+  exhaust_speed_control: select.vent_exhaust_speed
+  supply_speed_control: select.vent_supply_speed
+  supply_speed: sensor.vent_supply_speed
+  power: binary_sensor.vent_power
+  power_control: switch.vent_power
+  online: binary_sensor.vent_online
+  api_connected: binary_sensor.royalclima_api_connected
+  fault: binary_sensor.vent_fault
+  fire_alarm: binary_sensor.vent_fire_alarm
+  bypass: binary_sensor.vent_bypass_open
+  defrost: binary_sensor.vent_defrost
+  external_boost: binary_sensor.vent_external_boost
+  sensor_boost: binary_sensor.vent_sensor_boost
+  filter_usage: sensor.vent_filter_usage
   preheater: null
 ```
 
@@ -93,10 +93,10 @@ entities:
 |---|---|
 | `type` | Обязательно: `custom:royal-clima-card`. |
 | `view` | `control` — пульт, `airflow` — схема потоков. |
-| `prefix`, `esp_prefix` | Префиксы сущностей ПВУ и ESP32: `ventilation_system`, `royal_clima`. Без домена; допустимы строчные латинские буквы, цифры и подчёркивания. |
+| `prefix`, `esp_prefix` | Префиксы сущностей ПВУ и ESP32: `vent`, `royalclima`. Без домена; допустимы строчные латинские буквы, цифры и подчёркивания. |
 | `theme` | `auto` по умолчанию — тема HA; `light` / `dark` — явный выбор. При отсутствии признака темы HA используется настройка системы. |
 | `language` | `auto` по умолчанию — язык HA; `ru` / `en` — явный выбор. Другие значения выбирают английский. |
-| `transparent` | `false`; `true` убирает фон. Цвета текста и значков автоматически под тему не адаптируются. |
+| `transparent` | `false`; `true` убирает фон. Цвета текста и значков следуют выбранной теме. |
 | `flow_colormap` | `false` — обычные цвета потоков; `true` — температурная палитра. |
 | `sensor_boost_co2` | `true` — значок CO₂; `false` — значок влажности. Меняет оформление и подсказку, не определяет тип датчика. |
 | `show_icons` | Все значки включены. Для скрытия задайте `false` нужному ключу из полного YAML; скрывается и область нажатия. Состояние сущности не меняется. |
@@ -108,18 +108,18 @@ entities:
 
 | Ключи в `entities` | Назначение |
 |---|---|
-| `outdoor_temperature`, `return_temperature`, `supply_temperature`, `exhaust_temperature` | Температуры улицы, возврата, притока и вытяжки. |
+| `outdoor_temp`, `return_temp`, `supply_temp`, `exhaust_temp` | Температуры улицы, возврата, притока и вытяжки. |
 | `supply_speed`, `exhaust_speed` | Фактические ступени приточного и вытяжного вентиляторов, целые 0–10. |
 | `supply_speed_control`, `exhaust_speed_control` | Выбор ступени притока и вытяжки. |
 | `power`, `power_control` | Фактическое состояние питания и переключатель управления. |
-| `esp_connection`, `vent_system_online` | Связь HA с ESP32 и ESP32 с ПВУ по Modbus. |
-| `error`, `error_description`, `ventilation_state` | Признак ошибки, её описание и текстовый статус ПВУ. |
+| `api_connected`, `online` | Связь HA с ESP32 и ESP32 с ПВУ по Modbus. |
+| `fault`, `fault_details`, `status` | Признак ошибки, её описание и текстовый статус ПВУ. |
 | `bypass`, `defrost`, `fire_alarm` | Открытый байпас, разморозка и пожарный вход. |
-| `sensor_boost`, `external_input_boost` | Форсирование по датчику и внешнему входу. |
-| `preheater`, `heater_temperature_setpoint` | Состояние предподогрева и уставка нагревателя. `preheater` по умолчанию не привязан (`null`). |
-| `filter_usage`, `filter_reminder_interval`, `fan_runtime` | Использование фильтра в процентах, настроенный интервал напоминания и наработка вентилятора. |
-| `humidity_setpoint` | Уставка влажности. |
-| `uptime`, `wifi_signal`, `seconds_since_last_data`, `offline_events` | Время работы ESP32 в секундах, сигнал Wi-Fi, время с последних данных и число потерь связи; используются в подсказках. |
+| `sensor_boost`, `external_boost` | Форсирование по датчику и внешнему входу. |
+| `preheater`, `heater_target` | Состояние предподогрева и уставка нагревателя. `preheater` по умолчанию не привязан (`null`). |
+| `filter_usage`, `filter_interval`, `fan_runtime` | Использование фильтра в процентах, настроенный интервал напоминания и наработка вентилятора. |
+| `humidity_target` | Уставка влажности. |
+| `uptime`, `wifi_signal`, `data_age`, `offline_count` | Время работы ESP32 в секундах, сигнал Wi-Fi, время с последних данных и число потерь связи; используются в подсказках. |
 
 Если используются собственные обёртки управления, укажите их в `entities.power_control`, `entities.supply_speed_control`, `entities.exhaust_speed_control`. Отсутствующие дополнительные данные в подсказках пропускаются.
 
