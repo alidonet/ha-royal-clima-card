@@ -2,136 +2,129 @@
 
 [Русский](README.ru.md)
 
-A Home Assistant dashboard card intended for monitoring and controlling a Royal Clima SOFFIO Primo ventilation unit connected through an ESP32 running ESPHome. The card is under development and provides a control panel with temperatures, status indicators, power control and fan step selection. Firmware, hardware wiring instructions and dashboard examples are available in the main repository: [ESPHome-RoyalClima](https://github.com/alidonet/ESPHome-RoyalClima).
+A Home Assistant card for Royal Clima SOFFIO Primo ventilation units: temperatures, status indicators, power control and fan step selection. Two views: a control panel and an airflow diagram. ESPHome firmware for ESP32 and hardware wiring instructions: [ESPHome-RoyalClima](https://github.com/alidonet/ESPHome-RoyalClima).
 
-Example cards from the firmware repository (Russian labels):
+![Control panel](images/control_panel.png)
 
-![Royal Clima control panel](images/control_work.png)
+![Airflow diagram](images/flows_panel.png)
 
-![Royal Clima control panel](images/control_work-compact.png)
+## Installation
 
-## Card configuration
+1. Connect the ESP32 running the firmware to Home Assistant through the ESPHome integration.
+2. In HACS, open **Custom repositories**, add `https://github.com/alidonet/ha-royal-clima-card` with the **Dashboard** category and install **Royal Clima ERV Card**.
+3. If the resource was not added automatically, add `/hacsfiles/ha-royal-clima-card/ha-royal-clima-card.js` to your dashboard resources as a **JavaScript module**.
+4. Reload the browser page and add the card through the card picker or manually in YAML.
 
-All card settings are optional. YAML only needs Home Assistant's card type identifier:
+Without HACS: copy [dist/ha-royal-clima-card.js](dist/ha-royal-clima-card.js) to `/config/www/ha-royal-clima-card.js`, add `/local/ha-royal-clima-card.js` as a **JavaScript module** resource and reload the page.
 
-```yaml
-type: custom:royal-clima-card
-```
+## Minimal configuration
 
-Options can be set independently. In the control view, transparency requires compact mode; in the airflow view, it works independently of compact mode. The card uses the default entity IDs below when those entities exist in HA.
-
-| Option | Type / default | Purpose |
-|---|---|---|
-| `flow_colors` | string, `fixed` | Airflow colors: `fixed` for original colors, `temperature` for the −30…+40 °C palette. |
-| `view` | string, `control` | `control` for the control panel; `airflow` for the airflow diagram. |
-| `prefix` | string, `ventilation_system` | Prefix for ventilation entities. |
-| `esp_prefix` | string, `royal_clima` | Prefix for ESP32 diagnostics and the filter reminder. |
-| `entities` | mapping, `{}` | Individual entity ID overrides; see the table below. |
-| `entity` | string or `null`, unset | Compatibility with the first test version: overrides only the supply temperature sensor. `entities.supply_temperature` takes precedence. |
-| `name` | string, `Royal Clima ERV` | Accessible card name (aria-label), without a visible heading. An empty string falls back to the default. |
-| `language` | string, HA language | Language of card labels, tooltips and dialogs; see below. |
-| `compact` | boolean, `false` | In the control view, removes the case and bottom button row, retaining the screen and controls on it. Ignored in the airflow view. |
-| `transparent` | boolean, `false` | Removes the background. Requires `compact: true` in the control view; works independently in the airflow view. |
-| `sensor_boost_icon` | string, `co2` | Sensor boost icon: `none` hides it, `co2` shows CO₂, `humidity` shows a water drop. |
-| `show_fire_alarm` | boolean, `true` | Show the fire input indicator. |
-| `show_external_input_boost` | boolean, `true` | Show the external input boost indicator. |
-
-
-### Language and appearance
-
-When `language` is omitted, the card follows the HA profile language: Russian (including `ru-*` variants) uses Russian labels; all other languages use English. Set `language: ru` or `language: en` to force a language independently of the profile. Any other explicitly supplied string, including `auto`, selects English; remove the option to restore automatic selection. This setting does not change firmware messages or entity names.
-
-In compact mode, tapping a speed block opens step selection instead of history; the power icon at the bottom of the screen toggles power. Normal mode uses the bottom button row for these controls.
-
-In the control view, `transparent: true` with `compact: true` hides the screen background while retaining the divider above the fans, revealing the dashboard behind the content. Readings and icons remain opaque; their colors do not automatically adapt to the theme. In this view, `transparent` has no effect with `compact: false`. In the airflow view, transparency works independently of `compact`. Use unquoted YAML booleans `true` / `false`.
+Only `type` is required. All other settings and entity bindings are optional.
 
 ```yaml
 type: custom:royal-clima-card
-language: en
-compact: true
-transparent: true
 ```
 
-### Entities
+## Full configuration
 
-Every key inside `entities` is optional. Set a full `entity_id` to override the generated ID, or `null` to disable its binding. Omitted keys retain their defaults. Overrides take precedence over prefixes and `entity`; `null` does not remove the corresponding panel element, except for the preheater icon.
-
-Supply prefixes without the domain or trailing underscore, for example `prefix: ventilation_system`. Surrounding whitespace and trailing underscores are stripped. Lowercase ASCII letters, digits and underscores are accepted.
-
-The table shows full IDs with the default prefixes:
-
-| Key in `entities` | Default | Purpose |
-|---|---|---|
-| `preheater` | `null` | Preheater active; bind explicitly if available. |
-| `outdoor_temperature` | `sensor.ventilation_system_outdoor_air_temperature` | Outdoor air temperature. |
-| `return_temperature` | `sensor.ventilation_system_return_air_temperature` | Return air temperature. |
-| `defrost_temperature` | `sensor.ventilation_system_defrost_temperature` | Defrost sensor temperature, displayed as EXHAUST. |
-| `supply_temperature` | `sensor.ventilation_system_supply_air_temperature` | Supply air temperature (SA). |
-| `exhaust_speed` | `sensor.ventilation_system_exhaust_fan_speed` | Exhaust fan step, 0–10. |
-| `exhaust_speed_control` | `select.ventilation_system_exhaust_speed_control` | Select entity for setting the exhaust step. |
-| `supply_speed_control` | `select.ventilation_system_supply_speed_control` | Select entity for setting the supply step. |
-| `supply_speed` | `sensor.ventilation_system_supply_fan_speed` | Supply fan step, 0–10. |
-| `power` | `binary_sensor.ventilation_system_ventilation_power` | Actual ventilation power state. |
-| `power_control` | `switch.ventilation_system_ventilation_control` | Switch entity for power commands. |
-| `online` | `binary_sensor.ventilation_system_vent_system_online` | Ventilation / Modbus connection. |
-| `esp_connection` | `binary_sensor.royal_clima_esp32_connection` | ESP32 connection. |
-| `error` | `binary_sensor.ventilation_system_ventilation_error` | Ventilation error flag. |
-| `fire_alarm` | `binary_sensor.ventilation_system_fire_alarm` | Fire input. |
-| `bypass` | `binary_sensor.ventilation_system_bypass_open` | Bypass open. |
-| `defrost` | `binary_sensor.ventilation_system_defrost_active` | Defrost active. |
-| `external_input_boost` | `binary_sensor.ventilation_system_external_input_boost_active` | External boost active. |
-| `sensor_boost` | `binary_sensor.ventilation_system_sensor_boost_active` | CO₂ or humidity sensor boost flag; not a ppm or humidity measurement. |
-| `filter_replacement` | `binary_sensor.royal_clima_filter_replacement_recommended` | Filter replacement reminder. |
-
-For example, to use existing control wrappers and your own preheater sensor:
+All settings are shown below with their defaults and English explicitly selected (`language: en`). Without `language`, the card follows the HA profile language. Usually the minimal YAML or a change of prefixes is enough. Explicit `entities` override prefixes: if you copy the full example, update the corresponding entity IDs too.
 
 ```yaml
 type: custom:royal-clima-card
-entities:
-  power_control: switch.royal_clima_power
-  supply_speed_control: select.royal_clima_supply_speed
-  exhaust_speed_control: select.royal_clima_exhaust_speed
-  preheater: binary_sensor.my_preheater_active
-```
-
-Readings and controls are separate: `power` / `power_control`, `supply_speed` / `supply_speed_control`, and `exhaust_speed` / `exhaust_speed_control`. Power control requires a `switch`; fan step selection requires a `select` with options `0`–`10` (unavailable options are disabled). Speeds represent steps, not RPM or percentages. The preheater is unbound by default: its icon is hidden unless an entity is explicitly configured.
-
-### Sensor boost
-
-`sensor_boost_icon` changes only the icon and tooltip; the card cannot detect the connected sensor type. State and history use `entities.sensor_boost`. `none` hides both the icon and its click area. The flag is not a CO₂ or humidity measurement.
-
-```yaml
-sensor_boost_icon: humidity
-entities:
-  sensor_boost: binary_sensor.ventilation_system_sensor_boost_active
-  external_input_boost: binary_sensor.ventilation_system_external_input_boost_active
-```
-
-When upgrading, rename entity override keys `co2_boost` → `sensor_boost` and `external_boost` → `external_input_boost`. Generated IDs match the updated firmware. For older firmware, explicitly bind the previous entity IDs using the new keys.
-
-The fire input and external input boost indicators are shown by default. Setting `show_fire_alarm: false` or `show_external_input_boost: false` hides the corresponding indicator, click area and keyboard focus without changing entity states or bindings.
-
-```yaml
-show_fire_alarm: false
-show_external_input_boost: false
-```
-
-The heat exchanger diamond outline turns red when `entities.error` is active and the ventilation unit is connected. This firmware binary sensor represents a nonzero error code; the raw code sensor does not need to be enabled. The normal color returns when the error clears; loss of connection makes the outline pale.
-
-### Airflow diagram
-
-![Royal Clima airflow diagram](images/flow_work.png)
-
-```yaml
-type: custom:royal-clima-card
-view: airflow
+view: control
+prefix: ventilation_system
+esp_prefix: royal_clima
 transparent: false
+flow_colormap: false
+sensor_boost_co2: true
+
+language: en
+
+show_icons:
+  esp_connection: true
+  vent_system_online: true
+  filter_usage: true
+  bypass: true
+  error: true
+  fire_alarm: true
+  preheater: true
+  defrost: true
+  sensor_boost: true
+  external_input_boost: true
+
+entities:
+  uptime: sensor.royal_clima_uptime
+  wifi_signal: sensor.royal_clima_wifi_signal
+  seconds_since_last_data: sensor.ventilation_system_seconds_since_last_data
+  offline_events: sensor.ventilation_system_offline_events
+  fan_runtime: sensor.ventilation_system_fan_runtime
+  filter_reminder_interval: sensor.ventilation_system_filter_reminder_interval
+  ventilation_state: sensor.ventilation_system_ventilation_status
+  error_description: sensor.ventilation_system_error_description
+  humidity_setpoint: sensor.ventilation_system_humidity_setpoint
+  heater_temperature_setpoint: sensor.ventilation_system_heater_temperature_setpoint
+  outdoor_temperature: sensor.ventilation_system_outdoor_air_temperature
+  return_temperature: sensor.ventilation_system_return_air_temperature
+  exhaust_temperature: sensor.ventilation_system_exhaust_air_temperature
+  supply_temperature: sensor.ventilation_system_supply_air_temperature
+  exhaust_speed: sensor.ventilation_system_exhaust_fan_speed
+  exhaust_speed_control: select.ventilation_system_exhaust_speed_control
+  supply_speed_control: select.ventilation_system_supply_speed_control
+  supply_speed: sensor.ventilation_system_supply_fan_speed
+  power: binary_sensor.ventilation_system_ventilation_power
+  power_control: switch.ventilation_system_ventilation_control
+  vent_system_online: binary_sensor.ventilation_system_vent_system_online
+  esp_connection: binary_sensor.royal_clima_esp32_connection
+  error: binary_sensor.ventilation_system_ventilation_error
+  fire_alarm: binary_sensor.ventilation_system_fire_alarm
+  bypass: binary_sensor.ventilation_system_bypass_open
+  defrost: binary_sensor.ventilation_system_defrost_active
+  external_input_boost: binary_sensor.ventilation_system_external_input_boost_active
+  sensor_boost: binary_sensor.ventilation_system_sensor_boost_active
+  filter_usage: sensor.ventilation_system_filter_usage
+  preheater: null
 ```
 
-The default remains `control`. The airflow view keeps the previous diagram geometry and supports shared entity bindings, language, history, power and fan controls with confirmation, error notices, animated fans, preheater and optional indicators. Speed readings open history; the surrounding bottom buttons open speed selection.
+## Parameters
 
-`transparent: true` works independently of `compact`; `compact` is ignored in the airflow view. No external SVG assets, fonts or third-party cards are required.
+| Parameter | Value / purpose |
+|---|---|
+| `type` | Required: `custom:royal-clima-card`. |
+| `view` | `control` — control panel; `airflow` — airflow diagram. |
+| `prefix`, `esp_prefix` | Ventilation and ESP32 entity prefixes: `ventilation_system`, `royal_clima`. Omit the domain; lowercase ASCII letters, digits and underscores are accepted. |
+| `language` | Unset: Russian for an HA profile language of `ru` / `ru-*`, otherwise English. `ru` and `en` force the card language; any other explicit string, including `auto`, selects English. Does not change firmware messages or entity names. |
+| `transparent` | `false`; `true` removes the background. Text and icon colors do not automatically adapt to the theme. |
+| `flow_colormap` | `false` — standard flow colors; `true` — temperature palette. |
+| `sensor_boost_co2` | `true` — CO₂ icon; `false` — humidity icon. Changes the icon and tooltip; does not detect the sensor type. |
+| `show_icons` | All icons are enabled. Set a key from the full YAML to `false` to hide its icon and click area. Entity state is unchanged. |
+| `entities` | Full entity ID overrides. Omitted keys are generated from the prefixes; `null` disables a binding. Keys are listed below. |
+
+### Entity bindings
+
+Domains and full default IDs are shown in the YAML above. Readings and controls are bound separately: `power_control` must be a `switch`, and `*_speed_control` must be a `select` with numeric string options `0`–`10`.
+
+| Keys in `entities` | Purpose |
+|---|---|
+| `outdoor_temperature`, `return_temperature`, `supply_temperature`, `exhaust_temperature` | Outdoor, return, supply and exhaust air temperatures. |
+| `supply_speed`, `exhaust_speed` | Actual supply and exhaust fan steps, integers from 0 to 10. |
+| `supply_speed_control`, `exhaust_speed_control` | Supply and exhaust fan step selection. |
+| `power`, `power_control` | Actual power state and power control switch. |
+| `esp_connection`, `vent_system_online` | HA-to-ESP32 connection and ESP32-to-ventilation connection over Modbus. |
+| `error`, `error_description`, `ventilation_state` | Error flag, error description and ventilation status text. |
+| `bypass`, `defrost`, `fire_alarm` | Open bypass, defrost and fire input. |
+| `sensor_boost`, `external_input_boost` | Sensor boost and external input boost. |
+| `preheater`, `heater_temperature_setpoint` | Preheater state and heater setpoint. `preheater` is unbound by default (`null`). |
+| `filter_usage`, `filter_reminder_interval`, `fan_runtime` | Filter usage percentage, configured reminder interval and fan operating hours. |
+| `humidity_setpoint` | Humidity setpoint. |
+| `uptime`, `wifi_signal`, `seconds_since_last_data`, `offline_events` | ESP32 uptime in seconds, Wi-Fi signal, time since the last data and connection loss count; used in tooltips. |
+
+If you use custom control wrappers, set them in `entities.power_control`, `entities.supply_speed_control` and `entities.exhaust_speed_control`. Unavailable extra data is omitted from tooltips.
+
+## Display behavior
+
+- The display changes for bypass, an unavailable or powered-off unit, defrost, preheating and boost. Fan animation speed follows the fan steps.
+- Tapping a temperature, indicator or fan opens entity details and history. In the control panel, speed digits and bars open step selection; in the airflow diagram, use the bottom control tiles. Speed changes require the unit to be powered on and connected; commands wait up to 20 seconds for confirmation.
+- Filter icon: below 80% — green; 80% to below 100% — orange; 100% and above — red. With no data, the color does not indicate a healthy state.
+- The temperature palette covers −30…+40 °C. Outside this range, only the color is clamped. If an endpoint temperature is unavailable, the flow uses its standard colors.
 
 ![Airflow temperature palette](images/colormap.png)
-
-`flow_colors: temperature` maps airflow lines and arrows to a shared blue-violet → blue → cyan → green → orange → red scale from −30 to +40 °C. Gradients include intermediate palette colors. Colors clamp outside this range; readings do not. A flow falls back to its original colors if either endpoint temperature is unavailable. Labels and readings keep their original styling.
