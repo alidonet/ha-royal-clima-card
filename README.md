@@ -27,6 +27,10 @@ Only `type` is required. All other settings and entity bindings are optional.
 type: custom:royal-clima-card
 ```
 
+## Visual editor
+
+Configure the card in the HA editor: view, prefixes, theme, language, appearance and icon visibility. The expandable advanced entities section provides standard entity pickers. Empty fields use automatic bindings; preheating is hidden without a sensor. YAML editing remains available. Editor labels follow the HA profile language.
+
 ## Full configuration
 
 All settings are shown below with their defaults and English explicitly selected (`language: auto`). Without `language`, the card follows the HA profile language. Usually the minimal YAML or a change of prefixes is enough. Explicit `entities` override prefixes: if you copy the full example, update the corresponding entity IDs too.

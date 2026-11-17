@@ -264,6 +264,7 @@ ha-card.dark{background:#19212c}ha-card.dark.compact:not(.transparent){backgroun
       if (event.target.closest?.("[data-speed-close]")) dialog.close();
     });
   }
+  static getConfigElement() { return document.createElement("royal-clima-card-editor"); }
   static getStubConfig() { return { prefix: "vent", esp_prefix: "royalclima" }; }
   setConfig(config) {
     if (!config || typeof config !== "object" || Array.isArray(config)) throw new Error("Invalid card configuration");
@@ -878,6 +879,68 @@ ha-card.dark{background:#19212c}ha-card.dark.compact:not(.transparent){backgroun
     }
   }
 }
+const EDITOR_LABELS = {
+  view:["Вид карточки","Card view"],prefix:["Префикс ПВУ","Ventilation prefix"],esp_prefix:["Префикс ESP32","ESP32 prefix"],
+  theme:["Тема","Theme"],language:["Язык","Language"],transparent:["Прозрачный фон","Transparent background"],
+  flow_colormap:["Температурная палитра потоков","Temperature flow colors"],sensor_boost_co2:["Форсирование по CO₂ (выкл — влажность)","CO₂ boost icon (off — humidity)"],
+  show_icons:["Показать значки","Show icons"],entities:["Сущности — дополнительные настройки","Entities — advanced settings"],
+  uptime:["Время работы ESP32","ESP32 uptime"],wifi_signal:["Сигнал Wi-Fi","Wi-Fi signal"],data_age:["Время с последних данных","Data age"],offline_count:["Число потерь связи","Offline count"],
+  fan_runtime:["Наработка вентиляторов","Fan runtime"],filter_interval:["Интервал фильтра","Filter interval"],status:["Состояние ПВУ","Ventilation status"],fault_details:["Описание ошибки","Fault details"],
+  humidity_target:["Уставка влажности","Humidity target"],heater_target:["Уставка нагрева","Heater target"],preheater:["Предподогрев","Preheater"],
+  outdoor_temp:["Температура улицы OA","Outdoor temperature OA"],return_temp:["Температура возврата RA","Return temperature RA"],exhaust_temp:["Температура вытяжки FR","Exhaust temperature FR"],supply_temp:["Температура притока SA","Supply temperature SA"],
+  exhaust_speed:["Скорость вытяжки","Exhaust speed"],supply_speed:["Скорость притока","Supply speed"],exhaust_speed_control:["Управление вытяжкой","Exhaust speed control"],supply_speed_control:["Управление притоком","Supply speed control"],
+  power:["Состояние питания","Power state"],power_control:["Управление питанием","Power control"]
+};
+for(const [key,,,,ru,en] of INDICATORS) EDITOR_LABELS[key]=[ru,en];
+class RoyalClimaCardEditor extends HTMLElement {
+  constructor() {
+    super(); this.attachShadow({mode:"open"});
+    this.shadowRoot.innerHTML='<style>:host{display:block}p{color:var(--secondary-text-color);font-size:14px;line-height:1.4}</style><p></p><ha-form></ha-form>';
+    this._form=this.shadowRoot.querySelector('ha-form');
+    this._form.addEventListener('value-changed',event=>{
+      event.stopPropagation();
+      const value=event.detail?.value;
+      if(!value || typeof value!=="object") return;
+      const config={...this._config,...value,type:"custom:royal-clima-card"};
+      for(const key of ['entities','show_icons']) config[key]={...this._config?.[key],...value[key]};
+      this._config=config;
+      this.dispatchEvent(new CustomEvent('config-changed',{detail:{config},bubbles:true,composed:true}));
+    });
+  }
+  setConfig(config) { this._config={...config};this._refresh(); }
+  set hass(hass) {
+    this._hass=hass;this._form.hass=hass;
+    const language=String(hass.locale?.language || hass.language || 'en');
+    if(this._language!==language) {this._language=language;this._refresh();}
+  }
+  _refresh() {
+    if(!this._config || !this._hass) return;
+    const ru=this._language?.toLowerCase().startsWith('ru'),index=ru?0:1;
+    const label=key=>EDITOR_LABELS[key]?.[index] || key;
+    const select=(name,options)=>({name,selector:{select:{mode:'dropdown',options:options.map(([value,russian,english])=>({value,label:ru?russian:english}))}}});
+    const bool=name=>({name,selector:{boolean:{}}});
+    this._form.schema=[
+      select('view', [['control','Пульт','Control panel'],['airflow','Потоки','Airflow']]),
+      {type:'grid',name:'',schema:[{name:'prefix',selector:{text:{}}},{name:'esp_prefix',selector:{text:{}}}]},
+      {type:'grid',name:'',schema:[select('theme',[['auto','Авто','Auto'],['light','Светлая','Light'],['dark','Тёмная','Dark']]),select('language',[['auto','Авто','Auto'],['ru','Русский','Russian'],['en','Английский','English']])]},
+      bool('transparent'),bool('flow_colormap'),bool('sensor_boost_co2'),
+      {type:'expandable',name:'show_icons',title:label('show_icons'),schema:[...INDICATORS.map(d=>d[0]),'preheater'].map(bool)},
+      {type:'expandable',name:'entities',title:label('entities'),schema:Object.entries(ROLES).map(([name,[domain]])=>({name,selector:{entity:{domain}}}))}
+    ];
+    this._form.computeLabel=schema=>label(schema.name);
+    this._form.computeHelper=schema=> {
+      if(!ROLES[schema.name]) return undefined;
+      const [domain,suffix,group]=ROLES[schema.name];
+      if(schema.name==='preheater') return ru?'Не задан — значок скрыт.':'Not set — the icon is hidden.';
+      const prefix=this._config[group==='esp'?'esp_prefix':'prefix'] || (group==='esp'?'royalclima':'vent');
+      return `${ru?'По умолчанию':'Default'}: ${domain}.${String(prefix).trim().replace(/_+$/,'')}_${suffix}`;
+    };
+    const icons=Object.fromEntries([...INDICATORS.map(d=>d[0]),'preheater'].map(key=>[key,true]));
+    this._form.data={view:'control',prefix:'vent',esp_prefix:'royalclima',theme:'auto',language:'auto',transparent:false,flow_colormap:false,sensor_boost_co2:true,...this._config,show_icons:{...icons,...this._config.show_icons},entities:{...this._config.entities}};
+    this.shadowRoot.querySelector('p').textContent=ru?'Обычно достаточно префиксов. Пустые поля сущностей используют стандартные имена; предподогрев без сенсора скрыт.':'Prefixes are normally enough. Empty entity fields use default IDs; the preheater stays hidden without a sensor.';
+  }
+}
+if(!customElements.get('royal-clima-card-editor')) customElements.define('royal-clima-card-editor',RoyalClimaCardEditor);
 if (!customElements.get("royal-clima-card")) {
   customElements.define("royal-clima-card", RoyalClimaCard);
   window.customCards = window.customCards || [];
