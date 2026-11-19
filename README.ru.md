@@ -12,6 +12,8 @@
 
 ## Установка
 
+[![Открыть Royal Clima ERV Card в Home Assistant](https://my.home-assistant.io/badges/marketplace_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=alidonet&repository=ha-royal-clima-card&category=plugin)
+
 1. Подключите ESP32 с прошивкой к Home Assistant через интеграцию ESPHome.
 2. В HACS откройте «Пользовательские репозитории», добавьте `https://github.com/alidonet/ha-royal-clima-card` с категорией **Dashboard** и установите **Royal Clima ERV Card**.
 3. Если ресурс не добавился автоматически, добавьте в ресурсах дашбордов `/hacsfiles/ha-royal-clima-card/ha-royal-clima-card.js` с типом **JavaScript module**.

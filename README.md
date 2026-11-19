@@ -12,6 +12,8 @@ A Home Assistant card for Royal Clima SOFFIO Primo ventilation units: temperatur
 
 ## Installation
 
+[![Open Royal Clima ERV Card in Home Assistant](https://my.home-assistant.io/badges/marketplace_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=alidonet&repository=ha-royal-clima-card&category=plugin)
+
 1. Connect the ESP32 running the firmware to Home Assistant through the ESPHome integration.
 2. In HACS, open **Custom repositories**, add `https://github.com/alidonet/ha-royal-clima-card` with the **Dashboard** category and install **Royal Clima ERV Card**.
 3. If the resource was not added automatically, add `/hacsfiles/ha-royal-clima-card/ha-royal-clima-card.js` to your dashboard resources as a **JavaScript module**.

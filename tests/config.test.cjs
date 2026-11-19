@@ -19,11 +19,11 @@ function card(config = {}) {
 test("boolean forms normalize without mutating the caller's configuration", () => {
   for (const [expected, values] of [[true, [true, "true", 1]], [false, [false, "false", 0]]]) {
     for (const value of values) {
-      const config = { transparent: value, flow_colormap: value, sensor_boost_co2: value, show_icons: { esp_connection: value } };
+      const config = { transparent: value, flow_colormap: value, sensor_boost_co2: value, show_icons: { api_connected: value } };
       const result = card(config);
       for (const key of ["transparent", "flow_colormap", "sensor_boost_co2"]) assert.equal(result._config[key], expected);
-      assert.equal(result._config.show_icons.esp_connection, expected);
-      assert.equal(config.show_icons.esp_connection, value);
+      assert.equal(result._config.show_icons.api_connected, expected);
+      assert.equal(config.show_icons.api_connected, value);
       assert.equal(config.transparent, value);
     }
   }
@@ -41,12 +41,12 @@ test("entity keys preserve generated entity IDs", () => {
   const result = card();
   for (const [key, [domain, suffix, group]] of Object.entries(context.roles)) {
     if (key === "preheater") {
-      assert.equal(result._ids[key], null);
+      assert.equal(result._ids[key], undefined);
     } else {
-      assert.equal(result._ids[key], `${domain}.${group === "esp" ? "royal_clima" : "ventilation_system"}_${suffix}`);
+      assert.equal(result._ids[key], `${domain}.${group === "esp" ? "royalclima" : "vent"}_${suffix}`);
     }
   }
-  assert.equal(card({ entities: { exhaust_temperature: "sensor.custom_exhaust" } })._ids.exhaust_temperature, "sensor.custom_exhaust");
+  assert.equal(card({ entities: { exhaust_temp: "sensor.custom_exhaust" } })._ids.exhaust_temp, "sensor.custom_exhaust");
   assert.throws(() => card({ entities: { defrost_temperature: "sensor.old_key" } }), /Unknown entity role/);
 });
 
@@ -80,6 +80,6 @@ test("power and fan commands use renamed readings and original control entities"
 
 test("legacy entity option no longer overrides the supply sensor", () => {
   const result = card({ entity: "sensor.legacy_supply" });
-  assert.equal(result._ids.supply_temperature, "sensor.ventilation_system_supply_air_temperature");
-  assert.equal(card({ entities: { supply_temperature: "sensor.custom_supply" } })._ids.supply_temperature, "sensor.custom_supply");
+  assert.equal(result._ids.supply_temp, "sensor.vent_supply_temp");
+  assert.equal(card({ entities: { supply_temp: "sensor.custom_supply" } })._ids.supply_temp, "sensor.custom_supply");
 });
