@@ -50,12 +50,12 @@ test("entity keys preserve generated entity IDs", () => {
   assert.throws(() => card({ entities: { defrost_temperature: "sensor.old_key" } }), /Unknown entity role/);
 });
 
-test("power and fan commands use renamed readings and original control entities", async () => {
+test("power and fan commands use the same entities as their confirmed readings", async () => {
   const result = card();
   const calls = [];
   result._hass = { states: {}, async callService(...args) { calls.push(args); } };
   for (const [key, id] of Object.entries(result._ids)) {
-    if (id) result._hass.states[id] = { state: key.endsWith("speed") ? "4" : "on", attributes: { options: ["0", "4", "7", "10"] } };
+    if (id) result._hass.states[id] = { state: id.startsWith("select.") ? "4" : "on", attributes: { options: ["0", "4", "7", "10"] } };
   }
   result.shadowRoot = { querySelector: () => ({ close() {} }) };
   assert.equal(result._powerReady(), true);
@@ -82,4 +82,35 @@ test("legacy entity option no longer overrides the supply sensor", () => {
   const result = card({ entity: "sensor.legacy_supply" });
   assert.equal(result._ids.supply_temp, "sensor.vent_supply_temp");
   assert.equal(card({ entities: { supply_temp: "sensor.custom_supply" } })._ids.supply_temp, "sensor.custom_supply");
+});
+
+test("new cards detect unique entity prefixes even when states are unavailable", () => {
+  const states=Object.fromEntries(["sensor.office_outdoor_temp","sensor.office_return_temp","sensor.office_supply_temp","sensor.office_exhaust_temp","binary_sensor.office_online","binary_sensor.bridge_api_connected"].map(id=>[id,{state:"unavailable"}]));
+  const config=context.cardClass.getStubConfig({states});
+  assert.equal(config.prefix,"office");assert.equal(config.esp_prefix,"bridge");
+});
+test("ambiguous units do not select an arbitrary prefix", () => {
+  const states={};
+  for(const prefix of ["office","bedroom"]) for(const id of ["sensor."+prefix+"_outdoor_temp","sensor."+prefix+"_return_temp","sensor."+prefix+"_supply_temp","sensor."+prefix+"_exhaust_temp","binary_sensor."+prefix+"_online"]) states[id]={state:"on"};
+  assert.equal(context.cardClass.getStubConfig({states}).prefix,"vent");
+});
+test("device registry links resolve the ESP32 among multiple candidates", () => {
+  const states=Object.fromEntries(["sensor.office_outdoor_temp","sensor.office_return_temp","sensor.office_supply_temp","sensor.office_exhaust_temp","binary_sensor.office_online","binary_sensor.bridge_api_connected","binary_sensor.other_api_connected"].map(id=>[id,{state:"on"}]));
+  const hass={states,entities:{"sensor.office_outdoor_temp":{device_id:"unit"},"binary_sensor.bridge_api_connected":{device_id:"esp"},"binary_sensor.other_api_connected":{device_id:"other"}},devices:{unit:{via_device_id:"esp"}}};
+  assert.equal(context.cardClass.getStubConfig(hass).esp_prefix,"bridge");
+  assert.equal(context.cardClass.getStubConfig().prefix,"vent");
+});
+
+test("default readings share the public control entities without duplicate RO sensors", () => {
+  const result = card();
+  assert.equal(result._ids.power, "switch.vent_power");
+  assert.equal(result._ids.power, result._ids.power_control);
+  for (const role of ["supply_speed", "exhaust_speed"]) {
+    assert.equal(result._ids[role], "select.vent_" + role);
+    assert.equal(result._ids[role], result._ids[role + "_control"]);
+  }
+  assert.equal(result._ids.humidity_target, "number.vent_humidity_target");
+  assert.equal(result._ids.heater_target, "number.vent_heater_target");
+  // Explicit independent feedback bindings remain supported for installations that need them.
+  assert.equal(card({entities:{power:"binary_sensor.custom_feedback"}})._ids.power, "binary_sensor.custom_feedback");
 });

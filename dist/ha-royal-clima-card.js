@@ -12,18 +12,18 @@ const ROLES = {
   filter_interval: ["sensor", "filter_interval"],
   status: ["sensor", "status"],
   fault_details: ["sensor", "fault_details"],
-  humidity_target: ["sensor", "humidity_target"],
-  heater_target: ["sensor", "heater_target"],
+  humidity_target: ["number", "humidity_target"],
+  heater_target: ["number", "heater_target"],
   preheater: ["binary_sensor", "preheater_active"],
   outdoor_temp: ["sensor", "outdoor_temp"],
   return_temp: ["sensor", "return_temp"],
   exhaust_temp: ["sensor", "exhaust_temp"],
   supply_temp: ["sensor", "supply_temp"],
-  exhaust_speed: ["sensor", "exhaust_speed"],
+  exhaust_speed: ["select", "exhaust_speed"],
   exhaust_speed_control: ["select", "exhaust_speed"],
   supply_speed_control: ["select", "supply_speed"],
-  supply_speed: ["sensor", "supply_speed"],
-  power: ["binary_sensor", "power"],
+  supply_speed: ["select", "supply_speed"],
+  power: ["switch", "power"],
   power_control: ["switch", "power"],
   online: ["binary_sensor", "online"],
   api_connected: ["binary_sensor", "api_connected", "esp"],
@@ -98,6 +98,24 @@ function temperatureColor(value) {
       return "#"+[1,3,5].map(j=>Math.round(parseInt(ca.slice(j,j+2),16)*(1-ratio)+parseInt(cb.slice(j,j+2),16)*ratio).toString(16).padStart(2,"0")).join("");
     }
   }
+}
+function detectPrefixes(hass) {
+  const states=hass?.states || {}, ids=Object.keys(states);
+  const candidates=ids.filter(id=>id.startsWith('sensor.') && id.endsWith('_outdoor_temp')).map(id=>id.slice(7,-13)).filter(prefix=>
+    ['sensor.'+prefix+'_return_temp','sensor.'+prefix+'_supply_temp','sensor.'+prefix+'_exhaust_temp','binary_sensor.'+prefix+'_online'].every(id=>Object.hasOwn(states,id)));
+  if(candidates.length!==1) return {};
+  const result={prefix:candidates[0]};
+  const espIds=ids.filter(id=>id.startsWith('binary_sensor.') && id.endsWith('_api_connected'));
+  // Prefer a parent device link if HA has already supplied the device registry.
+  const ventEntity=hass?.entities?.[`sensor.${result.prefix}_outdoor_temp`];
+  const ventDevice=hass?.devices?.[ventEntity?.device_id];
+  const matching=espIds.filter(id=> {
+    const deviceId=hass?.entities?.[id]?.device_id;
+    return deviceId && (deviceId===ventEntity?.device_id || deviceId===ventDevice?.via_device_id);
+  });
+  const selected=matching.length===1?matching[0]:espIds.length===1?espIds[0]:undefined;
+  if(selected) result.esp_prefix=selected.slice(14,-14);
+  return result;
 }
 class RoyalClimaCard extends HTMLElement {
   constructor() {
@@ -266,7 +284,7 @@ ha-card.dark{background:#19212c}ha-card.dark.compact:not(.transparent){backgroun
     });
   }
   static getConfigElement() { return document.createElement("royal-clima-card-editor"); }
-  static getStubConfig() { return { prefix: "vent", esp_prefix: "royalclima" }; }
+  static getStubConfig(hass) { return { prefix: "vent", esp_prefix: "royalclima", ...detectPrefixes(hass) }; }
   setConfig(config) {
     if (!config || typeof config !== "object" || Array.isArray(config)) throw new Error("Invalid card configuration");
     const prefix = (key, fallback) => {
@@ -902,8 +920,17 @@ for(const [key,,,,ru,en] of INDICATORS) EDITOR_LABELS[key]=[ru,en];
 class RoyalClimaCardEditor extends HTMLElement {
   constructor() {
     super(); this.attachShadow({mode:"open"});
-    this.shadowRoot.innerHTML='<style>:host{display:block}p{color:var(--secondary-text-color);font-size:14px;line-height:1.4}</style><p></p><ha-form></ha-form>';
+    this.shadowRoot.innerHTML='<style>:host{display:block}.detect{font:inherit;padding:8px 12px;border:1px solid var(--divider-color,#ccd3d7);border-radius:8px;background:var(--secondary-background-color,#f2f5f5);color:var(--primary-text-color,#222);cursor:pointer}p{color:var(--secondary-text-color);font-size:14px;line-height:1.4}</style><p></p><button type="button" class="detect"></button><p class="detection" role="status"></p><ha-form></ha-form>';
     this._form=this.shadowRoot.querySelector('ha-form');
+    this.shadowRoot.querySelector('.detect').addEventListener('click',()=> {
+      const detected=detectPrefixes(this._hass),ru=this._language?.toLowerCase().startsWith('ru');
+      if(!detected.prefix) {
+        this.shadowRoot.querySelector('.detection').textContent=ru?'Не найдена единственная подходящая установка. Укажите префиксы вручную.':'No unique matching unit found. Enter the prefixes manually.';return;
+      }
+      this._config={...this._config,...detected};this._refresh();
+      this.shadowRoot.querySelector('.detection').textContent=ru?'Префиксы определены. Явные привязки сущностей сохранены.':'Prefixes detected. Explicit entity overrides were preserved.';
+      this.dispatchEvent(new CustomEvent('config-changed',{detail:{config:this._config},bubbles:true,composed:true}));
+    });
     this._form.addEventListener('value-changed',event=>{
       event.stopPropagation();
       const value=event.detail?.value;
@@ -924,6 +951,7 @@ class RoyalClimaCardEditor extends HTMLElement {
     if(!this._config || !this._hass) return;
     const ru=this._language?.toLowerCase().startsWith('ru'),index=ru?0:1;
     const label=key=>EDITOR_LABELS[key]?.[index] || key;
+    this.shadowRoot.querySelector('.detect').textContent=ru?'Определить префиксы автоматически':'Detect prefixes automatically';
     const select=(name,options)=>({name,selector:{select:{mode:'dropdown',options:options.map(([value,russian,english])=>({value,label:ru?russian:english}))}}});
     const bool=name=>({name,selector:{boolean:{}}});
     this._form.schema=[

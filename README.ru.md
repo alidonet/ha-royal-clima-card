@@ -73,17 +73,17 @@ entities:
   filter_interval: sensor.vent_filter_interval
   status: sensor.vent_status
   fault_details: sensor.vent_fault_details
-  humidity_target: sensor.vent_humidity_target
-  heater_target: sensor.vent_heater_target
+  humidity_target: number.vent_humidity_target
+  heater_target: number.vent_heater_target
   outdoor_temp: sensor.vent_outdoor_temp
   return_temp: sensor.vent_return_temp
   exhaust_temp: sensor.vent_exhaust_temp
   supply_temp: sensor.vent_supply_temp
-  exhaust_speed: sensor.vent_exhaust_speed
+  exhaust_speed: select.vent_exhaust_speed
   exhaust_speed_control: select.vent_exhaust_speed
   supply_speed_control: select.vent_supply_speed
-  supply_speed: sensor.vent_supply_speed
-  power: binary_sensor.vent_power
+  supply_speed: select.vent_supply_speed
+  power: switch.vent_power
   power_control: switch.vent_power
   online: binary_sensor.vent_online
   api_connected: binary_sensor.royalclima_api_connected
@@ -114,14 +114,14 @@ entities:
 
 ### Привязки entities
 
-Домены и полные значения по умолчанию приведены в YAML выше. Показания и команды привязываются отдельно: `power_control` должен быть `switch`, а `*_speed_control` — `select` с числовыми строками ступеней `0`–`10`.
+По умолчанию показания и команды используют одну сущность: питание — `switch`, скорости — `select` с числовыми строками ступеней `0`–`10`, уставки — `number`. Уставки отключены по умолчанию. При необходимости можно указать отдельные сущности обратной связи.
 
 | Ключи в `entities` | Назначение |
 |---|---|
 | `outdoor_temp`, `return_temp`, `supply_temp`, `exhaust_temp` | Температуры улицы, возврата, притока и вытяжки. |
 | `supply_speed`, `exhaust_speed` | Фактические ступени приточного и вытяжного вентиляторов, целые 0–10. |
 | `supply_speed_control`, `exhaust_speed_control` | Выбор ступени притока и вытяжки. |
-| `power`, `power_control` | Фактическое состояние питания и переключатель управления. |
+| `power`, `power_control` | Подтверждённое состояние питания и команды; по умолчанию один переключатель. |
 | `api_connected`, `online` | Связь HA с ESP32 и ESP32 с ПВУ по Modbus. |
 | `fault`, `fault_details`, `status` | Признак ошибки, её описание и текстовый статус ПВУ. |
 | `bypass`, `defrost`, `fire_alarm` | Открытый байпас, разморозка и пожарный вход. |
@@ -142,3 +142,5 @@ entities:
   ![Температурная палитра потоков](images/colormap.png)
 
 Голубая точка в правом верхнем углу вспыхивает при получении обновлений основных показаний ПВУ в HA и гаснет за секунду. Это индикатор обновлений сущностей, а не каждого Modbus-пакета: неизменившиеся данные могут не поступать в интерфейс.
+
+При добавлении карточки префикс ПВУ определяется автоматически, если найден единственный набор стандартных сенсоров температур и связи. ESP32 определяется по связи устройств в реестре HA или единственному `*_api_connected`. При неоднозначности сохраняются обычные значения по умолчанию — без случайного выбора установки. В визуальном редакторе есть кнопка повторного определения префиксов; явные переопределения `entities` сохраняются. Обнаружение не зависит от текущей доступности сенсоров.

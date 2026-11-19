@@ -73,17 +73,17 @@ entities:
   filter_interval: sensor.vent_filter_interval
   status: sensor.vent_status
   fault_details: sensor.vent_fault_details
-  humidity_target: sensor.vent_humidity_target
-  heater_target: sensor.vent_heater_target
+  humidity_target: number.vent_humidity_target
+  heater_target: number.vent_heater_target
   outdoor_temp: sensor.vent_outdoor_temp
   return_temp: sensor.vent_return_temp
   exhaust_temp: sensor.vent_exhaust_temp
   supply_temp: sensor.vent_supply_temp
-  exhaust_speed: sensor.vent_exhaust_speed
+  exhaust_speed: select.vent_exhaust_speed
   exhaust_speed_control: select.vent_exhaust_speed
   supply_speed_control: select.vent_supply_speed
-  supply_speed: sensor.vent_supply_speed
-  power: binary_sensor.vent_power
+  supply_speed: select.vent_supply_speed
+  power: switch.vent_power
   power_control: switch.vent_power
   online: binary_sensor.vent_online
   api_connected: binary_sensor.royalclima_api_connected
@@ -114,14 +114,14 @@ entities:
 
 ### Entity bindings
 
-Domains and full default IDs are shown in the YAML above. Readings and controls are bound separately: `power_control` must be a `switch`, and `*_speed_control` must be a `select` with numeric string options `0`–`10`.
+Domains and full default IDs are shown in the YAML above. By default, readings and commands use the same entity: `power` and `power_control` share a `switch`; each speed and its `*_control` share a `select` with numeric string options `0`–`10`. Setpoints use `number` entities, disabled by default in the firmware. Separate feedback bindings remain optional overrides.
 
 | Keys in `entities` | Purpose |
 |---|---|
 | `outdoor_temp`, `return_temp`, `supply_temp`, `exhaust_temp` | Outdoor, return, supply and exhaust air temperatures. |
 | `supply_speed`, `exhaust_speed` | Actual supply and exhaust fan steps, integers from 0 to 10. |
 | `supply_speed_control`, `exhaust_speed_control` | Supply and exhaust fan step selection. |
-| `power`, `power_control` | Actual power state and power control switch. |
+| `power`, `power_control` | Confirmed power state and commands; the same switch by default. |
 | `api_connected`, `online` | HA-to-ESP32 connection and ESP32-to-ventilation connection over Modbus. |
 | `fault`, `fault_details`, `status` | Error flag, error description and ventilation status text. |
 | `bypass`, `defrost`, `fire_alarm` | Open bypass, defrost and fire input. |
@@ -142,3 +142,5 @@ If you use custom control wrappers, set them in `entities.power_control`, `entit
   ![Airflow temperature palette](images/colormap.png)
 
 A blue dot in the upper-right corner flashes on received changes to primary ventilation readings and fades over one second. It indicates HA entity updates, not every Modbus packet; unchanged readings may not reach the frontend.
+
+When adding a card, the ventilation prefix is detected if exactly one standard set of temperature and connection entities exists. The ESP32 prefix uses device registry links or a unique `*_api_connected` entity. Ambiguous results retain the normal defaults rather than selecting an arbitrary unit. The editor includes a detect-prefixes button; explicit `entities` overrides are preserved. Discovery does not depend on current sensor availability.
