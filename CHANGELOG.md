@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.2
+
+- Improve with ability to show calculated recovery percent. Allow to see comment and reason why not applicable;
+- Minor UI updates/fixes for panels;
+
 ## 0.1.0
 
 First public release of Royal Clima ERV Card for Home Assistant.

@@ -114,3 +114,18 @@ test("default readings share the public control entities without duplicate RO se
   // Explicit independent feedback bindings remain supported for installations that need them.
   assert.equal(card({entities:{power:"binary_sensor.custom_feedback"}})._ids.power, "binary_sensor.custom_feedback");
 });
+vm.runInNewContext("globalThis.recovery = temperatureRecovery;", context);
+const recoveryInput={outdoor:0,indoor:20,supply:16,connected:true,power:"on",bypass:"off",defrost:"off",fault:"off",fire:"off",supplySpeed:3,exhaustSpeed:3,dataAge:2};
+test("temperature recovery works for heating and cooling without display rounding",()=>{
+  assert.equal(context.recovery(recoveryInput).value,80);
+  assert.equal(context.recovery({...recoveryInput,outdoor:30,indoor:20,supply:22}).value,80);
+  assert.equal(context.recovery({...recoveryInput,outdoor:6,indoor:10,supply:9.1}).value,78);
+});
+test("temperature recovery rejects invalid or unsuitable operating conditions",()=>{
+ for(const change of [{bypass:"on"},{bypass:"unknown"},{defrost:"on"},{preheater:"on"},{preheater:"unknown"},{power:"off"},{connected:false},{supplySpeed:0},{exhaustSpeed:NaN},{fault:"on"},{fire:"on"},{supply:NaN},{outdoor:19},{supply:25},{supply:-1}]) assert.equal(context.recovery({...recoveryInput,...change}).value,undefined,JSON.stringify(change));
+ assert.equal(context.recovery({...recoveryInput,preheater:"off"}).value,80);
+});
+
+test("data age does not suppress available temperature recovery",()=>{
+ for(const dataAge of [undefined,NaN,61,3600]) assert.equal(context.recovery({...recoveryInput,dataAge}).value,80);
+});

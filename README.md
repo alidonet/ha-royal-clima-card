@@ -48,6 +48,8 @@ prefix: vent
 esp_prefix: royalclima
 transparent: false
 flow_colormap: false
+show_recovery: true
+show_recovery_info: false
 sensor_boost_co2: true
 
 language: auto
@@ -107,6 +109,8 @@ entities:
 | `theme` | `auto` by default follows HA; `light` / `dark` force a theme. Falls back to the system preference when HA theme information is unavailable. |
 | `language` | `auto` by default follows HA; `ru` / `en` force a language. Other values select English. |
 | `transparent` | `false`; `true` removes the background. Text and icon colors follow the selected theme. |
+| `show_recovery_info` | `false`; `true` adds a transparent clickable explanation row below the card. |
+| `show_recovery` | `true` — show temperature recovery percentage in the exchanger center. |
 | `flow_colormap` | `false` — standard flow colors; `true` — temperature palette. |
 | `sensor_boost_co2` | `true` — CO₂ icon; `false` — humidity icon. Changes the icon and tooltip; does not detect the sensor type. |
 | `show_icons` | All icons are enabled. Set a key from the full YAML to `false` to hide its icon and click area. Entity state is unchanged. |
@@ -144,3 +148,19 @@ If you use custom control wrappers, set them in `entities.power_control`, `entit
 A blue dot in the upper-right corner flashes on received changes to primary ventilation readings and fades over one second. It indicates HA entity updates, not every Modbus packet; unchanged readings may not reach the frontend.
 
 When adding a card, the ventilation prefix is detected if exactly one standard set of temperature and connection entities exists. The ESP32 prefix uses device registry links or a unique `*_api_connected` entity. Ambiguous results retain the normal defaults rather than selecting an arbitrary unit. The editor includes a detect-prefixes button; explicit `entities` overrides are preserved. Discovery does not depend on current sensor availability.
+
+## Project status
+
+Royal Clima ERV Card is an independent, unofficial Home Assistant card for compatible Royal Clima ventilation units.
+
+## Temperature recovery
+
+`η = (SA − OA) / (RA − OA) × 100%`, using unrounded `supply_temp`, `outdoor_temp` and `return_temp`. Works in heating and cooling; EA is not used. This is an approximate supply temperature effectiveness, not certified or total energy efficiency. Humidity, actual airflow/balance and fan heat are excluded; fan steps cannot establish airflow.
+
+The center shows a rounded percentage or an approximation sign with an explanatory tooltip when disconnected/off, bypass or defrost is not confirmed off, a bound preheater is on/unknown, fault/fire is active, either fan lacks a valid positive step, RA/OA differs by less than 3 °C, temperatures are invalid, or the result lies outside 0–100%. `data_age` does not affect calculation; available temperatures are used. This does not guarantee freshness of every register group or steady-state operation. An unmonitored heater can inflate the estimate.
+
+`show_recovery: false` hides the indicator; the visual editor includes this option. Temperature bindings can use external sensors, but values must represent the exchanger air streams: remote room/outdoor measurements can distort the estimate. The calculation is independent of entity bindings, allowing future independent reference sensors and a separate humidity/enthalpy metric.
+
+Recovery percentage uses indicative bands: <50% orange, 50–69% ochre, 70–84% teal, ≥85% green. The circle shows the percentage without an approximation sign. When calculation is unavailable, click to view the reason. Colors are a visual guide, not a fault diagnosis.
+
+An unavailable percentage is shown as a gray “≈”; click for the reason. The `show_recovery_info` row contains the same information and opens the same dialog; it is hidden when `show_recovery: false`. The formula remains in documentation only.
