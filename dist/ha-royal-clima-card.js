@@ -240,7 +240,8 @@ function temperatureColor(value) {
   }
 }
 function temperatureRecovery({outdoor,indoor,supply,connected,power,bypass,defrost,preheater,fault,fire,supplySpeed,exhaustSpeed}) {
-  if(!connected || power!=="on") return {reason:"offline"};
+  if(!connected || !["on","off"].includes(power)) return {reason:"offline"};
+  if(power==="off") return {reason:"powered_off"};
   if(bypass!=="off") return {reason:"bypass"};
   if(defrost!=="off") return {reason:"defrost"};
   if(preheater!==undefined && preheater!=="off") return {reason:"heater"};
@@ -358,6 +359,7 @@ ha-card.dark{background:#19212c}ha-card.dark.compact:not(.transparent){backgroun
     miniPaths[2].setAttribute('d','M229 335H268L278 344 M325 386 334 394H371');
     const crossing=document.createElementNS('http://www.w3.org/2000/svg','path');crossing.classList.add('exchanger-crossing');crossing.setAttribute('d','M318 349 284 380 M285 350 298 362 M305 369 318 380');miniFlow.append(crossing);
     const supplyCross=crossing.cloneNode(false);supplyCross.classList.add('supply-crossing');miniFlow.append(supplyCross);
+    const supplyArrow=miniPaths[3].cloneNode(false);supplyArrow.classList.add('supply-arrow');miniFlow.append(supplyArrow);
     for(const diamond of [miniPaths[0],this.shadowRoot.querySelector('.airflow-exchanger')]) {
       const title=document.createElementNS('http://www.w3.org/2000/svg','title');diamond.append(title);diamond.style.pointerEvents='all';
     }
@@ -568,7 +570,8 @@ ha-card.dark{background:#19212c}ha-card.dark.compact:not(.transparent){backgroun
         label.setAttribute('text-anchor','middle');
         if(['EA','SA'].includes(label.textContent)) label.setAttribute('y',363);
       }
-      this.shadowRoot.querySelector('.airflow-lines path:nth-child(4)').setAttribute('d','m217 396-8 4 8 4 M383 396l8 4-8 4');
+      this.shadowRoot.querySelector('.airflow-lines path:nth-child(4)').setAttribute('d','m217 396-8 4 8 4');
+      this.shadowRoot.querySelector('.supply-arrow').setAttribute('d','M383 396l8 4-8 4');
     }
     if(!airflow) {
       for(const role of ['return_temp','supply_temp']) {
@@ -581,6 +584,13 @@ ha-card.dark{background:#19212c}ha-card.dark.compact:not(.transparent){backgroun
     }
     if(!airflow) {
       for(const el of this.shadowRoot.querySelectorAll('svg.panel > [data-fan],svg.panel > [data-bar],svg.panel > [data-fan-direction],svg.panel > .power-action,svg.panel > .power-glyph,svg.panel > [data-display$="speed"],svg.panel > [data-history$="speed"]')) el.setAttribute('transform',`translate(0 -32) ${el.getAttribute('transform')||''}`);
+    }
+    if(!airflow) {
+      const shiftX=(element,x)=>element.setAttribute('transform',`translate(${x} 0) ${element.getAttribute('transform')||''}`);
+      shiftX(this.shadowRoot.querySelector('[data-fan="supply_speed"]'),147);
+      shiftX(this.shadowRoot.querySelector('[data-fan-direction="supply_speed"]'),147);
+      shiftX(this.shadowRoot.querySelector('[data-display="supply_speed"]'),-147);
+      for(const bar of this.shadowRoot.querySelectorAll('[data-bar="supply_speed"]')) shiftX(bar,11);
     }
     const defrostSpec=INDICATORS.find(d=>d[0]==="defrost");
     this.shadowRoot.querySelector('[data-indicator="defrost"]').setAttribute('transform',`translate(${(airflow?233.5:276)-defrostSpec[2]} ${(airflow?FLOW_LAYOUT.lower-49:273)-defrostSpec[3]})`);
@@ -828,6 +838,8 @@ ha-card.dark{background:#19212c}ha-card.dark.compact:not(.transparent){backgroun
     miniPaths[2].setAttribute('stroke',heatColors?'url(#mini-supply)':flowing?'#56614d':'#c2c8bc');
     this._node('.exchanger-crossing').setAttribute('stroke',heatColors?'url(#mini-exhaust)':flowing?'#56614d':'#c2c8bc');
     this._node('.supply-crossing').setAttribute('stroke',heatColors?'url(#mini-supply)':flowing?'#56614d':'#c2c8bc');
+    miniPaths[3].setAttribute('stroke',heatColors?'url(#mini-exhaust)':flowing?'#56614d':'#c2c8bc');
+    this._node('.supply-arrow').setAttribute('stroke',heatColors?'url(#mini-supply)':flowing?'#56614d':'#c2c8bc');
     const exchanger = flow.querySelector("path"), exchangerError = false;
     exchanger.classList.toggle("exchanger-error", exchangerError);
     setAttributeIfChanged(exchanger,"stroke", connected ? "#56614d" : "#c2c8bc");
@@ -1050,7 +1062,7 @@ ha-card.dark{background:#19212c}ha-card.dark.compact:not(.transparent){backgroun
       const level=result.value===undefined?-1:result.value<50?0:result.value<70?1:result.value<85?2:3;
       recovery.querySelector('text').style.fill=level<0?(dark?'#a3b1bd':'#59616a'):colors[level];
       if(recovery.querySelector('text').textContent!==text) recovery.querySelector('text').textContent=text;
-      const reasons={offline:['Нет связи или ПВУ выключена','Disconnected or powered off'],bypass:['Байпас открыт или состояние неизвестно','Bypass open or state unknown'],defrost:['Разморозка или состояние неизвестно','Defrost or state unknown'],heater:['Предподогрев включён или состояние неизвестно','Preheater on or state unknown'],fault:['Ошибка или пожарный вход','Fault or fire input'],fans:['Нет подтверждения работы обоих вентиляторов','Both fans must be running'],temperature:['Температуры недоступны','Temperatures unavailable'],delta:['Разница улица/помещение меньше 3 °C','Outdoor/indoor difference below 3 °C'],range:['Расчёт вне диапазона 0–100%','Calculated value outside 0–100%']};
+      const reasons={offline:['Нет связи с рекуператором','No connection to the ventilator'],powered_off:['Рекуператор выключен','Ventilator is switched off'],bypass:['Байпас открыт или состояние неизвестно','Bypass open or state unknown'],defrost:['Разморозка или состояние неизвестно','Defrost or state unknown'],heater:['Предподогрев включён или состояние неизвестно','Preheater on or state unknown'],fault:['Ошибка или пожарный вход','Fault or fire input'],fans:['Нет подтверждения работы обоих вентиляторов','Both fans must be running'],temperature:['Температуры недоступны','Temperatures unavailable'],delta:['Разница улица/помещение меньше 3 °C','Outdoor/indoor difference below 3 °C'],range:['Расчёт вне диапазона 0–100%','Calculated value outside 0–100%']};
       const title=result.reason ? `${ru?'Температурная эффективность неизвестна: ':'Temperature recovery unknown: '}${reasons[result.reason][ru?0:1]}` : `${ru?'Температурная эффективность':'Temperature recovery'} ≈${text}`;
       if(recovery.querySelector('title').textContent!==title) recovery.querySelector('title').textContent=title;
       setAttributeIfChanged(recovery,'aria-label',title);

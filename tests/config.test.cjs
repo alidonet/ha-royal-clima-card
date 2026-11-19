@@ -129,3 +129,9 @@ test("temperature recovery rejects invalid or unsuitable operating conditions",(
 test("data age does not suppress available temperature recovery",()=>{
  for(const dataAge of [undefined,NaN,61,3600]) assert.equal(context.recovery({...recoveryInput,dataAge}).value,80);
 });
+
+test("recovery distinguishes disconnection from confirmed power off",()=>{
+ assert.equal(context.recovery({...recoveryInput,connected:false,power:"off"}).reason,"offline");
+ assert.equal(context.recovery({...recoveryInput,power:"off"}).reason,"powered_off");
+ assert.equal(context.recovery({...recoveryInput,power:"unknown"}).reason,"offline");
+});
