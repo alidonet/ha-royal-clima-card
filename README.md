@@ -1,5 +1,9 @@
 # Royal Clima ERV Card
 
+[![HACS Custom](https://img.shields.io/badge/HACS-Custom-orange)](https://my.home-assistant.io/redirect/hacs_repository/?owner=alidonet&repository=ha-royal-clima-card&category=plugin)
+[![GitHub release](https://img.shields.io/github/v/release/alidonet/ha-royal-clima-card)](https://github.com/alidonet/ha-royal-clima-card/releases/latest)
+[![GitHub downloads](https://img.shields.io/github/downloads/alidonet/ha-royal-clima-card/total)](https://github.com/alidonet/ha-royal-clima-card/releases)
+
 [Русский](README.ru.md)
 
 A Home Assistant card for Royal Clima SOFFIO Primo ventilation units: temperatures, status indicators, power control and fan step selection. Two views: a control panel and an airflow diagram. ESPHome firmware for ESP32 and hardware wiring instructions: [ESPHome-RoyalClima](https://github.com/alidonet/ESPHome-RoyalClima).

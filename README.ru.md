@@ -1,5 +1,9 @@
 # Royal Clima ERV Card
 
+[![HACS Custom](https://img.shields.io/badge/HACS-Custom-orange)](https://my.home-assistant.io/redirect/hacs_repository/?owner=alidonet&repository=ha-royal-clima-card&category=plugin)
+[![GitHub release](https://img.shields.io/github/v/release/alidonet/ha-royal-clima-card)](https://github.com/alidonet/ha-royal-clima-card/releases/latest)
+[![GitHub downloads](https://img.shields.io/github/downloads/alidonet/ha-royal-clima-card/total)](https://github.com/alidonet/ha-royal-clima-card/releases)
+
 [English](README.md)
 
 Карточка Home Assistant для приточно-вытяжной установки Royal Clima SOFFIO Primo: температуры, состояния, управление питанием и ступенями вентиляторов. Два вида — пульт и схема потоков. Прошивка ESPHome для ESP32 и подключение оборудования: [ESPHome-RoyalClima](https://github.com/alidonet/ESPHome-RoyalClima).
