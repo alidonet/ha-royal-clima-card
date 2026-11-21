@@ -1,6 +1,7 @@
 # Royal Clima ERV Card
 
-[![HACS Custom](https://img.shields.io/badge/HACS-Custom-orange)](https://my.home-assistant.io/redirect/hacs_repository/?owner=alidonet&repository=ha-royal-clima-card&category=plugin)
+[![Validate](https://img.shields.io/github/actions/workflow/status/alidonet/ha-royal-clima-card/hacs.yml?branch=main&label=Validate&logo=github)](https://github.com/alidonet/ha-royal-clima-card/actions/workflows/hacs.yml?query=branch%3Amain)
+[![HACS Default](https://img.shields.io/badge/HACS-Default-blue)](https://my.home-assistant.io/redirect/hacs_repository/?owner=alidonet&repository=ha-royal-clima-card&category=plugin)
 [![GitHub release](https://img.shields.io/github/v/release/alidonet/ha-royal-clima-card)](https://github.com/alidonet/ha-royal-clima-card/releases/latest)
 [![GitHub downloads](https://img.shields.io/github/downloads/alidonet/ha-royal-clima-card/total)](https://github.com/alidonet/ha-royal-clima-card/releases)
 
@@ -8,10 +9,10 @@
 
 Карточка Home Assistant для приточно-вытяжной установки Royal Clima SOFFIO Primo: температуры, состояния, управление питанием и ступенями вентиляторов. Два вида — пульт и схема потоков. Прошивка ESPHome для ESP32 и подключение оборудования: [ESPHome-RoyalClima](https://github.com/alidonet/ESPHome-RoyalClima).
 
-![Пульт управления](images/control_panel.png)
+![Пульт управления](images/control_panel.gif)
 ![Пульт управления](images/control_panel_dark.png)
 
-![Схема потоков](images/flows_panel.png)
+![Схема потоков](images/flows_panel.gif)
 ![Airflow diagram](images/flows_panel_dark.png)
 
 ## Установка
@@ -19,7 +20,7 @@
 [![Открыть Royal Clima ERV Card в Home Assistant](https://my.home-assistant.io/badges/marketplace_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=alidonet&repository=ha-royal-clima-card&category=plugin)
 
 1. Подключите ESP32 с прошивкой к Home Assistant через интеграцию ESPHome.
-2. В HACS откройте «Пользовательские репозитории», добавьте `https://github.com/alidonet/ha-royal-clima-card` с категорией **Dashboard** и установите **Royal Clima ERV Card**.
+2. Найдите **Royal Clima ERV Card** через поиск HACS и установите карточку из категории **Dashboard**.
 3. Если ресурс не добавился автоматически, добавьте в ресурсах дашбордов `/hacsfiles/ha-royal-clima-card/ha-royal-clima-card.js` с типом **JavaScript module**.
 4. Обновите страницу браузера и добавьте карточку через выбор карточек или вручную в YAML.
 

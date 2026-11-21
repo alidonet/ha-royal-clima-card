@@ -1,6 +1,7 @@
 # Royal Clima ERV Card
 
-[![HACS Custom](https://img.shields.io/badge/HACS-Custom-orange)](https://my.home-assistant.io/redirect/hacs_repository/?owner=alidonet&repository=ha-royal-clima-card&category=plugin)
+[![Validate](https://img.shields.io/github/actions/workflow/status/alidonet/ha-royal-clima-card/hacs.yml?branch=main&label=Validate&logo=github)](https://github.com/alidonet/ha-royal-clima-card/actions/workflows/hacs.yml?query=branch%3Amain)
+[![HACS Default](https://img.shields.io/badge/HACS-Default-blue)](https://my.home-assistant.io/redirect/hacs_repository/?owner=alidonet&repository=ha-royal-clima-card&category=plugin)
 [![GitHub release](https://img.shields.io/github/v/release/alidonet/ha-royal-clima-card)](https://github.com/alidonet/ha-royal-clima-card/releases/latest)
 [![GitHub downloads](https://img.shields.io/github/downloads/alidonet/ha-royal-clima-card/total)](https://github.com/alidonet/ha-royal-clima-card/releases)
 
@@ -8,10 +9,10 @@
 
 A Home Assistant card for Royal Clima SOFFIO Primo ventilation units: temperatures, status indicators, power control and fan step selection. Two views: a control panel and an airflow diagram. ESPHome firmware for ESP32 and hardware wiring instructions: [ESPHome-RoyalClima](https://github.com/alidonet/ESPHome-RoyalClima).
 
-![Control panel](images/control_panel.png)
+![Control panel](images/control_panel.gif)
 ![Control panel](images/control_panel_dark.png)
 
-![Airflow diagram](images/flows_panel.png)
+![Airflow diagram](images/flows_panel.gif)
 ![Airflow diagram](images/flows_panel_dark.png)
 
 ## Installation
@@ -19,7 +20,7 @@ A Home Assistant card for Royal Clima SOFFIO Primo ventilation units: temperatur
 [![Open Royal Clima ERV Card in Home Assistant](https://my.home-assistant.io/badges/marketplace_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=alidonet&repository=ha-royal-clima-card&category=plugin)
 
 1. Connect the ESP32 running the firmware to Home Assistant through the ESPHome integration.
-2. In HACS, open **Custom repositories**, add `https://github.com/alidonet/ha-royal-clima-card` with the **Dashboard** category and install **Royal Clima ERV Card**.
+2. In HACS, search for **Royal Clima ERV Card** and install it from the **Dashboard** category.
 3. If the resource was not added automatically, add `/hacsfiles/ha-royal-clima-card/ha-royal-clima-card.js` to your dashboard resources as a **JavaScript module**.
 4. Reload the browser page and add the card through the card picker or manually in YAML.
 
