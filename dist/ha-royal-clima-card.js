@@ -141,8 +141,9 @@ const AIRFLOW = `<svg class="airflow-art" x="80" y="-16" xmlns="http://www.w3.or
 </svg>`;
 const PANEL = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"680\" height=\"681\" viewBox=\"0 0 680 681\"><defs>\n\n\n\n<marker id=\"arrow\" viewBox=\"0 0 10 10\" refX=\"8\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M1 1 9 5 1 9\" fill=\"none\" stroke=\"#505b48\" stroke-width=\"1.5\"/></marker></defs>\n\n\n\n<g transform=\"translate(0 -35)\">\n<rect class=\"screen-layer\" data-screen-surface=\"\" x=\"51\" y=\"81\" width=\"578\" height=\"483\" rx=\"6\" fill=\"#e9ede2\" stroke=\"#f8faf3\" stroke-width=\"2\"/>\n\n<!-- Дом и наружная зона. Левая стена проходит через теплообменник. -->\n\n<g transform=\"translate(0 8)\" fill=\"none\" stroke=\"#a6ae9c\" stroke-width=\"3.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M324 194 466 112Q469 110 472 112L612 194\"/><path d=\"M340 184.76V257 M340 345V434 M598 185.8V434\"/></g>\n\n<g class=\"airflow-lines\" transform=\"translate(38 -56)\" fill=\"none\" stroke=\"#56614d\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n<path d=\"m302 327 38 38-38 38-38-38Z\" stroke-width=\"2\"/>\n<path d=\"M371 335H334L324 344 M318 349 284 380 M278 385 268 394H229\"/>\n<path d=\"M229 335H268L278 344 M285 350 298 362 M305 369 318 380 M325 386 334 394H371\"/><path d=\"m237 390-8 4 8 4 M363 390l8 4-8 4\" stroke-width=\"1.8\"/>\n</g><text class=\"airflow-label\" x=\"276\" y=\"267\" text-anchor=\"middle\" fill=\"#3b4533\" font-family=\"Arial,sans-serif\" font-size=\"16\" font-weight=\"700\">OA</text><text class=\"airflow-label\" x=\"403\" y=\"267\" text-anchor=\"middle\" fill=\"#3b4533\" font-family=\"Arial,sans-serif\" font-size=\"16\" font-weight=\"700\">RA</text><text class=\"airflow-label\" x=\"276\" y=\"362\" text-anchor=\"middle\" fill=\"#3b4533\" font-family=\"Arial,sans-serif\" font-size=\"16\" font-weight=\"700\">EA</text><text class=\"airflow-label\" x=\"403\" y=\"362\" text-anchor=\"middle\" fill=\"#3b4533\" font-family=\"Arial,sans-serif\" font-size=\"16\" font-weight=\"700\">SA</text>\n\n<path class=\"screen-layer fan-divider\" d=\"M74 449H606\" stroke=\"#d0d7ca\"/><g class=\"preheater\" transform=\"translate(45.58 -2.1) scale(.82)\" stroke=\"#77836b\" opacity=\".35\" fill=\"none\" stroke-width=\"1.7\" stroke-linecap=\"round\"><path d=\"M274 295q-5-5 0-10t0-10m7 20q-5-5 0-10t0-10m7 20q-5-5 0-10t0-10\"/><rect x=\"269\" y=\"300\" width=\"24\" height=\"5\" rx=\"1\"/></g><g fill=\"#66705d\" font-family=\"Arial,sans-serif\" font-size=\"15\"><text x=\"208\" y=\"245\">°C</text><text x=\"542\" y=\"245\">°C</text><text x=\"208\" y=\"386\">°C</text><text x=\"542\" y=\"386\">°C</text></g></g></svg>";
 const ICONS = {"chip": "<path d=\"M6,4H18V5H21V7H18V9H21V11H18V13H21V15H18V17H21V19H18V20H6V19H3V17H6V15H3V13H6V11H3V9H6V7H3V5H6V4M11,15V18H12V15H11M13,15V18H14V15H13M15,15V18H16V15H15Z\" />", "hvac": "<path d=\"M8.58 14C8.3 13.55 8.11 13.03 8.06 12.5H15.94C15.89 13.03 15.7 13.55 15.47 14H8.58M12 16C10.97 16 10.08 15.61 9.38 15H14.63C13.92 15.61 13.03 16 12 16M12 8C13.03 8 13.92 8.39 14.63 9H9.38C10.08 8.39 10.97 8 12 8M8.58 10H15.42C15.7 10.45 15.89 10.97 15.94 11.5H8.06C8.11 10.97 8.3 10.45 8.58 10M3 3V21H21V3H3M12 18C8.67 18 6 15.33 6 12S8.67 6 12 6 18 8.67 18 12 15.33 18 12 18Z\" />", "air-filter": "<path d=\"M4 3h16v18H4zm2 2v14h12V5zm1 2h10v2H7zm0 4h10v2H7zm0 4h10v2H7z\"/>", "alert-circle-outline": "<path d=\"M11,15H13V17H11V15M11,7H13V13H11V7M12,2C6.47,2 2,6.5 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20Z\" />", "fire-alert": "<path d=\"M15.66 11.2C15.43 10.9 15.15 10.64 14.89 10.38C14.22 9.78 13.46 9.35 12.82 8.72C11.33 7.26 11 4.85 11.95 3C11 3.23 10.17 3.75 9.46 4.32C6.87 6.4 5.85 10.07 7.07 13.22C7.11 13.32 7.15 13.42 7.15 13.55C7.15 13.77 7 13.97 6.8 14.05C6.57 14.15 6.33 14.09 6.14 13.93C6.08 13.88 6.04 13.83 6 13.76C4.87 12.33 4.69 10.28 5.45 8.64C3.78 10 2.87 12.3 3 14.47C3.06 14.97 3.12 15.47 3.29 15.97C3.43 16.57 3.7 17.17 4 17.7C5.08 19.43 6.95 20.67 8.96 20.92C11.1 21.19 13.39 20.8 15.03 19.32C16.86 17.66 17.5 15 16.56 12.72L16.43 12.46C16.22 12 15.66 11.2 15.66 11.2M12.5 17.5C12.22 17.74 11.76 18 11.4 18.1C10.28 18.5 9.16 17.94 8.5 17.28C9.69 17 10.4 16.12 10.61 15.23C10.78 14.43 10.46 13.77 10.33 13C10.21 12.26 10.23 11.63 10.5 10.94C10.69 11.32 10.89 11.7 11.13 12C11.9 13 13.11 13.44 13.37 14.8C13.41 14.94 13.43 15.08 13.43 15.23C13.46 16.05 13.1 16.95 12.5 17.5H12.5M21 13H19V7H21V13M21 17H19V15H21V17Z\" />", "valve": "<path d=\"M4 22H2V2H4M22 2H20V22H22M17.24 5.34L13.24 9.34A3 3 0 0 0 9.24 13.34L5.24 17.34L6.66 18.76L10.66 14.76A3 3 0 0 0 14.66 10.76L18.66 6.76Z\" />", "snowflake-melt": "<path d=\"M8 17.85C8 19.04 7.11 20 6 20S4 19.04 4 17.85C4 16.42 6 14 6 14S8 16.42 8 17.85M16.46 12V10.56L18.46 9.43L20.79 10.05L21.31 8.12L19.54 7.65L20 5.88L18.07 5.36L17.45 7.69L15.45 8.82L13 7.38V5.12L14.71 3.41L13.29 2L12 3.29L10.71 2L9.29 3.41L11 5.12V7.38L8.5 8.82L6.5 7.69L5.92 5.36L4 5.88L4.47 7.65L2.7 8.12L3.22 10.05L5.55 9.43L7.55 10.56V12H2V13H22V12H16.46M9.5 12V10.56L12 9.11L14.5 10.56V12H9.5M20 17.85C20 19.04 19.11 20 18 20S16 19.04 16 17.85C16 16.42 18 14 18 14S20 16.42 20 17.85M14 20.85C14 22.04 13.11 23 12 23S10 22.04 10 20.85C10 19.42 12 17 12 17S14 19.42 14 20.85Z\" />", "fan-plus": "<path d=\"M13 19C13 17.59 13.5 16.3 14.3 15.28C14.17 14.97 14.03 14.65 13.86 14.34C14.26 14 14.57 13.59 14.77 13.11C15.26 13.21 15.78 13.39 16.25 13.67C17.07 13.25 18 13 19 13C20.05 13 21.03 13.27 21.89 13.74C21.95 13.37 22 12.96 22 12.5C22 8.92 18.03 8.13 14.33 10.13C14 9.73 13.59 9.42 13.11 9.22C13.3 8.29 13.74 7.24 14.73 6.75C17.09 5.57 17 2 12.5 2C8.93 2 8.14 5.96 10.13 9.65C9.72 9.97 9.4 10.39 9.21 10.87C8.28 10.68 7.23 10.25 6.73 9.26C5.56 6.89 2 7 2 11.5C2 15.07 5.95 15.85 9.64 13.87C9.96 14.27 10.39 14.59 10.88 14.79C10.68 15.71 10.24 16.75 9.26 17.24C6.9 18.42 7 22 11.5 22C12.31 22 13 21.78 13.5 21.41C13.19 20.67 13 19.86 13 19M12 13C11.43 13 11 12.55 11 12S11.43 11 12 11C12.54 11 13 11.45 13 12S12.54 13 12 13M20 15V18H23V20H20V23H18V20H15V18H18V15H20Z\" />", "molecule-co2": "<path d=\"M5,7A2,2 0 0,0 3,9V15A2,2 0 0,0 5,17H8V15H5V9H8V7H5M11,7A2,2 0 0,0 9,9V15A2,2 0 0,0 11,17H13A2,2 0 0,0 15,15V9A2,2 0 0,0 13,7H11M11,9H13V15H11V9M16,10.5V12H19V13.5H17.5A1.5,1.5 0 0,0 16,15V18H20.5V16.5H17.5V15H19A1.5,1.5 0 0,0 20.5,13.5V12A1.5,1.5 0 0,0 19,10.5H16Z\" />", "power": "<path d=\"M16.56,5.44L15.11,6.89C16.84,7.94 18,9.83 18,12A6,6 0 0,1 12,18A6,6 0 0,1 6,12C6,9.83 7.16,7.94 8.88,6.88L7.44,5.44C5.36,6.88 4,9.28 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12C20,9.28 18.64,6.88 16.56,5.44M13,3H11V13H13\" />", "fan-chevron-up": "<path d=\"M13 19C13 17.59 13.5 16.3 14.3 15.28C14.17 14.97 14.03 14.65 13.86 14.34C14.26 14 14.57 13.59 14.77 13.11C15.26 13.21 15.78 13.39 16.25 13.67C17.07 13.25 18 13 19 13C20.05 13 21.03 13.27 21.89 13.74C21.95 13.37 22 12.96 22 12.5C22 8.92 18.03 8.13 14.33 10.13C14 9.73 13.59 9.42 13.11 9.22C13.3 8.29 13.74 7.24 14.73 6.75C17.09 5.57 17 2 12.5 2C8.93 2 8.14 5.96 10.13 9.65C9.72 9.97 9.4 10.39 9.21 10.87C8.28 10.68 7.23 10.25 6.73 9.26C5.56 6.89 2 7 2 11.5C2 15.07 5.95 15.85 9.64 13.87C9.96 14.27 10.39 14.59 10.88 14.79C10.68 15.71 10.24 16.75 9.26 17.24C6.9 18.42 7 22 11.5 22C12.31 22 13 21.78 13.5 21.41C13.19 20.67 13 19.86 13 19M12 13C11.43 13 11 12.55 11 12S11.43 11 12 11C12.54 11 13 11.45 13 12S12.54 13 12 13M19 17.83L15.83 21L14.41 19.59L19 15L23.59 19.59L22.17 21L19 17.83\" />", "fan-chevron-down": "<path d=\"M13 19C13 17.59 13.5 16.3 14.3 15.28C14.17 14.97 14.03 14.65 13.86 14.34C14.26 14 14.57 13.59 14.77 13.11C15.26 13.21 15.78 13.39 16.25 13.67C17.07 13.25 18 13 19 13C20.05 13 21.03 13.27 21.89 13.74C21.95 13.37 22 12.96 22 12.5C22 8.92 18.03 8.13 14.33 10.13C14 9.73 13.59 9.42 13.11 9.22C13.3 8.29 13.74 7.24 14.73 6.75C17.09 5.57 17 2 12.5 2C8.93 2 8.14 5.96 10.13 9.65C9.72 9.97 9.4 10.39 9.21 10.87C8.28 10.68 7.23 10.25 6.73 9.26C5.56 6.89 2 7 2 11.5C2 15.07 5.95 15.85 9.64 13.87C9.96 14.27 10.39 14.59 10.88 14.79C10.68 15.71 10.24 16.75 9.26 17.24C6.9 18.42 7 22 11.5 22C12.31 22 13 21.78 13.5 21.41C13.19 20.67 13 19.86 13 19M12 13C11.43 13 11 12.55 11 12S11.43 11 12 11C12.54 11 13 11.45 13 12S12.54 13 12 13M19 19.17L22.17 16L23.59 17.41L19 22L14.41 17.41L15.83 16L19 19.17\" />", "water": "<path d=\"M12 2C10 5 5 10.5 5 15a7 7 0 0 0 14 0c0-4.5-5-10-7-13Z\"/>"};
-const VERSION = "0.1.0";
+const VERSION = "0.1.3";
 const COLORS = {"inactive": "#77836b", "error": "#c24632", "blue": "#3e9dc4", "healthy": "#329455", "warning": "#e89828", "fan": "#42483b"};
+const AMBIENT_KEYS = ["outdoor_temp","outdoor_humidity","indoor_temp","indoor_humidity"];
 const ROLES = {
   uptime: ["sensor", "uptime", "esp"],
   wifi_signal: ["sensor", "wifi_signal", "esp"],
@@ -312,6 +313,7 @@ class RoyalClimaCard extends HTMLElement {
       ha-card.dark ~ .recovery-info{background:#263444;color:#d5ded8;border-color:#627080}
       .recovery{pointer-events:none}.recovery-disc{pointer-events:all}
       .recovery-disc{fill:#f8fafc;fill-opacity:.88;stroke:#52677a;stroke-width:.5;stroke-opacity:.24}.airflow .recovery-disc{fill-opacity:.72}.compact .recovery-disc{fill:#e9ede2}.recovery text{fill:#34465b;pointer-events:none}.dark .recovery-disc{fill:#26362d;fill-opacity:.92;stroke:#c0d0c7}.dark.airflow .recovery-disc{fill:#263444;fill-opacity:.78}.dark .recovery text{fill:#d5ded8}
+      .recovery-footer{display:flex;align-items:center;gap:4px}.recovery-footer .recovery-note{flex:1;min-width:0}.analysis-open{order:-1;flex:none;display:flex;align-items:center;justify-content:center;width:40px;height:40px;border:0;border-radius:8px;background:transparent;color:#3e9dc4;cursor:pointer}.analysis-info{max-width:480px;max-height:80vh;overflow:auto}.analysis-info h4{margin:16px 0 6px}.analysis-info p{line-height:1.45;margin:6px 0}ha-card.dark ~ .recovery-footer .recovery-note{color:#b0bdc8}ha-card.dark ~ .analysis-info{background:#263444;color:#d5ded8}
       .recovery-note{width:100%;border:0;background:transparent;padding:8px 12px;color:var(--secondary-text-color,#52616d);font:13px/1.4 Arial,sans-serif;text-align:center;cursor:pointer;white-space:normal;overflow-wrap:anywhere;min-height:52px}.recovery-note:focus-visible{outline:1px solid currentColor;outline-offset:-2px}ha-card.dark ~ .recovery-note{color:var(--secondary-text-color,#b0bdc8)}
       :host{display:block}ha-card{position:relative;display:block;background:#f8fafc;border:0;box-shadow:none;overflow:hidden;border-radius:10px}
       ha-card.compact .speed-action{display:none}
@@ -335,7 +337,7 @@ class RoyalClimaCard extends HTMLElement {
       .speed-action circle{display:none;animation:spin 1s linear infinite}.speed-action.pending circle{display:block}
       dialog{border:1px solid var(--divider-color,#ccd3d7);border-radius:16px;padding:24px;max-width:calc(100vw - 32px);width:380px;box-sizing:border-box;background:var(--card-background-color,#fff);color:var(--primary-text-color,#222);font:16px Arial,sans-serif}dialog::backdrop{background:#0006}dialog h3{font-size:20px;margin:0 0 18px;font-weight:500}.speed-choices{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:6px}.speed-choices button{min-height:36px;font-size:14px;padding:0 2px}.speed-choices [data-step-choice="6"]{grid-column:2}.speed-choices [data-step-choice="0"]{font-size:12px}dialog button{font:inherit;min-height:44px;border:1px solid var(--divider-color,#ccd3d7);border-radius:8px;background:var(--secondary-background-color,#f2f5f5);color:inherit;cursor:pointer}dialog button[aria-pressed="true"]{background:var(--primary-color,#0385bd);color:white}dialog button:disabled{opacity:.35;cursor:default}[data-speed-close]{display:block;margin:18px 0 0 auto;padding:0 14px}
 ha-card.dark{background:#19212c}ha-card.dark.compact:not(.transparent){background:#24362a}ha-card.dark.transparent{background:transparent}ha-card.dark .caption,ha-card.dark.airflow .caption{fill:#d5ded8}ha-card.dark .flow-port-label{fill:#9baebf}ha-card.dark [fill="#30392b"]{fill:#d5dfcb}ha-card.dark [stroke="#30392b"]{stroke:#d5dfcb}ha-card.dark [stop-color="#30392b"]{stop-color:#d5dfcb}ha-card.dark [fill="#444e3c"]{fill:#c6d1c2}ha-card.dark [stroke="#444e3c"]{stroke:#c6d1c2}ha-card.dark [stop-color="#444e3c"]{stop-color:#c6d1c2}ha-card.dark [fill="#66705d"]{fill:#9aab94}ha-card.dark [stroke="#66705d"]{stroke:#9aab94}ha-card.dark [stop-color="#66705d"]{stop-color:#9aab94}ha-card.dark [fill="#77836b"]{fill:#b0bdb0}ha-card.dark [stroke="#77836b"]{stroke:#b0bdb0}ha-card.dark [stop-color="#77836b"]{stop-color:#b0bdb0}ha-card.dark [fill="#a6ae9c"]{fill:#697d6c}ha-card.dark [stroke="#a6ae9c"]{stroke:#697d6c}ha-card.dark [stop-color="#a6ae9c"]{stop-color:#697d6c}ha-card.dark [fill="#56614d"]{fill:#b0c3a5}ha-card.dark [stroke="#56614d"]{stroke:#b0c3a5}ha-card.dark [stop-color="#56614d"]{stop-color:#b0c3a5}ha-card.dark [fill="#3b4533"]{fill:#becdb4}ha-card.dark [stroke="#3b4533"]{stroke:#becdb4}ha-card.dark [stop-color="#3b4533"]{stop-color:#becdb4}ha-card.dark [fill="#42483b"]{fill:#bfccbc}ha-card.dark [stroke="#42483b"]{stroke:#bfccbc}ha-card.dark [stop-color="#42483b"]{stop-color:#bfccbc}ha-card.dark [fill="#c2c8bc"]{fill:#77867b}ha-card.dark [stroke="#c2c8bc"]{stroke:#77867b}ha-card.dark [stop-color="#c2c8bc"]{stop-color:#77867b}ha-card.dark [fill="#34465b"]{fill:#d1dfed}ha-card.dark [stroke="#34465b"]{stroke:#d1dfed}ha-card.dark [stop-color="#34465b"]{stop-color:#d1dfed}ha-card.dark [fill="#52677a"]{fill:#9ab0c4}ha-card.dark [stroke="#52677a"]{stroke:#9ab0c4}ha-card.dark [stop-color="#52677a"]{stop-color:#9ab0c4}ha-card.dark [fill="#edf2f7"]{fill:#2b3849}ha-card.dark [stroke="#edf2f7"]{stroke:#2b3849}ha-card.dark [stop-color="#edf2f7"]{stop-color:#2b3849}ha-card.dark [fill="#dce4ed"]{fill:#46566a}ha-card.dark [stroke="#dce4ed"]{stroke:#46566a}ha-card.dark [stop-color="#dce4ed"]{stop-color:#46566a}ha-card.dark [fill="#c8d0d7"]{fill:#556372}ha-card.dark [stroke="#c8d0d7"]{stroke:#556372}ha-card.dark [stop-color="#c8d0d7"]{stop-color:#556372}ha-card.dark [fill="#aeb9c2"]{fill:#738190}ha-card.dark [stroke="#aeb9c2"]{stroke:#738190}ha-card.dark [stop-color="#aeb9c2"]{stop-color:#738190}ha-card.dark [fill="#e5e8ea"]{fill:#26303d}ha-card.dark [stroke="#e5e8ea"]{stroke:#26303d}ha-card.dark [stop-color="#e5e8ea"]{stop-color:#26303d}ha-card.dark [fill="#596561"]{fill:#b2c2b6}ha-card.dark [stroke="#596561"]{stroke:#b2c2b6}ha-card.dark [stop-color="#596561"]{stop-color:#b2c2b6}ha-card.dark [fill="#c5cbc2"]{fill:#526054}ha-card.dark [stroke="#c5cbc2"]{stroke:#526054}ha-card.dark [stop-color="#c5cbc2"]{stop-color:#526054}ha-card.dark [fill="#f8fbfe"]{fill:#35475a}ha-card.dark [stroke="#f8fbfe"]{stroke:#35475a}ha-card.dark [stop-color="#f8fbfe"]{stop-color:#35475a}ha-card.dark [fill="#dce6f0"]{fill:#253443}ha-card.dark [stroke="#dce6f0"]{stroke:#253443}ha-card.dark [stop-color="#dce6f0"]{stop-color:#253443}ha-card.dark [fill="#b0c1d1"]{fill:#6b8197}ha-card.dark [stroke="#b0c1d1"]{stroke:#6b8197}ha-card.dark [stop-color="#b0c1d1"]{stop-color:#6b8197}ha-card.dark [fill="#8da2b8"]{fill:#50677d}ha-card.dark [stroke="#8da2b8"]{stroke:#50677d}ha-card.dark [stop-color="#8da2b8"]{stop-color:#50677d}ha-card.dark [fill="#d3dde7"]{fill:#7e94a9}ha-card.dark [stroke="#d3dde7"]{stroke:#7e94a9}ha-card.dark [stop-color="#d3dde7"]{stop-color:#7e94a9}ha-card.dark [fill="#cedae7"]{fill:#6d8298}ha-card.dark [stroke="#cedae7"]{stroke:#6d8298}ha-card.dark [stop-color="#cedae7"]{stop-color:#6d8298}ha-card.dark [fill="#8da0b3"]{fill:#71899e}ha-card.dark [stroke="#8da0b3"]{stroke:#71899e}ha-card.dark [stop-color="#8da0b3"]{stop-color:#71899e}ha-card.dark [data-indicator][opacity=".35"],ha-card.dark .preheater[opacity=".35"]{opacity:.55}ha-card.dark .fan-background{fill:#273442}ha-card.dark [data-power-icon][fill="#23863f"]{fill:#51dc7d}ha-card.dark [data-power-icon][fill="#111111"]{fill:#c5d2ca}ha-card.dark .power-action rect{stroke:#58685c}ha-card.dark .segments g[opacity=".04"]{opacity:.065}ha-card.dark.airflow [data-fan]{opacity:.56}ha-card.dark.airflow [data-speed-pixels] rect[opacity=".38"]{fill:#c4d0d8;opacity:.66}ha-card.dark.airflow [data-speed-pixels] rect[opacity=".65"]{fill:#8b9ba8;opacity:.48}ha-card.dark.airflow rect[fill="url(#case)"]{fill-opacity:.48}ha-card.dark.airflow rect[fill="url(#cover)"]{opacity:.4}ha-card.dark.airflow [data-display="outdoor_temp"] text{fill:#42c5e9}ha-card.dark.airflow [data-display="return_temp"] text{fill:#ed82b6}ha-card.dark.airflow [data-display="exhaust_temp"] text{fill:#79b6ed}ha-card.dark.airflow [data-display="supply_temp"] text{fill:#ffad72}ha-card.dark .command-notice rect{fill:#273442;stroke:#627080}ha-card.dark .command-message{fill:#ff9b8a}
-    </style><ha-card>${PANEL.replace('</svg>', '</g></svg>').replace('</defs>', '</defs><g class="panel-art">').replace('<svg ', '<svg class="panel" role="img" ').replace('</svg>', AIRFLOW + overlay + '</svg>')}<span class="data-flash" aria-hidden="true"></span></ha-card><button type="button" class="recovery-note" style="display:none"></button><dialog aria-labelledby="speed-dialog-title"><h3 id="speed-dialog-title"></h3><div class="speed-choices">${Array.from({length:11},(_,i)=>`<button type="button" data-step-choice="${i}">${i}</button>`).join("")}</div><button type="button" data-speed-close></button></dialog>`;
+    </style><ha-card>${PANEL.replace('</svg>', '</g></svg>').replace('</defs>', '</defs><g class="panel-art">').replace('<svg ', '<svg class="panel" role="img" ').replace('</svg>', AIRFLOW + overlay + '</svg>')}<span class="data-flash" aria-hidden="true"></span></ha-card><div class="recovery-footer" style="display:none"><button type="button" class="recovery-note"></button><button type="button" class="analysis-open"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6"/><circle cx="12" cy="7" r=".8" fill="currentColor" stroke="none"/></svg></button></div><dialog aria-labelledby="speed-dialog-title"><h3 id="speed-dialog-title"></h3><div class="speed-choices">${Array.from({length:11},(_,i)=>`<button type="button" data-step-choice="${i}">${i}</button>`).join("")}</div><button type="button" data-speed-close></button></dialog>`;
     for(const fan of this.shadowRoot.querySelectorAll('[data-fan]')) {
       const background=document.createElementNS("http://www.w3.org/2000/svg","circle");background.classList.add("fan-background");background.setAttribute("r",28);background.setAttribute("fill","#f8fafc");background.setAttribute("fill-opacity",".65");fan.prepend(background);
     }
@@ -414,6 +416,11 @@ ha-card.dark{background:#19212c}ha-card.dark.compact:not(.transparent){backgroun
     recovery.addEventListener('click',openRecovery);recovery.addEventListener('keydown',openRecovery);
     this.shadowRoot.querySelector('.recovery-note').addEventListener('click',openRecovery);
 
+    const analytics=document.createElement('dialog');analytics.className='recovery-info analysis-info';
+    analytics.setAttribute('aria-labelledby','analysis-title');analytics.innerHTML='<h3 id="analysis-title" tabindex="-1"></h3><div class="analysis-content"></div><button type="button"></button>';
+    this.shadowRoot.append(analytics);analytics.querySelector('button').addEventListener('click',()=>analytics.close());
+    this.shadowRoot.querySelector('.analysis-open').addEventListener('click',()=>{if(!analytics.open)analytics.showModal();analytics.querySelector('h3').focus({preventScroll:true});analytics.scrollTop=0;});
+
     const openHistory = event => {
       const block = event.target.closest?.("[data-history]");
       if (!block || (event.type === "keydown" && !["Enter", " "].includes(event.key))) return;
@@ -426,6 +433,14 @@ ha-card.dark{background:#19212c}ha-card.dark.compact:not(.transparent){backgroun
       this.dispatchEvent(new CustomEvent("hass-more-info", { detail: { entityId }, bubbles: true, composed: true }));
     };
     for(const fan of this.shadowRoot.querySelectorAll('[data-fan]')) this.shadowRoot.querySelector('svg.panel').append(fan);
+    for(const key of AMBIENT_KEYS) {
+      const group=document.createElementNS('http://www.w3.org/2000/svg','g');
+      group.dataset.ambient=key;group.dataset.history=`ambient_${key}`;group.setAttribute('role','button');group.setAttribute('tabindex','0');group.style.cursor='pointer';
+      const humidity=key.endsWith('humidity');
+      const glyph=humidity?'<path d="M0 -7C-2 -3-5 0-5 3a5 5 0 0 0 10 0C5 0 2-3 0-7Z"/>':'<path d="M-2 2V-6a2 2 0 0 1 4 0v8a4 4 0 1 1-4 0ZM0 -3V5"/>';
+      group.innerHTML=`<title></title><rect class="ambient-hit" y="-11" width="100" height="22" fill="transparent" pointer-events="all"/><g class="ambient-icon" fill="none" stroke="currentColor" stroke-width="1.4">${glyph}</g><text dominant-baseline="central" font-family="Arial,sans-serif" font-size="14" fill="currentColor"></text>`;
+      this.shadowRoot.querySelector('svg.panel').append(group);
+    }
     this._initialLayout = [...this.shadowRoot.querySelectorAll("svg.panel *")].map(el=>[el,[...el.attributes].map(a=>[a.name,a.value])]);
     this.shadowRoot.addEventListener("click", openHistory);
     this.shadowRoot.addEventListener("keydown", openHistory);
@@ -477,6 +492,13 @@ ha-card.dark{background:#19212c}ha-card.dark.compact:not(.transparent){backgroun
       const value = supplied.trim() || (key === "preheater" ? undefined : `${domain}.${group === "esp" ? esp : main}_${suffix}`);
       if (value !== undefined && !/^[a-z_]+\.[a-z0-9_]+$/.test(value)) throw new Error(`Invalid entity ID for ${key}`);
       ids[key] = value;
+    }
+    const ambient=config.ambient ?? {};
+    if(typeof ambient!=="object" || Array.isArray(ambient) || Object.keys(ambient).some(key=>!AMBIENT_KEYS.includes(key))) throw new Error("ambient must map outdoor/indoor temperature and humidity to entity IDs");
+    for(const key of AMBIENT_KEYS) {
+      const value=ambient[key] ?? '';
+      if(typeof value!=="string" || (value.trim() && !/^sensor\.[a-z0-9_]+$/.test(value.trim()))) throw new Error(`Invalid ambient entity ID for ${key}`);
+      ids[`ambient_${key}`]=value.trim() || undefined;
     }
     if (config.view !== undefined && !["control", "airflow"].includes(config.view)) throw new Error("view must be control or airflow");
     if(config.theme !== undefined && !["auto","light","dark"].includes(config.theme)) throw new Error("theme must be auto, light or dark");
@@ -561,7 +583,7 @@ ha-card.dark{background:#19212c}ha-card.dark.compact:not(.transparent){backgroun
     }
     if(!airflow) {
       this.shadowRoot.querySelector('.preheater').parentElement.setAttribute('transform','');
-      this.shadowRoot.querySelector('.preheater').setAttribute('transform','translate(79.3 37) scale(.7)');
+      this.shadowRoot.querySelector('.preheater').setAttribute('transform','translate(98.97 56.25) scale(.63)');
       const hit=this.shadowRoot.querySelector('[data-history="preheater"]');hit.setAttribute('transform','');
       for(const [key,value] of Object.entries({x:258,y:230,width:36,height:40})) hit.querySelector('rect').setAttribute(key,value);
       this.shadowRoot.querySelector('.heater-setpoint').setAttribute('transform','');
@@ -641,7 +663,7 @@ ha-card.dark{background:#19212c}ha-card.dark.compact:not(.transparent){backgroun
     attrs(root.querySelector('[data-power-icon]'),{transform:'translate(400 359) scale(.7) translate(-340 -590)'});
     attrs(root.querySelector('.waiting'),{cx:400,cy:359,r:12});root.querySelector('.waiting').style.transformOrigin='400px 359px';
     attrs(root.querySelector('.command-message'),{x:400,y:FLOW_LAYOUT.caseBottom+2});
-    attrs(root.querySelector('.preheater'),{transform:`translate(47.13 ${FLOW_LAYOUT.upper-151.75}) scale(.66)`});
+    attrs(root.querySelector('.preheater'),{transform:`translate(63.99 ${FLOW_LAYOUT.upper-135.25}) scale(.6)`});
     attrs(root.querySelector('[data-history="preheater"] rect'),{x:214,y:FLOW_LAYOUT.upper-20,width:36,height:40});
   }
   set hass(value) {
@@ -1049,10 +1071,32 @@ ha-card.dark{background:#19212c}ha-card.dark.compact:not(.transparent){backgroun
         setAttributeIfChanged(block,"aria-label", label); block.querySelector("title").textContent = button.querySelector("title").textContent;
       }
     }
+    for(const side of ['outdoor','indoor']) {
+      let row=0;
+      const right=side==='indoor',airflow=this._config.view==='airflow';
+      for(const kind of ['temp','humidity']) {
+        const key=`${side}_${kind}`,role=`ambient_${key}`,group=this._node(`[data-ambient="${key}"]`);
+        const assigned=!!this._ids[role];group.style.display=assigned?'':'none';
+        if(!assigned) continue;
+        const value=number(role),valid=Number.isFinite(value) && (kind==='humidity'?value>=0&&value<=100:Math.abs(value)<=1000);
+        const unit=kind==='humidity'?'%':'°C';
+        const label=ru?`${right?'Помещение':'Улица'}: ${kind==='humidity'?'влажность':'температура'}`:`${right?'Indoor':'Outdoor'} ${kind==='humidity'?'humidity':'temperature'}`;
+        const text=valid?`${Number(value.toFixed(1))}${unit}`:'—';
+        const x=right?(airflow?640:557):(airflow?164:125),y=(airflow?196:245)+row++*24;
+        setAttributeIfChanged(group,'transform',`translate(${x} ${y})`);group.style.color=dark?'#b0bdb0':(airflow?'#52677a':'#66705d');
+        const glyph=group.querySelector('.ambient-icon'),caption=group.querySelector('text'),hit=group.querySelector('rect');
+        glyph.style.color=dark?'#68bde5':'#3e9dc4';
+        setAttributeIfChanged(glyph,'transform',`translate(${right?-6:6} 0)`);
+        setAttributeIfChanged(caption,'x',right?-20:20);setAttributeIfChanged(caption,'text-anchor',right?'end':'start');setAttributeIfChanged(hit,'x',right?-100:0);
+        if(caption.textContent!==text) caption.textContent=text;
+        group.querySelector('title').textContent=`${label}: ${valid?text:(ru?'Нет данных':'No data')}`;
+        setAttributeIfChanged(group,'aria-label',group.querySelector('title').textContent);
+      }
+    }
     const recovery=this._node('.recovery'), airflowViewRecovery=this._config.view==='airflow';
     recovery.style.display=this._config.show_recovery===false?'none':'';
     const recoveryNote=this._node('.recovery-note');
-    recoveryNote.style.display=this._config.show_recovery!==false && this._config.show_recovery_info===true?'block':'none';
+    this._node('.recovery-footer').style.display=this._config.show_recovery!==false && this._config.show_recovery_info===true?'flex':'none';
     if(this._config.show_recovery!==false) {
       const result=temperatureRecovery({outdoor:number('outdoor_temp'),indoor:number('return_temp'),supply:number('supply_temp'),connected,power:raw('power'),bypass:raw('bypass'),defrost:raw('defrost'),preheater:this._ids.preheater?raw('preheater')??'unknown':undefined,fault:raw('fault'),fire:raw('fire_alarm'),supplySpeed:number('supply_speed'),exhaustSpeed:number('exhaust_speed')});
       setAttributeIfChanged(recovery,'transform',airflowViewRecovery?`translate(400 ${FLOW_LAYOUT.center+FLOW_LAYOUT.artOffset})`:'translate(340 256)');
@@ -1079,6 +1123,53 @@ ha-card.dark{background:#19212c}ha-card.dark.compact:not(.transparent){backgroun
       if(info.querySelector('p').textContent!==explanation) info.querySelector('p').textContent=explanation;
       info.querySelector('button').textContent=ru?'Закрыть':'Close';
 
+    }
+    if(this._config.show_recovery!==false && this._config.show_recovery_info===true) {
+    const analytics=this._node('.analysis-info');
+    analytics.querySelector('h3').textContent=ru?'Наблюдения и пояснения':'Observations and explanations';
+    analytics.querySelector('button').textContent=ru?'Закрыть':'Close';
+    this._node('.analysis-open').setAttribute('aria-label',ru?'Аналитика рекуператора':'Ventilation analysis');
+    this._node('.analysis-open').title=ru?'Наблюдения и пояснения':'Observations and explanations';
+    const observations=[];
+    const add=(russian,english,whyRu='',whyEn='')=>observations.push({title:ru?russian:english,detail:ru?whyRu:whyEn});
+    const temp=key=>numeric(key)&&Math.abs(number(key))<=1000;
+    const delta=(a,b)=>Number((number(a)-number(b)).toFixed(1));
+    if(!connected) add('Нет связи с рекуператором','No connection to the ventilator');
+    else if(!flowing) add('Рекуператор выключен','Ventilator is switched off');
+    for(const [key,russian,english] of [['bypass','Байпас открыт','Bypass is open'],['defrost','Включена разморозка','Defrost is active'],['preheater','Включён предподогрев','Preheater is active']]) if(connected&&on(key)) add(russian,english,'В этом режиме процент температурной эффективности не показывается.','Temperature recovery is not displayed in this mode.');
+    if(temp('ambient_indoor_temp')&&temp('return_temp')) {
+      const d=delta('return_temp','ambient_indoor_temp');
+      add(`Возврат относительно помещения: ${d>0?'+':''}${d} °C`,`Return relative to indoors: ${d>0?'+':''}${d} °C`,Math.abs(d)>=2?'Возможны теплообмен в воздуховоде, подсос воздуха или различие показаний и расположения датчиков. Сравните температуру у входа RA с комнатным датчиком.':'Температуры близки с учётом возможной погрешности датчиков.',Math.abs(d)>=2?'Possible duct heat exchange, air leakage, or differences in sensor readings and placement. Compare the RA inlet temperature with the room sensor.':'Temperatures are close within possible sensor uncertainty.');
+    }
+    if(temp('ambient_outdoor_temp')&&temp('outdoor_temp')) {
+      const d=delta('outdoor_temp','ambient_outdoor_temp');
+      add(`Забор воздуха относительно улицы: ${d>0?'+':''}${d} °C`,`Air intake relative to outdoors: ${d>0?'+':''}${d} °C`,Math.abs(d)>=2?'Возможны влияние воздуховода, солнца или расположения наружного датчика. Сравните условия у воздухозабора и у датчика.':'Показания наружного воздуха близки.',Math.abs(d)>=2?'Possible duct or sunlight effects, or different outdoor sensor placement. Compare conditions at the intake and sensor.':'Outdoor air readings are close.');
+    }
+    if(temp('ambient_indoor_temp')&&temp('supply_temp')) {
+      const d=delta('supply_temp','ambient_indoor_temp');
+      add(`Приток относительно помещения: ${d>0?'+':''}${d} °C`,`Supply relative to indoors: ${d>0?'+':''}${d} °C`,d<-1?'Приток может охлаждать помещение. Без расхода воздуха тепловую мощность определить нельзя.':d>1?'Приток может нагревать помещение.':'Температура притока близка к комнатной.',d<-1?'Supply air can cool the room. Airflow is needed to estimate thermal power.':d>1?'Supply air can warm the room.':'Supply temperature is close to room temperature.');
+    }
+    if(flowing&&temp('return_temp')&&temp('supply_temp')&&temp('outdoor_temp')) {
+      const denominator=number('return_temp')-number('outdoor_temp');
+      if(Math.abs(denominator)<3) add('Малая разница наружной и возвратной температур','Small outdoor/return temperature difference','Разница меньше 3 °C: погрешности датчиков сильно влияют на процент эффективности.','The difference is below 3 °C; sensor uncertainty strongly affects the recovery percentage.');
+      else if((number('supply_temp')-number('outdoor_temp'))/denominator>1) add('Приток выходит за температурный диапазон улица–возврат','Supply exceeds the outdoor–return temperature range','Возможны дополнительный нагрев, влияние вентиляторов, погрешность датчиков или переходный режим. Сравните показания со штатным пультом и историю после стабилизации режима.','Possible additional heating, fan heat, sensor uncertainty, or a transient. Compare with the original controller and inspect history after conditions settle.');
+    }
+    const humidityReady=['outdoor','indoor'].every(side=>temp(`ambient_${side}_temp`)&&number(`ambient_${side}_temp`)>=-60&&number(`ambient_${side}_temp`)<=60&&numeric(`ambient_${side}_humidity`)&&number(`ambient_${side}_humidity`)>=0&&number(`ambient_${side}_humidity`)<=100);
+    if(humidityReady) {
+      const vapor=t=>6.112*Math.exp(17.62*t/(243.12+t));
+      const equivalent=number('ambient_outdoor_humidity')*vapor(number('ambient_outdoor_temp'))/vapor(number('ambient_indoor_temp'));
+      const d=equivalent-number('ambient_indoor_humidity');
+      add(ru?'Оценка влажности':'Humidity assessment','Humidity assessment',`Наружный воздух при комнатной температуре: около ${Math.round(equivalent)}% относительной влажности. ${d<-5?'Вентиляция может способствовать снижению влажности помещения.':d>5?'Наружный воздух может добавлять влагу в помещение.':'Влагосодержание наружного и комнатного воздуха близко.'} ${equivalent>100?'При охлаждении до комнатной температуры возможна конденсация. ':''}Перенос влаги теплообменником и источники влаги в доме здесь не учтены.`,`Outdoor air at room temperature: about ${Math.round(equivalent)}% relative humidity. ${d<-5?'Ventilation may reduce indoor humidity.':d>5?'Outdoor air may add moisture indoors.':'Outdoor and indoor moisture contents are close.'} ${equivalent>100?'Cooling to room temperature may cause condensation. ':''}Moisture transfer through the exchanger and indoor moisture sources are excluded.`);
+    } else if(AMBIENT_KEYS.some(key=>this._ids[`ambient_${key}`])) add('Оценка влажности недоступна','Humidity assessment unavailable','Нужны доступные температура и влажность и улицы, и помещения.','Available outdoor and indoor temperature and humidity are required.');
+    if(!observations.length) add('Недостаточно доступных показаний для сравнения','Not enough available readings for comparison');
+    const content=analytics.querySelector('.analysis-content'),signature=JSON.stringify(observations);
+    if(this._analysisSignature!==signature) {
+      this._analysisSignature=signature;content.replaceChildren();
+      for(const item of observations) {
+        const title=document.createElement('h4');title.textContent=item.title;content.append(title);
+        if(item.detail){const paragraph=document.createElement('p');paragraph.textContent=item.detail;content.append(paragraph);}
+      }
+    }
     }
     const dialog = this._node("dialog"), role = dialog.dataset.role;
     dialog.querySelector("h3").textContent = role === "supply_speed" ? (ru ? "Скорость притока" : "Supply speed") : (ru ? "Скорость вытяжки" : "Exhaust speed");
@@ -1126,7 +1217,7 @@ class RoyalClimaCardEditor extends HTMLElement {
       const value=event.detail?.value;
       if(!value || typeof value!=="object") return;
       const config={...this._config,...value,type:"custom:royal-clima-card"};
-      for(const key of ['entities','show_icons']) config[key]={...this._config?.[key],...value[key]};
+      for(const key of ['entities','show_icons','ambient']) config[key]={...this._config?.[key],...value[key]};
       this._config=config;
       this.dispatchEvent(new CustomEvent('config-changed',{detail:{config},bubbles:true,composed:true}));
     });
@@ -1150,10 +1241,12 @@ class RoyalClimaCardEditor extends HTMLElement {
       {type:'grid',name:'',schema:[select('theme',[['auto','Авто','Auto'],['light','Светлая','Light'],['dark','Тёмная','Dark']]),select('language',[['auto','Авто','Auto'],['ru','Русский','Russian'],['en','Английский','English']])]},
       bool('transparent'),bool('flow_colormap'),bool('sensor_boost_co2'),bool('show_recovery'),bool('show_recovery_info'),
       {type:'expandable',name:'show_icons',title:label('show_icons'),schema:[...INDICATORS.map(d=>d[0]),'preheater'].map(bool)},
+      {type:'expandable',name:'ambient',title:ru?'Внешние показания улицы и помещения':'Outdoor and indoor readings',schema:AMBIENT_KEYS.map(name=>({name,ambient:true,selector:{entity:{domain:'sensor'}}}))},
       {type:'expandable',name:'entities',title:label('entities'),schema:Object.entries(ROLES).map(([name,[domain]])=>({name,selector:{entity:{domain}}}))}
     ];
-    this._form.computeLabel=schema=>label(schema.name);
+    this._form.computeLabel=schema=>schema.ambient && schema.name==='outdoor_temp'?(ru?'Температура улицы':'Outdoor temperature'):({outdoor_humidity:ru?'Влажность улицы':'Outdoor humidity',indoor_temp:ru?'Температура помещения':'Indoor temperature',indoor_humidity:ru?'Влажность помещения':'Indoor humidity'}[schema.name] || label(schema.name));
     this._form.computeHelper=schema=> {
+      if(schema.ambient) return ru?'Не задан — строка скрыта.':'Not set — the row is hidden.';
       if(!ROLES[schema.name]) return undefined;
       const [domain,suffix,group]=ROLES[schema.name];
       if(schema.name==='preheater') return ru?'Не задан — значок скрыт.':'Not set — the icon is hidden.';
@@ -1161,7 +1254,7 @@ class RoyalClimaCardEditor extends HTMLElement {
       return `${ru?'По умолчанию':'Default'}: ${domain}.${String(prefix).trim().replace(/_+$/,'')}_${suffix}`;
     };
     const icons=Object.fromEntries([...INDICATORS.map(d=>d[0]),'preheater'].map(key=>[key,true]));
-    this._form.data={view:'control',prefix:'vent',esp_prefix:'royalclima',theme:'auto',language:'auto',transparent:false,flow_colormap:false,sensor_boost_co2:true,show_recovery:true,show_recovery_info:false,...this._config,show_icons:{...icons,...this._config.show_icons},entities:{...this._config.entities}};
+    this._form.data={view:'control',prefix:'vent',esp_prefix:'royalclima',theme:'auto',language:'auto',transparent:false,flow_colormap:false,sensor_boost_co2:true,show_recovery:true,show_recovery_info:false,...this._config,show_icons:{...icons,...this._config.show_icons},entities:{...this._config.entities},ambient:{...this._config.ambient}};
     this.shadowRoot.querySelector('p').textContent=ru?'Обычно достаточно префиксов. Пустые поля сущностей используют стандартные имена; предподогрев без сенсора скрыт.':'Prefixes are normally enough. Empty entity fields use default IDs; the preheater stays hidden without a sensor.';
   }
 }

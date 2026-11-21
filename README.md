@@ -164,3 +164,17 @@ The center shows a rounded percentage or an approximation sign with an explanato
 Recovery percentage uses indicative bands: <50% orange, 50–69% ochre, 70–84% teal, ≥85% green. The circle shows the percentage without an approximation sign. When calculation is unavailable, click to view the reason. Colors are a visual guide, not a fault diagnosis.
 
 An unavailable percentage is shown as a gray “≈”; click for the reason. The `show_recovery_info` row contains the same information and opens the same dialog; it is hidden when `show_recovery: false`. The formula remains in documentation only.
+
+## External readings
+
+Optional outdoor and indoor sensors appear below the upper temperatures in both views. These are separate readings: they do not replace ERV sensors or recovery calculation inputs. Empty bindings hide the row; unavailable or invalid values show a dash. Values are rounded to one decimal; clicking opens entity history. These bindings are also available in the visual editor.
+
+```yaml
+ambient:
+  outdoor_temp: sensor.outdoor_temperature
+  outdoor_humidity: sensor.outdoor_humidity
+  indoor_temp: sensor.indoor_temperature
+  indoor_humidity: sensor.indoor_humidity
+```
+
+With `show_recovery_info` enabled, the analysis icon in the explanation row opens observations about current temperatures, operating modes and possible causes of differences. With all four external readings, it estimates outdoor relative humidity at indoor temperature, excluding exchanger moisture transfer. Analysis does not use stored history.

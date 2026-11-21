@@ -135,3 +135,10 @@ test("recovery distinguishes disconnection from confirmed power off",()=>{
  assert.equal(context.recovery({...recoveryInput,power:"off"}).reason,"powered_off");
  assert.equal(context.recovery({...recoveryInput,power:"unknown"}).reason,"offline");
 });
+
+test("external readings are optional explicit sensor bindings",()=>{
+ assert.equal(card()._ids.ambient_outdoor_temp,undefined);
+ assert.equal(card({ambient:{outdoor_temp:" sensor.outside "}})._ids.ambient_outdoor_temp,"sensor.outside");
+ assert.equal(card({ambient:{indoor_humidity:""}})._ids.ambient_indoor_humidity,undefined);
+ for(const ambient of [[],{bad:"sensor.test"},{indoor_temp:12},{outdoor_temp:"switch.test"}]) assert.throws(()=>card({ambient}));
+});
