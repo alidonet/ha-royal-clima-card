@@ -179,3 +179,5 @@ ambient:
 ```
 
 With `show_recovery_info` enabled, the analysis icon in the explanation row opens observations about current temperatures, operating modes and possible causes of differences. With all four external readings, it estimates outdoor relative humidity at indoor temperature, excluding exchanger moisture transfer. Analysis does not use stored history.
+
+The speed range follows `select.<prefix>_fan_speeds` (3 or 10), overridable with `entities.fan_speeds`. If unavailable, a speed selector offering only 0–3 determines the range; otherwise 0–10 is used. In 0–3 mode the control panel uses three segments of a triangular scale, and the dialog offers only Off and speeds 1–3.

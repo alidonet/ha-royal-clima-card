@@ -142,3 +142,17 @@ test("external readings are optional explicit sensor bindings",()=>{
  assert.equal(card({ambient:{indoor_humidity:""}})._ids.ambient_indoor_humidity,undefined);
  for(const ambient of [[],{bad:"sensor.test"},{indoor_temp:12},{outdoor_temp:"switch.test"}]) assert.throws(()=>card({ambient}));
 });
+
+test("fan range follows firmware mode with selector-options fallback",()=>{
+ const c=card();
+ assert.equal(c._ids.fan_speeds,"select.vent_fan_speeds");
+ c._hass={states:{[c._ids.supply_speed_control]:{attributes:{options:["0","1","2","3"]}}}};
+ assert.equal(c._speedMax("supply_speed"),3);
+ c._hass.states[c._ids.fan_speeds]={state:"10"};
+ assert.equal(c._speedMax("supply_speed"),10);
+ c._hass.states[c._ids.fan_speeds]={state:"3"};
+ assert.equal(c._speedMax("exhaust_speed"),3);
+ c._hass.states[c._ids.fan_speeds]={state:"unavailable"};
+ assert.equal(c._speedMax("supply_speed"),3);
+ assert.equal(c._speedMax("exhaust_speed"),10);
+});

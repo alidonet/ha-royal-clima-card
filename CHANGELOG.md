@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.4
+
+- Support fan speed ranges 0..3 and 0..10, detected from the firmware Fan speeds entity or speed selector options; restrict speed selection and commands to the supported range;
+
 ## 0.1.3
 
 - Add optional outdoor and indoor temperature and humidity sensors, with history links and visual editor settings;
