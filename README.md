@@ -49,6 +49,7 @@ prefix: vent
 esp_prefix: royalclima
 transparent: false
 flow_colormap: false
+animation: auto
 show_recovery: true
 show_recovery_info: false
 sensor_boost_co2: true
@@ -181,3 +182,7 @@ ambient:
 With `show_recovery_info` enabled, the analysis icon in the explanation row opens observations about current temperatures, operating modes and possible causes of differences. With all four external readings, it estimates outdoor relative humidity at indoor temperature, excluding exchanger moisture transfer. Analysis does not use stored history.
 
 The speed range follows `select.<prefix>_fan_speeds` (3 or 10), overridable with `entities.fan_speeds`. If unavailable, a speed selector offering only 0–3 determines the range; otherwise 0–10 is used. In 0–3 mode the control panel uses three segments of a triangular scale, and the dialog offers only Off and speeds 1–3.
+
+The `animation` option accepts `auto` (default, respects the system reduced-motion preference), `on` (enables animation regardless of that preference), or `off` (disables animation). Only running fans animate. This option is available in the visual editor. Analysis combines active modes into one explanation and reports possible condensation at saturation instead of relative humidity above 100%.
+
+Temperatures follow the HA system unit (°C/°F), converting each entity from its own unit. Analysis, recovery and colormap calculations use Celsius; temperature differences are displayed in the system unit. External temperature sensors require `unit_of_measurement` (°C or °F); missing or unsupported units make the reading unusable. Only default firmware temperature bindings assume Celsius when that attribute is absent. The editor summarizes found, missing and unavailable entities; unassigned optional bindings are excluded. Tooltips distinguish off from unknown states; an explicitly bound but missing preheater sensor retains a pale icon.

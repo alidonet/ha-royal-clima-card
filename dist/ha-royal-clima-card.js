@@ -141,7 +141,7 @@ const AIRFLOW = `<svg class="airflow-art" x="80" y="-16" xmlns="http://www.w3.or
 </svg>`;
 const PANEL = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"680\" height=\"681\" viewBox=\"0 0 680 681\"><defs>\n\n\n\n<marker id=\"arrow\" viewBox=\"0 0 10 10\" refX=\"8\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M1 1 9 5 1 9\" fill=\"none\" stroke=\"#505b48\" stroke-width=\"1.5\"/></marker></defs>\n\n\n\n<g transform=\"translate(0 -35)\">\n<rect class=\"screen-layer\" data-screen-surface=\"\" x=\"51\" y=\"81\" width=\"578\" height=\"483\" rx=\"6\" fill=\"#e9ede2\" stroke=\"#f8faf3\" stroke-width=\"2\"/>\n\n<!-- Дом и наружная зона. Левая стена проходит через теплообменник. -->\n\n<g transform=\"translate(0 8)\" fill=\"none\" stroke=\"#a6ae9c\" stroke-width=\"3.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M324 194 466 112Q469 110 472 112L612 194\"/><path d=\"M340 184.76V257 M340 345V434 M598 185.8V434\"/></g>\n\n<g class=\"airflow-lines\" transform=\"translate(38 -56)\" fill=\"none\" stroke=\"#56614d\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n<path d=\"m302 327 38 38-38 38-38-38Z\" stroke-width=\"2\"/>\n<path d=\"M371 335H334L324 344 M318 349 284 380 M278 385 268 394H229\"/>\n<path d=\"M229 335H268L278 344 M285 350 298 362 M305 369 318 380 M325 386 334 394H371\"/><path d=\"m237 390-8 4 8 4 M363 390l8 4-8 4\" stroke-width=\"1.8\"/>\n</g><text class=\"airflow-label\" x=\"276\" y=\"267\" text-anchor=\"middle\" fill=\"#3b4533\" font-family=\"Arial,sans-serif\" font-size=\"16\" font-weight=\"700\">OA</text><text class=\"airflow-label\" x=\"403\" y=\"267\" text-anchor=\"middle\" fill=\"#3b4533\" font-family=\"Arial,sans-serif\" font-size=\"16\" font-weight=\"700\">RA</text><text class=\"airflow-label\" x=\"276\" y=\"362\" text-anchor=\"middle\" fill=\"#3b4533\" font-family=\"Arial,sans-serif\" font-size=\"16\" font-weight=\"700\">EA</text><text class=\"airflow-label\" x=\"403\" y=\"362\" text-anchor=\"middle\" fill=\"#3b4533\" font-family=\"Arial,sans-serif\" font-size=\"16\" font-weight=\"700\">SA</text>\n\n<path class=\"screen-layer fan-divider\" d=\"M74 449H606\" stroke=\"#d0d7ca\"/><g class=\"preheater\" transform=\"translate(45.58 -2.1) scale(.82)\" stroke=\"#77836b\" opacity=\".35\" fill=\"none\" stroke-width=\"1.7\" stroke-linecap=\"round\"><path d=\"M274 295q-5-5 0-10t0-10m7 20q-5-5 0-10t0-10m7 20q-5-5 0-10t0-10\"/><rect x=\"269\" y=\"300\" width=\"24\" height=\"5\" rx=\"1\"/></g><g fill=\"#66705d\" font-family=\"Arial,sans-serif\" font-size=\"15\"><text x=\"208\" y=\"245\">°C</text><text x=\"542\" y=\"245\">°C</text><text x=\"208\" y=\"386\">°C</text><text x=\"542\" y=\"386\">°C</text></g></g></svg>";
 const ICONS = {"chip": "<path d=\"M6,4H18V5H21V7H18V9H21V11H18V13H21V15H18V17H21V19H18V20H6V19H3V17H6V15H3V13H6V11H3V9H6V7H3V5H6V4M11,15V18H12V15H11M13,15V18H14V15H13M15,15V18H16V15H15Z\" />", "hvac": "<path d=\"M8.58 14C8.3 13.55 8.11 13.03 8.06 12.5H15.94C15.89 13.03 15.7 13.55 15.47 14H8.58M12 16C10.97 16 10.08 15.61 9.38 15H14.63C13.92 15.61 13.03 16 12 16M12 8C13.03 8 13.92 8.39 14.63 9H9.38C10.08 8.39 10.97 8 12 8M8.58 10H15.42C15.7 10.45 15.89 10.97 15.94 11.5H8.06C8.11 10.97 8.3 10.45 8.58 10M3 3V21H21V3H3M12 18C8.67 18 6 15.33 6 12S8.67 6 12 6 18 8.67 18 12 15.33 18 12 18Z\" />", "air-filter": "<path d=\"M4 3h16v18H4zm2 2v14h12V5zm1 2h10v2H7zm0 4h10v2H7zm0 4h10v2H7z\"/>", "alert-circle-outline": "<path d=\"M11,15H13V17H11V15M11,7H13V13H11V7M12,2C6.47,2 2,6.5 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20Z\" />", "fire-alert": "<path d=\"M15.66 11.2C15.43 10.9 15.15 10.64 14.89 10.38C14.22 9.78 13.46 9.35 12.82 8.72C11.33 7.26 11 4.85 11.95 3C11 3.23 10.17 3.75 9.46 4.32C6.87 6.4 5.85 10.07 7.07 13.22C7.11 13.32 7.15 13.42 7.15 13.55C7.15 13.77 7 13.97 6.8 14.05C6.57 14.15 6.33 14.09 6.14 13.93C6.08 13.88 6.04 13.83 6 13.76C4.87 12.33 4.69 10.28 5.45 8.64C3.78 10 2.87 12.3 3 14.47C3.06 14.97 3.12 15.47 3.29 15.97C3.43 16.57 3.7 17.17 4 17.7C5.08 19.43 6.95 20.67 8.96 20.92C11.1 21.19 13.39 20.8 15.03 19.32C16.86 17.66 17.5 15 16.56 12.72L16.43 12.46C16.22 12 15.66 11.2 15.66 11.2M12.5 17.5C12.22 17.74 11.76 18 11.4 18.1C10.28 18.5 9.16 17.94 8.5 17.28C9.69 17 10.4 16.12 10.61 15.23C10.78 14.43 10.46 13.77 10.33 13C10.21 12.26 10.23 11.63 10.5 10.94C10.69 11.32 10.89 11.7 11.13 12C11.9 13 13.11 13.44 13.37 14.8C13.41 14.94 13.43 15.08 13.43 15.23C13.46 16.05 13.1 16.95 12.5 17.5H12.5M21 13H19V7H21V13M21 17H19V15H21V17Z\" />", "valve": "<path d=\"M4 22H2V2H4M22 2H20V22H22M17.24 5.34L13.24 9.34A3 3 0 0 0 9.24 13.34L5.24 17.34L6.66 18.76L10.66 14.76A3 3 0 0 0 14.66 10.76L18.66 6.76Z\" />", "snowflake-melt": "<path d=\"M8 17.85C8 19.04 7.11 20 6 20S4 19.04 4 17.85C4 16.42 6 14 6 14S8 16.42 8 17.85M16.46 12V10.56L18.46 9.43L20.79 10.05L21.31 8.12L19.54 7.65L20 5.88L18.07 5.36L17.45 7.69L15.45 8.82L13 7.38V5.12L14.71 3.41L13.29 2L12 3.29L10.71 2L9.29 3.41L11 5.12V7.38L8.5 8.82L6.5 7.69L5.92 5.36L4 5.88L4.47 7.65L2.7 8.12L3.22 10.05L5.55 9.43L7.55 10.56V12H2V13H22V12H16.46M9.5 12V10.56L12 9.11L14.5 10.56V12H9.5M20 17.85C20 19.04 19.11 20 18 20S16 19.04 16 17.85C16 16.42 18 14 18 14S20 16.42 20 17.85M14 20.85C14 22.04 13.11 23 12 23S10 22.04 10 20.85C10 19.42 12 17 12 17S14 19.42 14 20.85Z\" />", "fan-plus": "<path d=\"M13 19C13 17.59 13.5 16.3 14.3 15.28C14.17 14.97 14.03 14.65 13.86 14.34C14.26 14 14.57 13.59 14.77 13.11C15.26 13.21 15.78 13.39 16.25 13.67C17.07 13.25 18 13 19 13C20.05 13 21.03 13.27 21.89 13.74C21.95 13.37 22 12.96 22 12.5C22 8.92 18.03 8.13 14.33 10.13C14 9.73 13.59 9.42 13.11 9.22C13.3 8.29 13.74 7.24 14.73 6.75C17.09 5.57 17 2 12.5 2C8.93 2 8.14 5.96 10.13 9.65C9.72 9.97 9.4 10.39 9.21 10.87C8.28 10.68 7.23 10.25 6.73 9.26C5.56 6.89 2 7 2 11.5C2 15.07 5.95 15.85 9.64 13.87C9.96 14.27 10.39 14.59 10.88 14.79C10.68 15.71 10.24 16.75 9.26 17.24C6.9 18.42 7 22 11.5 22C12.31 22 13 21.78 13.5 21.41C13.19 20.67 13 19.86 13 19M12 13C11.43 13 11 12.55 11 12S11.43 11 12 11C12.54 11 13 11.45 13 12S12.54 13 12 13M20 15V18H23V20H20V23H18V20H15V18H18V15H20Z\" />", "molecule-co2": "<path d=\"M5,7A2,2 0 0,0 3,9V15A2,2 0 0,0 5,17H8V15H5V9H8V7H5M11,7A2,2 0 0,0 9,9V15A2,2 0 0,0 11,17H13A2,2 0 0,0 15,15V9A2,2 0 0,0 13,7H11M11,9H13V15H11V9M16,10.5V12H19V13.5H17.5A1.5,1.5 0 0,0 16,15V18H20.5V16.5H17.5V15H19A1.5,1.5 0 0,0 20.5,13.5V12A1.5,1.5 0 0,0 19,10.5H16Z\" />", "power": "<path d=\"M16.56,5.44L15.11,6.89C16.84,7.94 18,9.83 18,12A6,6 0 0,1 12,18A6,6 0 0,1 6,12C6,9.83 7.16,7.94 8.88,6.88L7.44,5.44C5.36,6.88 4,9.28 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12C20,9.28 18.64,6.88 16.56,5.44M13,3H11V13H13\" />", "fan-chevron-up": "<path d=\"M13 19C13 17.59 13.5 16.3 14.3 15.28C14.17 14.97 14.03 14.65 13.86 14.34C14.26 14 14.57 13.59 14.77 13.11C15.26 13.21 15.78 13.39 16.25 13.67C17.07 13.25 18 13 19 13C20.05 13 21.03 13.27 21.89 13.74C21.95 13.37 22 12.96 22 12.5C22 8.92 18.03 8.13 14.33 10.13C14 9.73 13.59 9.42 13.11 9.22C13.3 8.29 13.74 7.24 14.73 6.75C17.09 5.57 17 2 12.5 2C8.93 2 8.14 5.96 10.13 9.65C9.72 9.97 9.4 10.39 9.21 10.87C8.28 10.68 7.23 10.25 6.73 9.26C5.56 6.89 2 7 2 11.5C2 15.07 5.95 15.85 9.64 13.87C9.96 14.27 10.39 14.59 10.88 14.79C10.68 15.71 10.24 16.75 9.26 17.24C6.9 18.42 7 22 11.5 22C12.31 22 13 21.78 13.5 21.41C13.19 20.67 13 19.86 13 19M12 13C11.43 13 11 12.55 11 12S11.43 11 12 11C12.54 11 13 11.45 13 12S12.54 13 12 13M19 17.83L15.83 21L14.41 19.59L19 15L23.59 19.59L22.17 21L19 17.83\" />", "fan-chevron-down": "<path d=\"M13 19C13 17.59 13.5 16.3 14.3 15.28C14.17 14.97 14.03 14.65 13.86 14.34C14.26 14 14.57 13.59 14.77 13.11C15.26 13.21 15.78 13.39 16.25 13.67C17.07 13.25 18 13 19 13C20.05 13 21.03 13.27 21.89 13.74C21.95 13.37 22 12.96 22 12.5C22 8.92 18.03 8.13 14.33 10.13C14 9.73 13.59 9.42 13.11 9.22C13.3 8.29 13.74 7.24 14.73 6.75C17.09 5.57 17 2 12.5 2C8.93 2 8.14 5.96 10.13 9.65C9.72 9.97 9.4 10.39 9.21 10.87C8.28 10.68 7.23 10.25 6.73 9.26C5.56 6.89 2 7 2 11.5C2 15.07 5.95 15.85 9.64 13.87C9.96 14.27 10.39 14.59 10.88 14.79C10.68 15.71 10.24 16.75 9.26 17.24C6.9 18.42 7 22 11.5 22C12.31 22 13 21.78 13.5 21.41C13.19 20.67 13 19.86 13 19M12 13C11.43 13 11 12.55 11 12S11.43 11 12 11C12.54 11 13 11.45 13 12S12.54 13 12 13M19 19.17L22.17 16L23.59 17.41L19 22L14.41 17.41L15.83 16L19 19.17\" />", "water": "<path d=\"M12 2C10 5 5 10.5 5 15a7 7 0 0 0 14 0c0-4.5-5-10-7-13Z\"/>"};
-const VERSION = "0.1.4";
+const VERSION = "0.1.5";
 const COLORS = {"inactive": "#77836b", "error": "#c24632", "blue": "#3e9dc4", "healthy": "#329455", "warning": "#e89828", "fan": "#42483b"};
 const AMBIENT_KEYS = ["outdoor_temp","outdoor_humidity","indoor_temp","indoor_humidity"];
 const ROLES = {
@@ -198,6 +198,43 @@ const DISPLAYS = [
 ];
 const SEGMENTS = ["4,1 20,1 22,3 20,5 4,5 2,3", "21,5 23,3 25,5 25,19 23,21 21,19", "21,23 23,21 25,23 25,37 23,39 21,37", "4,37 20,37 22,39 20,41 4,41 2,39", "1,23 3,21 5,23 5,37 3,39 1,37", "1,5 3,3 5,5 5,19 3,21 1,19", "4,19 20,19 22,21 20,23 4,23 2,21"];
 const MASKS = [63, 6, 91, 79, 102, 109, 125, 7, 127, 111];
+const TEMPERATURE_ROLES = new Set(['outdoor_temp','return_temp','exhaust_temp','supply_temp','heater_target']);
+function celsiusValue(state, fallbackUnit) {
+  const value=stateNumber(state?.state);
+  const unit=String(state?.attributes?.unit_of_measurement ?? fallbackUnit ?? '').trim().toUpperCase();
+  if(!Number.isFinite(value)) return NaN;
+  if(unit==='°C' || unit==='C' || unit==='℃') return value;
+  if(unit==='°F' || unit==='F' || unit==='℉') return (value-32)/1.8;
+  return NaN;
+}
+function temperatureDisplay(value, unit) { return unit==='°F'?value*1.8+32:value; }
+function resolveEntities(config) {
+    const prefix = (key, fallback) => {
+      const value = config[key] ?? fallback;
+      if (typeof value !== "string" || !/^[a-z0-9_]+$/.test(value.trim().replace(/_+$/, ""))) throw new Error(`${key} must be an entity ID prefix`);
+      return value.trim().replace(/_+$/, "");
+    };
+    const overrides = config.entities ?? {};
+    if (typeof overrides !== "object" || Array.isArray(overrides)) throw new Error("entities must be a mapping");
+    for (const key of Object.keys(overrides)) if (!Object.hasOwn(ROLES, key)) throw new Error(`Unknown entity role: ${key}`);
+    const main = prefix("prefix", "vent"), esp = prefix("esp_prefix", "royalclima");
+    const ids = {};
+    for (const [key, [domain, suffix, group]] of Object.entries(ROLES)) {
+      const supplied = overrides[key] ?? "";
+      if(typeof supplied !== "string") throw new Error(`Invalid entity ID for ${key}`);
+      const value = supplied.trim() || (key === "preheater" ? undefined : `${domain}.${group === "esp" ? esp : main}_${suffix}`);
+      if (value !== undefined && !/^[a-z_]+\.[a-z0-9_]+$/.test(value)) throw new Error(`Invalid entity ID for ${key}`);
+      ids[key] = value;
+    }
+    const ambient=config.ambient ?? {};
+    if(typeof ambient!=="object" || Array.isArray(ambient) || Object.keys(ambient).some(key=>!AMBIENT_KEYS.includes(key))) throw new Error("ambient must map outdoor/indoor temperature and humidity to entity IDs");
+    for(const key of AMBIENT_KEYS) {
+      const value=ambient[key] ?? '';
+      if(typeof value!=="string" || (value.trim() && !/^sensor\.[a-z0-9_]+$/.test(value.trim()))) throw new Error(`Invalid ambient entity ID for ${key}`);
+      ids[`ambient_${key}`]=value.trim() || undefined;
+    }
+    return ids;
+}
 function configBoolean(value, key) {
   if (value === true || value === 1 || value === "true") return true;
   if (value === false || value === 0 || value === "false") return false;
@@ -277,6 +314,8 @@ class RoyalClimaCard extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: "open" });
+    this.addEventListener('pointerdown',()=>this.classList.add('pointer-input'),{capture:true});
+    this.addEventListener('keydown',()=>this.classList.remove('pointer-input'),{capture:true});
     let overlay = "";
     for (const [role, x, y, width, ru, en, lx, ly] of DISPLAYS) {
       overlay += `<svg data-display="${role}" x="${x - width / 2}" y="${y - width * .23}" width="${width}" height="${width * .46}" viewBox="0 0 100 46" aria-label="${role}"><title></title><g class="segments"></g></svg>`;
@@ -329,15 +368,21 @@ class RoyalClimaCard extends HTMLElement {
       svg.panel{display:block;width:100%;height:auto}.caption{font-family:Arial,sans-serif;font-size:16px;fill:#444e3c;text-anchor:middle;dominant-baseline:central}
       .preheater{pointer-events:none}.power-glyph{pointer-events:none}.rotor{transform-box:fill-box;transform-origin:center;animation:spin 2s linear infinite;animation-play-state:paused}
       @keyframes spin{to{transform:rotate(360deg)}}@media(prefers-reduced-motion:reduce){.rotor{animation:none}}
+      svg.panel [tabindex]:focus{outline:none}button:focus:not(:focus-visible),.analysis-info h3:focus{outline:none}
+      svg.panel [data-fan]:focus-visible,svg.panel [data-ambient]:focus-visible,svg.panel .recovery:focus-visible{outline:1px solid #3e9dc4;outline-offset:3px}
+      ha-card.animation-on .rotor{animation-name:spin;animation-timing-function:linear;animation-iteration-count:infinite}ha-card.animation-off .rotor{animation:none!important}
+      :host(.pointer-input) svg.panel [tabindex]:focus,:host(.pointer-input) button:focus{outline:none}
+      :host(:not(.pointer-input)) svg.panel [tabindex]:focus-visible{outline:1px solid #3e9dc4;outline-offset:3px}
+      .analysis-info > button{display:block;min-height:32px;padding:5px 14px;margin:14px 0 0 auto}
       .temperature-action,.indicator-action{cursor:pointer}.temperature-action[aria-disabled="true"],.indicator-action[aria-disabled="true"]{cursor:default}
       :where(ha-card.compact) .power-action rect{stroke:#c5cbc2;stroke-width:1.5}
-      .power-action{cursor:pointer}.power-action[aria-disabled="true"]{cursor:default}.power-action rect{pointer-events:all}.power-action:focus-visible{outline:none}.power-action:focus-visible rect{stroke:#56614d;stroke-width:2}
+      .power-action{cursor:pointer}.power-action[aria-disabled="true"]{cursor:default}.power-action rect{pointer-events:all}.power-action:focus-visible{outline:none}
       .fire-active{animation:fire-alert-blink 1s ease-in-out infinite}@keyframes fire-alert-blink{50%{opacity:.15}}@media(prefers-reduced-motion:reduce){.fire-active{animation:none}}
-      .command-notice{cursor:pointer;animation:notice-pulse 1.8s ease-in-out 3}.command-notice:focus-visible{outline:none}.command-notice:focus-visible rect{stroke:#56614d;stroke-width:2}@keyframes notice-pulse{50%{opacity:.6}}@media(prefers-reduced-motion:reduce){.command-notice{animation:none}}
+      .command-notice{cursor:pointer;animation:notice-pulse 1.8s ease-in-out 3}.command-notice:focus-visible{outline:none}@keyframes notice-pulse{50%{opacity:.6}}@media(prefers-reduced-motion:reduce){.command-notice{animation:none}}
       .waiting,.speed-action circle{stroke:#3e9ed6}
       .waiting{display:none;transform-origin:340px 598px;animation:spin 1s linear infinite}.power-action.pending .waiting{display:block}
-      .indicator-action{pointer-events:none}.indicator-hit{pointer-events:all}.indicator-action:focus-visible{outline:2px solid #56614d;outline-offset:3px}
-      .temperature-action rect{pointer-events:all}.temperature-action:focus-visible{outline:none}.temperature-action:focus-visible rect{stroke:#56614d;stroke-width:2}
+      .indicator-action{pointer-events:none}.indicator-hit{pointer-events:all}
+      .temperature-action rect{pointer-events:all}.temperature-action:focus-visible{outline:none}
       .speed-action{cursor:pointer}.speed-action[aria-disabled="true"]{cursor:default}.speed-action rect{pointer-events:all}.speed-action:focus-visible{outline:none}.speed-action:focus-visible rect{stroke:#56614d;stroke-width:2}
       .speed-action circle{display:none;animation:spin 1s linear infinite}.speed-action.pending circle{display:block}
       dialog{border:1px solid var(--divider-color,#ccd3d7);border-radius:16px;padding:24px;max-width:calc(100vw - 32px);width:380px;box-sizing:border-box;background:var(--card-background-color,#fff);color:var(--primary-text-color,#222);font:16px Arial,sans-serif}dialog::backdrop{background:#0006}dialog h3{font-size:20px;margin:0 0 18px;font-weight:500}.speed-choices{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:6px}.speed-choices button{min-height:36px;font-size:14px;padding:0 2px}.speed-choices [data-step-choice="6"]{grid-column:2}.speed-choices [data-step-choice="0"]{font-size:12px}dialog button{font:inherit;min-height:44px;border:1px solid var(--divider-color,#ccd3d7);border-radius:8px;background:var(--secondary-background-color,#f2f5f5);color:inherit;cursor:pointer}dialog button[aria-pressed="true"]{background:var(--primary-color,#0385bd);color:white}dialog button:disabled{opacity:.35;cursor:default}[data-speed-close]{display:block;margin:18px 0 0 auto;padding:0 14px}
@@ -481,32 +526,10 @@ ha-card.dark{background:#19212c}ha-card.dark.compact:not(.transparent){backgroun
   static getStubConfig(hass) { return { prefix: "vent", esp_prefix: "royalclima", ...detectPrefixes(hass) }; }
   setConfig(config) {
     if (!config || typeof config !== "object" || Array.isArray(config)) throw new Error("Invalid card configuration");
-    const prefix = (key, fallback) => {
-      const value = config[key] ?? fallback;
-      if (typeof value !== "string" || !/^[a-z0-9_]+$/.test(value.trim().replace(/_+$/, ""))) throw new Error(`${key} must be an entity ID prefix`);
-      return value.trim().replace(/_+$/, "");
-    };
-    const overrides = config.entities ?? {};
-    if (typeof overrides !== "object" || Array.isArray(overrides)) throw new Error("entities must be a mapping");
-    for (const key of Object.keys(overrides)) if (!Object.hasOwn(ROLES, key)) throw new Error(`Unknown entity role: ${key}`);
-    const main = prefix("prefix", "vent"), esp = prefix("esp_prefix", "royalclima");
-    const ids = {};
-    for (const [key, [domain, suffix, group]] of Object.entries(ROLES)) {
-      const supplied = overrides[key] ?? "";
-      if(typeof supplied !== "string") throw new Error(`Invalid entity ID for ${key}`);
-      const value = supplied.trim() || (key === "preheater" ? undefined : `${domain}.${group === "esp" ? esp : main}_${suffix}`);
-      if (value !== undefined && !/^[a-z_]+\.[a-z0-9_]+$/.test(value)) throw new Error(`Invalid entity ID for ${key}`);
-      ids[key] = value;
-    }
-    const ambient=config.ambient ?? {};
-    if(typeof ambient!=="object" || Array.isArray(ambient) || Object.keys(ambient).some(key=>!AMBIENT_KEYS.includes(key))) throw new Error("ambient must map outdoor/indoor temperature and humidity to entity IDs");
-    for(const key of AMBIENT_KEYS) {
-      const value=ambient[key] ?? '';
-      if(typeof value!=="string" || (value.trim() && !/^sensor\.[a-z0-9_]+$/.test(value.trim()))) throw new Error(`Invalid ambient entity ID for ${key}`);
-      ids[`ambient_${key}`]=value.trim() || undefined;
-    }
+    const ids=resolveEntities(config);
     if (config.view !== undefined && !["control", "airflow"].includes(config.view)) throw new Error("view must be control or airflow");
     if(config.theme !== undefined && !["auto","light","dark"].includes(config.theme)) throw new Error("theme must be auto, light or dark");
+    if(config.animation !== undefined && !["auto","on","off"].includes(config.animation)) throw new Error("animation must be auto, on or off");
     if (config.language !== undefined && typeof config.language !== "string") throw new Error("language must be a string");
     config = { ...config };
     for (const key of ["transparent", "flow_colormap", "sensor_boost_co2", "show_recovery", "show_recovery_info"]) if (config[key] !== undefined) config[key] = configBoolean(config[key], key);
@@ -519,56 +542,62 @@ ha-card.dark{background:#19212c}ha-card.dark.compact:not(.transparent){backgroun
     this._config = config; this._ids = ids; this._applyLayout(); this._render();
   }
   _applyLayout() {
-    this._gradientKeys = {}; this._displayKeys = {}; this._captionKey = null; this._noticeKey = null; this._topLayoutKey = null;
-    for(const [el,attributes] of this._initialLayout) { for(const a of [...el.attributes]) el.removeAttribute(a.name); for(const [name,value] of attributes) el.setAttribute(name,value); }
-    const airflow = this._config.view === "airflow";
-    const compact = !airflow;
-    const card=this.shadowRoot.querySelector('ha-card'),svg=this.shadowRoot.querySelector('svg.panel');
-    card.classList.toggle('airflow',airflow);card.classList.toggle('compact',compact);card.classList.toggle('transparent',!!this._config.transparent);
-    svg.setAttribute('viewBox','63.75 36.5 576 432');svg.setAttribute('width',640);svg.setAttribute('height',480);
-    const surface=this.shadowRoot.querySelector('[data-screen-surface]');
-    for(const [key,value] of Object.entries({x:63.75,y:71.5,width:576,height:432})) surface.setAttribute(key,value);
-    for(const [role,x] of [['exhaust_speed',117.5],['supply_speed',414]]) {
-      this.shadowRoot.querySelector(`[data-fan="${role}"]`).setAttribute('transform',`translate(${x} 465)`);
-      this.shadowRoot.querySelector(`[data-display="${role}"]`).setAttribute('transform','translate(0 -8)');
-      for(const bar of this.shadowRoot.querySelectorAll(`[data-bar="${role}"]`)) bar.setAttribute('transform','translate(0 -8)');
-      this.shadowRoot.querySelector(`[data-history="${role}"] rect`).setAttribute('y',427);
+    this._gradientKeys={};this._displayKeys={};this._captionKey=null;this._noticeKey=null;this._topLayoutKey=null;
+    for(const [element,attributes] of this._initialLayout) {
+      for(const attribute of [...element.attributes]) element.removeAttribute(attribute.name);
+      for(const [name,value] of attributes) element.setAttribute(name,value);
     }
-    this.shadowRoot.querySelector('[data-power-icon]').setAttribute('transform','translate(340 465) scale(1.5) translate(-340 -590)');
-    const power=this.shadowRoot.querySelector('[data-power]');
-    for(const [key,value] of Object.entries({x:312,y:437,width:56,height:56})) power.querySelector('rect').setAttribute(key,value);
-    power.querySelector('circle').setAttribute('cy',465);power.querySelector('circle').style.transformOrigin='340px 465px';
-    this.shadowRoot.querySelector('.command-message').setAttribute('y',385);
-    for(const [role,x] of [["exhaust_speed",117.5],["supply_speed",414]]) {
-      this.shadowRoot.querySelector(`[data-fan-direction="${role}"]`).setAttribute("transform",`translate(${x} ${439})`);
-      this.shadowRoot.querySelector(`[data-fan-direction="${role}"]`).style.display=airflow?"none":"";
-    }
-    this.shadowRoot.querySelector('[data-display="exhaust_speed"]').setAttribute('x',237);
-    this.shadowRoot.querySelector('[data-display="supply_speed"]').setAttribute('x',540);
-    const rightArrow=this.shadowRoot.querySelector('[data-fan-direction="supply_speed"]');rightArrow.setAttribute('transform',rightArrow.getAttribute('transform')+' scale(-1 1)');
-    if (!airflow) {
-      const shift = el => el.setAttribute('transform',`translate(0 -18) ${el.getAttribute('transform')||''}`);
-      const art=this.shadowRoot.querySelector('.panel-art');
-      for(const unit of art.querySelectorAll('text[y="386"]')) unit.setAttribute('y',361);
-      for(const el of art.querySelectorAll(':scope > g > *')) {
-        if((!el.classList.contains('screen-layer') || el.classList.contains('fan-divider') || el.classList.contains('compact-bottom-line')) && !el.classList.contains('body-layer')) shift(el);
+    const airflow=this._config.view==='airflow',card=this._node('ha-card');
+    card.classList.toggle('airflow',airflow);card.classList.toggle('compact',!airflow);card.classList.toggle('transparent',!!this._config.transparent);
+    if(airflow) this._applyAirflowLayout(); else this._applyControlLayout();
+    const spec=INDICATORS.find(item=>item[0]==='defrost');
+    this._node('[data-indicator="defrost"]').setAttribute('transform',`translate(${(airflow?233.5:276)-spec[2]} ${(airflow?FLOW_LAYOUT.lower-29:273)-spec[3]})`);
+    for(const arrow of this._nodesFor('[data-fan-direction]')) arrow.style.display=airflow?'none':'';
+    if(airflow) {
+      // The artwork and shared overlays retain the same 20-unit baseline offset.
+      for(const element of this._nodesFor('.airflow-art .scene > g,.airflow-art .scene > text,svg.panel > .caption,svg.panel > [data-display],svg.panel > [data-fan],svg.panel > [data-history]:not([data-indicator]),svg.panel > .speed-pixels,svg.panel > .power-action,svg.panel > .power-glyph,svg.panel > .speed-action,svg.panel > .heater-setpoint,svg.panel > .command-notice')) {
+        element.setAttribute('transform',`translate(0 20) ${element.getAttribute('transform')||''}`);
       }
-      for(const el of this.shadowRoot.querySelectorAll('svg.panel > *')) {
-        if(el.matches('.caption,[data-display],[data-fan],[data-bar],[data-history],[data-fan-direction],.heater-setpoint,.command-notice') || (compact && el.matches('.power-action,.power-glyph'))) shift(el);
-      }
-      // Preheater was moved out of the static artwork to share both views.
-      const heaterParent=this.shadowRoot.querySelector('.preheater').parentElement;
-      shift(heaterParent);
+      this._node('.preheater').parentElement.setAttribute('transform','translate(0 -15)');
     }
-    if (airflow) this._applyAirflowLayout();
-    if(!airflow) {
-      for(const role of ['outdoor_temp','return_temp']) {
-        const display=this.shadowRoot.querySelector(`[data-display="${role}"]`),hit=this.shadowRoot.querySelector(`[data-history="${role}"]`);
-        for(const el of [display,hit]) el.setAttribute('transform',`translate(0 -8) ${el.getAttribute('transform')||''}`);
-      }
-      for(const caption of [...this.shadowRoot.querySelectorAll('svg.panel > .caption')].slice(0,2)) caption.setAttribute('transform',`translate(0 -8) ${caption.getAttribute('transform')||''}`);
+  }
+  _applyControlLayout() {
+    const root=this.shadowRoot;
+    const attrs=(selector,values)=>{for(const element of root.querySelectorAll(selector)) for(const [key,value] of Object.entries(values)) element.setAttribute(key,value);};
+    attrs('svg.panel',{viewBox:'63.75 36.5 576 432',width:640,height:480});
+    attrs('[data-screen-surface]',{x:63.75,y:71.5,width:576,height:432});
+    const art=root.querySelector('.panel-art');
+    for(const element of art.querySelectorAll(':scope > g > *')) {
+      if(!element.classList.contains('screen-layer') || element.classList.contains('fan-divider')) element.setAttribute('transform','translate(0 -18)');
     }
-    if(!airflow) {
+    attrs('.panel-art > g > g[stroke="#a6ae9c"]',{transform:'translate(0 -10)'});
+    attrs('.airflow-lines',{transform:'translate(38 -74)'});
+    attrs('.panel-art text[y="386"]',{y:361});
+    for(const [index,role] of ['outdoor_temp','return_temp','exhaust_temp','supply_temp'].entries()) {
+      const transform=`translate(${index%2?8:0} ${index<2?-26:-18})`;
+      attrs(`[data-display="${role}"],[data-history="${role}"]`,{transform});
+      root.querySelectorAll('svg.panel > .caption')[index].setAttribute('transform',transform);
+    }
+    for(const [role,x,digitX,barX] of [['exhaust_speed',117.5,237,0],['supply_speed',561,393,11]]) {
+      attrs(`[data-fan="${role}"]`,{transform:`translate(${x} 415)`});
+      attrs(`[data-fan-direction="${role}"]`,{transform:`translate(${x} 389)${role==='supply_speed'?' scale(-1 1)':''}`});
+      attrs(`[data-display="${role}"]`,{x:digitX,transform:'translate(0 -58)'});
+      attrs(`[data-bar="${role}"]`,{transform:`translate(${barX} -58)`});
+      attrs(`[data-history="${role}"]`,{transform:'translate(0 -50)'});
+      attrs(`[data-history="${role}"] rect`,{y:427});
+    }
+    attrs('[data-power-icon]',{transform:'translate(340 415) scale(1.5) translate(-340 -590)'});
+    attrs('[data-power]',{transform:'translate(0 -50)'});
+    attrs('[data-power] rect',{x:312,y:437,width:56,height:56});
+    attrs('[data-power] circle',{cy:465});root.querySelector('[data-power] circle').style.transformOrigin='340px 465px';
+    attrs('.command-notice',{transform:'translate(0 -18)'});attrs('.command-message',{y:385});
+    attrs('.preheater',{transform:'translate(98.97 56.25) scale(.63)'});root.querySelector('.preheater').parentElement.setAttribute('transform','');
+    attrs('[data-history="preheater"],.heater-setpoint',{transform:''});
+    attrs('[data-history="preheater"] rect',{x:258,y:230,width:36,height:40});
+    for(const label of root.querySelectorAll('.airflow-label')) {
+      label.setAttribute('x',['OA','EA'].includes(label.textContent)?276:402);label.setAttribute('text-anchor','middle');
+      if(['EA','SA'].includes(label.textContent)) label.setAttribute('y',363);
+    }
       const flow=this.shadowRoot.querySelector('.airflow-lines');
       for(const el of [flow.querySelector('path'),flow.querySelector('.exchanger-crossing'),flow.querySelector('.supply-crossing')]) el.setAttribute('transform','translate(302 365) scale(1.24) translate(-302 -365)');
       const paths=flow.querySelectorAll('path');
@@ -585,53 +614,8 @@ ha-card.dark{background:#19212c}ha-card.dark.compact:not(.transparent){backgroun
       // One coordinate system: walls at 340/594, roof centered at 467, equal 16-unit eaves.
       wall.setAttribute('d','');
       this.shadowRoot.querySelector('.panel-art path[d^="M324 194"]').setAttribute('d','M324 194L467 112L610 194 M340 184.825174825V247 M340 355V414 M594 184.825174825V414');
-    }
-    if(!airflow) {
-      this.shadowRoot.querySelector('.preheater').parentElement.setAttribute('transform','');
-      this.shadowRoot.querySelector('.preheater').setAttribute('transform','translate(98.97 56.25) scale(.63)');
-      const hit=this.shadowRoot.querySelector('[data-history="preheater"]');hit.setAttribute('transform','');
-      for(const [key,value] of Object.entries({x:258,y:230,width:36,height:40})) hit.querySelector('rect').setAttribute(key,value);
-      this.shadowRoot.querySelector('.heater-setpoint').setAttribute('transform','');
-      for(const label of this.shadowRoot.querySelectorAll('.airflow-label')) {
-        label.setAttribute('x',['OA','EA'].includes(label.textContent)?276:402);
-        label.setAttribute('text-anchor','middle');
-        if(['EA','SA'].includes(label.textContent)) label.setAttribute('y',363);
-      }
-      this.shadowRoot.querySelector('.airflow-lines path:nth-child(4)').setAttribute('d','m217 396-8 4 8 4');
-      this.shadowRoot.querySelector('.supply-arrow').setAttribute('d','M383 396l8 4-8 4');
-    }
-    if(!airflow) {
-      for(const role of ['return_temp','supply_temp']) {
-        const display=this.shadowRoot.querySelector(`[data-display="${role}"]`),hit=this.shadowRoot.querySelector(`[data-history="${role}"]`);
-        for(const el of [display,hit]) el.setAttribute('transform',`translate(8 0) ${el.getAttribute('transform')||''}`);
-      }
-      for(const index of [1,3]) {
-        const label=this.shadowRoot.querySelectorAll('svg.panel > .caption')[index];label.setAttribute('transform',`translate(8 0) ${label.getAttribute('transform')||''}`);
-      }
-    }
-    if(!airflow) {
-      for(const el of this.shadowRoot.querySelectorAll('svg.panel > [data-fan],svg.panel > [data-bar],svg.panel > [data-fan-direction],svg.panel > .power-action,svg.panel > .power-glyph,svg.panel > [data-display$="speed"],svg.panel > [data-history$="speed"]')) el.setAttribute('transform',`translate(0 -32) ${el.getAttribute('transform')||''}`);
-    }
-    if(!airflow) {
-      const shiftX=(element,x)=>element.setAttribute('transform',`translate(${x} 0) ${element.getAttribute('transform')||''}`);
-      shiftX(this.shadowRoot.querySelector('[data-fan="supply_speed"]'),147);
-      shiftX(this.shadowRoot.querySelector('[data-fan-direction="supply_speed"]'),147);
-      shiftX(this.shadowRoot.querySelector('[data-display="supply_speed"]'),-147);
-      for(const bar of this.shadowRoot.querySelectorAll('[data-bar="supply_speed"]')) shiftX(bar,11);
-    }
-    const defrostSpec=INDICATORS.find(d=>d[0]==="defrost");
-    this.shadowRoot.querySelector('[data-indicator="defrost"]').setAttribute('transform',`translate(${(airflow?233.5:276)-defrostSpec[2]} ${(airflow?FLOW_LAYOUT.lower-49:273)-defrostSpec[3]})`);
-    if(airflow) {
-      const shift=el=>el.setAttribute('transform',`translate(0 20) ${el.getAttribute('transform')||''}`);
-      for(const el of this.shadowRoot.querySelectorAll('.airflow-art .scene > g,.airflow-art .scene > text')) shift(el);
-      for(const el of this.shadowRoot.querySelectorAll('svg.panel > .caption,svg.panel > [data-display],svg.panel > [data-fan],svg.panel > [data-history]:not([data-indicator]),svg.panel > .speed-pixels,svg.panel > .power-action,svg.panel > .power-glyph,svg.panel > .speed-action,svg.panel > .heater-setpoint,svg.panel > .command-notice')) shift(el);
-      shift(this.shadowRoot.querySelector('.preheater').parentElement);
-      const defrost=this.shadowRoot.querySelector('[data-indicator="defrost"]');shift(defrost);
-    }
-    // Resolve accumulated layout translations once; rendering only updates states.
-    for(const element of this.shadowRoot.querySelectorAll('svg.panel [transform]')) {
-      if(element.transform?.baseVal.numberOfItems>1) element.transform.baseVal.consolidate();
-    }
+    attrs('.airflow-lines path:nth-child(4)',{d:'m217 396-8 4 8 4'});
+    attrs('.supply-arrow',{d:'M383 396l8 4-8 4'});
   }
   _applyAirflowLayout() {
     const root = this.shadowRoot;
@@ -684,7 +668,7 @@ ha-card.dark{background:#19212c}ha-card.dark.compact:not(.transparent){backgroun
       if(dot) { this._dataFlash?.cancel();this._dataFlash=dot.animate([{opacity:.5},{opacity:0}],{duration:1000,easing:'ease-out'}); }
     }
     if (!this._ids || !previous || !value ||
-        this._lastDarkMode !== value.themes?.darkMode || previous.locale?.language !== value.locale?.language || previous.language !== value.language ||
+        this._lastTemperatureUnit !== (value.config?.unit_system?.temperature==='°F'?'°F':'°C') || this._lastDarkMode !== value.themes?.darkMode || previous.locale?.language !== value.locale?.language || previous.language !== value.language ||
         previous.callService !== value.callService ||
         Object.values(this._ids).some(id => id && previous.states?.[id] !== value.states?.[id])) this._render();
   }
@@ -790,6 +774,55 @@ ha-card.dark{background:#19212c}ha-card.dark.compact:not(.transparent){backgroun
     if (!this._nodeLists.has(selector)) this._nodeLists.set(selector,[...this.shadowRoot.querySelectorAll(selector)]);
     return this._nodeLists.get(selector);
   }
+  _renderAnalysis({ru,connected,flowing,on,number,numeric,tempUnit}) {
+    const analytics=this._node('.analysis-info');
+    analytics.querySelector('h3').textContent=ru?'Наблюдения и пояснения':'Observations and explanations';
+    analytics.querySelector('button').textContent=ru?'Закрыть':'Close';
+    this._node('.analysis-open').setAttribute('aria-label',ru?'Аналитика рекуператора':'Ventilation analysis');
+    this._node('.analysis-open').title=ru?'Наблюдения и пояснения':'Observations and explanations';
+    const observations=[];
+    const add=(russian,english,whyRu='',whyEn='')=>observations.push({title:ru?russian:english,detail:ru?whyRu:whyEn});
+    const temp=key=>numeric(key)&&Math.abs(number(key))<=1000;
+    const delta=(a,b)=>number(a)-number(b);
+    const deltaText=value=>Number((value*(tempUnit==='°F'?1.8:1)).toFixed(1));
+    if(!connected) add('Нет связи с рекуператором','No connection to the ventilator');
+    else if(!flowing) add('Рекуператор выключен','Ventilator is switched off');
+    const activeModes=[['bypass','Байпас открыт','Bypass is open'],['defrost','Включена разморозка','Defrost is active'],['preheater','Включён предподогрев','Preheater is active']].filter(([key])=>connected&&on(key));
+    if(activeModes.length) add(activeModes.map(item=>item[1]).join(' · '),activeModes.map(item=>item[2]).join(' · '),'В этом режиме процент температурной эффективности не показывается.','Temperature recovery is not displayed in this mode.');
+    if(temp('ambient_indoor_temp')&&temp('return_temp')) {
+      const d=delta('return_temp','ambient_indoor_temp');
+      add(`Возврат относительно помещения: ${d>0?'+':''}${deltaText(d)} ${tempUnit}`,`Return relative to indoors: ${d>0?'+':''}${deltaText(d)} ${tempUnit}`,Math.abs(d)>=2?'Возможны теплообмен в воздуховоде, подсос воздуха или различие показаний и расположения датчиков. Сравните температуру у входа RA с комнатным датчиком.':'Температуры близки с учётом возможной погрешности датчиков.',Math.abs(d)>=2?'Possible duct heat exchange, air leakage, or differences in sensor readings and placement. Compare the RA inlet temperature with the room sensor.':'Temperatures are close within possible sensor uncertainty.');
+    }
+    if(temp('ambient_outdoor_temp')&&temp('outdoor_temp')) {
+      const d=delta('outdoor_temp','ambient_outdoor_temp');
+      add(`Забор воздуха относительно улицы: ${d>0?'+':''}${deltaText(d)} ${tempUnit}`,`Air intake relative to outdoors: ${d>0?'+':''}${deltaText(d)} ${tempUnit}`,Math.abs(d)>=2?'Возможны влияние воздуховода, солнца или расположения наружного датчика. Сравните условия у воздухозабора и у датчика.':'Показания наружного воздуха близки.',Math.abs(d)>=2?'Possible duct or sunlight effects, or different outdoor sensor placement. Compare conditions at the intake and sensor.':'Outdoor air readings are close.');
+    }
+    if(temp('ambient_indoor_temp')&&temp('supply_temp')) {
+      const d=delta('supply_temp','ambient_indoor_temp');
+      add(`Приток относительно помещения: ${d>0?'+':''}${deltaText(d)} ${tempUnit}`,`Supply relative to indoors: ${d>0?'+':''}${deltaText(d)} ${tempUnit}`,d<-1?'Приток может охлаждать помещение. Без расхода воздуха тепловую мощность определить нельзя.':d>1?'Приток может нагревать помещение.':'Температура притока близка к комнатной.',d<-1?'Supply air can cool the room. Airflow is needed to estimate thermal power.':d>1?'Supply air can warm the room.':'Supply temperature is close to room temperature.');
+    }
+    if(flowing&&temp('return_temp')&&temp('supply_temp')&&temp('outdoor_temp')) {
+      const denominator=number('return_temp')-number('outdoor_temp');
+      if(Math.abs(denominator)<3) add('Малая разница наружной и возвратной температур','Small outdoor/return temperature difference',`Разница меньше ${tempUnit==='°F'?'5.4 °F':'3 °C'}: погрешности датчиков сильно влияют на процент эффективности.`,`The difference is below ${tempUnit==='°F'?'5.4 °F':'3 °C'}; sensor uncertainty strongly affects the recovery percentage.`);
+      else if((number('supply_temp')-number('outdoor_temp'))/denominator>1) add('Приток выходит за температурный диапазон улица–возврат','Supply exceeds the outdoor–return temperature range','Возможны дополнительный нагрев, влияние вентиляторов, погрешность датчиков или переходный режим. Сравните показания со штатным пультом и историю после стабилизации режима.','Possible additional heating, fan heat, sensor uncertainty, or a transient. Compare with the original controller and inspect history after conditions settle.');
+    }
+    const humidityReady=['outdoor','indoor'].every(side=>temp(`ambient_${side}_temp`)&&number(`ambient_${side}_temp`)>=-60&&number(`ambient_${side}_temp`)<=60&&numeric(`ambient_${side}_humidity`)&&number(`ambient_${side}_humidity`)>=0&&number(`ambient_${side}_humidity`)<=100);
+    if(humidityReady) {
+      const vapor=t=>6.112*Math.exp(17.62*t/(243.12+t));
+      const equivalent=number('ambient_outdoor_humidity')*vapor(number('ambient_outdoor_temp'))/vapor(number('ambient_indoor_temp'));
+      const d=equivalent-number('ambient_indoor_humidity');
+      add('Оценка влажности','Humidity assessment',`${equivalent>=100?'При доведении наружного воздуха до комнатной температуры достигается насыщение; возможна конденсация.':`Наружный воздух при комнатной температуре: около ${Math.round(equivalent)}% относительной влажности.`} ${d<-5?'Вентиляция может способствовать снижению влажности помещения.':d>5?'Наружный воздух может добавлять влагу в помещение.':'Влагосодержание наружного и комнатного воздуха близко.'} Перенос влаги теплообменником и источники влаги в доме здесь не учтены.`,`${equivalent>=100?'Bringing outdoor air to room temperature reaches saturation; condensation is possible.':`Outdoor air at room temperature: about ${Math.round(equivalent)}% relative humidity.`} ${d<-5?'Ventilation may reduce indoor humidity.':d>5?'Outdoor air may add moisture indoors.':'Outdoor and indoor moisture contents are close.'} Moisture transfer through the exchanger and indoor moisture sources are excluded.`);
+    } else if(AMBIENT_KEYS.some(key=>this._ids[`ambient_${key}`])) add('Оценка влажности недоступна','Humidity assessment unavailable','Нужны доступные температура и влажность и улицы, и помещения.','Available outdoor and indoor temperature and humidity are required.');
+    if(!observations.length) add('Недостаточно доступных показаний для сравнения','Not enough available readings for comparison');
+    const content=analytics.querySelector('.analysis-content'),signature=JSON.stringify(observations);
+    if(this._analysisSignature!==signature) {
+      this._analysisSignature=signature;content.replaceChildren();
+      for(const item of observations) {
+        const title=document.createElement('h4');title.textContent=item.title;content.append(title);
+        if(item.detail){const paragraph=document.createElement('p');paragraph.textContent=item.detail;content.append(paragraph);}
+      }
+    }
+  }
   _render() {
     if (!this._ids || !this._hass) return;
     const systemLanguage = String(this._hass.locale?.language || this._hass.language || "en").toLowerCase();
@@ -800,14 +833,30 @@ ha-card.dark{background:#19212c}ha-card.dark.compact:not(.transparent){backgroun
     const theme=this._config.theme ?? "auto";
     const dark=theme === "dark" || (theme === "auto" && (this._lastDarkMode ?? this._colorScheme?.matches ?? false));
     this._node('ha-card').classList.toggle('dark',dark);
+    this._node('ha-card').classList.toggle('animation-on',this._config.animation==='on');
+    this._node('ha-card').classList.toggle('animation-off',this._config.animation==='off');
     const raw = key => this._hass.states?.[this._ids[key]]?.state;
     const known = key => raw(key) != null && !["unknown", "unavailable", ""].includes(raw(key));
     const on = key => raw(key) === "on";
     const numberCache = new Map();
-    const number = key => { if(!numberCache.has(key)) numberCache.set(key,stateNumber(raw(key)));return numberCache.get(key); };
+    const tempUnit=this._hass.config?.unit_system?.temperature==='°F'?'°F':'°C';this._lastTemperatureUnit=tempUnit;
+    const displayTemp=value=>temperatureDisplay(value,tempUnit);
+    for(const unit of this._nodesFor('.panel-art text')) if(['°C','°F'].includes(unit.textContent)) unit.textContent=tempUnit;
+    const number = key => {
+      if(!numberCache.has(key)) {
+        const state=this._hass.states?.[this._ids[key]];
+        const temperature=TEMPERATURE_ROLES.has(key) || (key.startsWith('ambient_') && key.endsWith('_temp'));
+        const fallback=TEMPERATURE_ROLES.has(key) && !this._config.entities?.[key]?.trim()?'°C':undefined;
+        numberCache.set(key,temperature?celsiusValue(state,fallback):stateNumber(raw(key)));
+      }
+      return numberCache.get(key);
+    };
+    const noData=key=>!this._ids[key]?(ru?'Привязка не задана':'No entity binding'):!this._hass.states?.[this._ids[key]]?(ru?'Сущность не найдена':'Entity not found'):raw(key)==='unavailable'?(ru?'Сенсор недоступен':'Sensor unavailable'):(ru?'Состояние неизвестно':'State unknown');
+    const binaryKnown=key=>['on','off'].includes(raw(key));
+    const readingProblem=key=>!known(key)?noData(key):!Number.isFinite(stateNumber(raw(key)))?(ru?'Некорректное значение':'Invalid value'):!numeric(key) && (TEMPERATURE_ROLES.has(key)||key.endsWith('_temp'))?(ru?'Не указаны или не поддерживаются единицы температуры':'Missing or unsupported temperature unit'):(ru?'Некорректное значение':'Invalid value');
     const numeric = key => Number.isFinite(number(key));
     const rounded = value => Number.isFinite(value) ? Number(value.toFixed(1)) : value;
-    const extra = (key, russian, english, unit="") => (unit ? numeric(key) : known(key) && ["string","number"].includes(typeof raw(key))) ? `${ru?russian:english}: ${numeric(key) ? rounded(number(key)) : raw(key)}${unit ? " "+unit : ""}` : null;
+    const extra = (key, russian, english, unit="") => (unit ? numeric(key) : known(key) && ["string","number"].includes(typeof raw(key))) ? `${ru?russian:english}: ${numeric(key) ? rounded(unit==="°C"?displayTemp(number(key)):number(key)) : raw(key)}${unit ? " "+(unit==="°C"?tempUnit:unit) : ""}` : null;
     const duration = seconds => { const n=Math.max(0,Math.floor(seconds));return `${Math.floor(n/86400)}${ru?" д":"d"} ${Math.floor(n%86400/3600)}${ru?" ч":"h"} ${Math.floor(n%3600/60)}${ru?" мин":"m"}`; };
 
     const connected = on("api_connected") && on("online");
@@ -888,19 +937,19 @@ ha-card.dark{background:#19212c}ha-card.dark.compact:not(.transparent){backgroun
     }
     for (const [role] of DISPLAYS) {
       let value = connected && known(role) && String(raw(role)).trim() !== "" ? number(role) : NaN;
-      if (!role.endsWith("speed") && Number.isFinite(value)) value = Math.abs(value) <= 1000 ? (this._config.view === "airflow" ? Math.round(value*10)/10 : Math.round(value)) : NaN;
+      if (!role.endsWith("speed") && Number.isFinite(value)) value = Math.abs(value) <= 1000 ? (this._config.view === "airflow" ? Math.round(displayTemp(value)*10)/10 : Math.round(displayTemp(value))) : NaN;
       if (!Number.isFinite(value) || (role.endsWith("speed") && (!Number.isInteger(value) || value < 0 || value > this._speedMax(role)))) value = null;
       const el = this._node(`[data-display="${role}"]`);
       this._displayKeys ||= {};
-      const displayKey=`${value}:${ru}:${this._config.view}:${role.endsWith("speed") ? flowing+":"+this._speedMax(role) : ""}`;
+      const displayKey=`${value}:${ru}:${tempUnit}:${this._config.view}:${role.endsWith("speed") ? flowing+":"+this._speedMax(role) : ""}`;
       if(this._displayKeys[role] === displayKey) continue;
       this._displayKeys[role]=displayKey;
-      const content = this._config.view === "airflow" ? `<text x="50" y="31" text-anchor="middle" font-family="Arial,sans-serif" font-size="${role.endsWith("speed") ? 28 : 32}" fill="${el.dataset.color}">${value === null ? "—" : value}${value === null ? "" : role.endsWith("speed") ? "/"+this._speedMax(role) : " °C"}</text>` : digits(value, !role.endsWith("speed"));
+      const content = this._config.view === "airflow" ? `<text x="50" y="31" text-anchor="middle" font-family="Arial,sans-serif" font-size="${role.endsWith("speed") ? 28 : 32}" fill="${el.dataset.color}">${value === null ? "—" : value}${value === null ? "" : role.endsWith("speed") ? "/"+this._speedMax(role) : " "+tempUnit}</text>` : digits(value, !role.endsWith("speed"));
       const segments = el.querySelector(".segments");
       segments.setAttribute("transform",this._config.view === "airflow"?"":"translate(-2 0) skewX(-10)");
       if(this._config.view !== "airflow") el.style.overflow="visible";
       if(this._config.view === "airflow" && segments.firstElementChild?.tagName.toLowerCase() === "text") {
-        segments.firstElementChild.textContent = value === null ? "—" : `${value}${role.endsWith("speed") ? "/"+this._speedMax(role) : " °C"}`;
+        segments.firstElementChild.textContent = value === null ? "—" : `${value}${role.endsWith("speed") ? "/"+this._speedMax(role) : " "+tempUnit}`;
       } else segments.innerHTML = content;
       if(this._config.view !== "airflow" && role.endsWith("speed") && !flowing && segments.lastElementChild) {
         segments.lastElementChild.setAttribute("fill",COLORS.inactive);
@@ -908,7 +957,7 @@ ha-card.dark{background:#19212c}ha-card.dark.compact:not(.transparent){backgroun
       }
 
       el.dataset.value = value === null ? "unknown" : String(value);
-      el.querySelector("title").textContent = `${value === null ? (ru ? "Нет данных" : "No data") : value + (role.endsWith("speed") ? " / "+this._speedMax(role) : " °C")}`;
+      el.querySelector("title").textContent = `${value === null ? readingProblem(role) : value + (role.endsWith("speed") ? " / "+this._speedMax(role) : " "+tempUnit)}`;
     }
     for (const [key, , , , russian, english] of INDICATORS) {
       const el = this._node(`[data-indicator="${key}"]`);
@@ -933,17 +982,17 @@ ha-card.dark{background:#19212c}ha-card.dark.compact:not(.transparent){backgroun
       setAttributeIfChanged(el,"aria-disabled", String(!exists));
       setAttributeIfChanged(el,"tabindex", exists && !hidden ? "0" : "-1");
       setAttributeIfChanged(el,"aria-label", label);
-      el.querySelector("title").textContent = key === "filter_usage" ? `${label}: ${filterValid ? `${rounded(usage)} %` : ru ? "Нет данных" : "No data"}` : `${label}: ${known(key) ? (ru && ["on", "off"].includes(raw(key)) ? (on(key) ? "Включено" : "Выключено") : raw(key)) : ru ? "Нет данных" : "No data"}`;
+      el.querySelector("title").textContent = key === "filter_usage" ? `${label}: ${filterValid ? `${rounded(usage)} %` : ru ? "Нет данных" : "No data"}` : `${label}: ${binaryKnown(key) ? (on(key)?(ru?"Включено":"On"):(ru?"Выключено":"Off")) : noData(key)}`;
     }
     for(const [key] of INDICATORS) {
       const el=this._node(`[data-indicator="${key}"]`), title=el.querySelector("title"), lines=[title.textContent];
       if(key==="api_connected") {
-        lines[0]=`${ru?"Связь ESP32":"ESP32 connection"}: ${known(key)?(on(key)?(ru?"Подключено":"Connected"):(ru?"Отключено":"Disconnected")):(ru?"Нет данных":"No data")}`;
+        lines[0]=`${ru?"Связь ESP32":"ESP32 connection"}: ${binaryKnown(key)?(on(key)?(ru?"Подключено":"Connected"):(ru?"Отключено":"Disconnected")):noData(key)}`;
         if(numeric("uptime")) lines.push(`${ru?"Время работы":"Uptime"}: ${duration(number("uptime"))}`);
         lines.push(extra("wifi_signal","Сигнал Wi-Fi","Wi-Fi signal","dBm"));
       }
       if(key==="online") {
-        lines[0]=`${ru?"Связь ПВУ":"Ventilation connection"}: ${known(key)?(on(key)?(ru?"Подключено":"Connected"):(ru?"Отключено":"Disconnected")):(ru?"Нет данных":"No data")}`;
+        lines[0]=`${ru?"Связь ПВУ":"Ventilation connection"}: ${binaryKnown(key)?(on(key)?(ru?"Подключено":"Connected"):(ru?"Отключено":"Disconnected")):noData(key)}`;
         lines.push(extra("data_age","С последнего пакета","Since last data",ru?"с":"s"),extra("offline_count","Потери связи","Offline events"),extra("status","Состояние ПВУ","Ventilation status"));
       }
       if(key==="filter_usage") {
@@ -961,7 +1010,7 @@ ha-card.dark{background:#19212c}ha-card.dark.compact:not(.transparent){backgroun
       const fan = this._node(`[data-fan="${role}"]`);
       let fanTitle=fan.querySelector("title");
       if(!fanTitle) {fanTitle=document.createElementNS("http://www.w3.org/2000/svg","title");fan.prepend(fanTitle);}
-      fanTitle.textContent=`${role==="supply_speed"?(ru?"Приточный вентилятор":"Supply fan"):(ru?"Вытяжной вентилятор":"Exhaust fan")}: ${numeric(role)?raw(role)+" / "+this._speedMax(role):ru?"Нет данных":"No data"}\n${running?(ru?"Работает":"Running"):(ru?"Остановлен или нет связи":"Stopped or disconnected")}`;
+      fanTitle.textContent=`${role==="supply_speed"?(ru?"Приточный вентилятор":"Supply fan"):(ru?"Вытяжной вентилятор":"Exhaust fan")}: ${numeric(role)?raw(role)+" / "+this._speedMax(role):ru?"Нет данных":"No data"}\n${!known(role)?noData(role):!connected?(ru?"Нет связи":"Disconnected"):!on("power")?(ru?"Рекуператор выключен":"Ventilator is switched off"):running?(ru?"Работает":"Running"):speed===0?(ru?"Остановлен":"Stopped"):(ru?"Некорректная скорость":"Invalid speed")}`;
       const directionHint=role === "exhaust_speed" ? (ru?"Вытяжка: из помещения наружу; стрелка от центра":"Exhaust: from indoors to outside; arrow points away from center") : (ru?"Приток: с улицы в помещение; стрелка к центру":"Supply: from outside to indoors; arrow points toward center");
       fanTitle.textContent += "\n"+directionHint;
       setAttributeIfChanged(fan,'aria-label',fanTitle.textContent);setAttributeIfChanged(fan,'tabindex',known(role)?'0':'-1');
@@ -1004,14 +1053,14 @@ ha-card.dark{background:#19212c}ha-card.dark.compact:not(.transparent){backgroun
       this._node(`[data-indicator="${key}"]`).setAttribute("transform",`translate(${x-spec[2]} ${y-spec[3]})`);
     }
     const preheater = this._node(".preheater");
-    const heaterAvailable = this._config.show_icons?.preheater !== false && !!this._ids.preheater && !!this._hass.states?.[this._ids.preheater];
+    const heaterAvailable = this._config.show_icons?.preheater !== false && !!this._ids.preheater;
     preheater.style.display = heaterAvailable ? "" : "none";
     const heating = connected && on("preheater");
     const setpoint = this._node(".heater-setpoint");
     const showSetpoint = heaterAvailable && heating && numeric("heater_target") && Math.abs(number("heater_target")) <= 1000;
     setAttributeIfChanged(setpoint,"x",this._config.view === "airflow"?220:260);setAttributeIfChanged(setpoint,"y",this._config.view === "airflow"?FLOW_LAYOUT.upper+6:245);setAttributeIfChanged(setpoint,"text-anchor","end");
     setpoint.style.display = showSetpoint ? "" : "none";
-    const setpointText = showSetpoint ? `${Math.round(number("heater_target")*10)/10}°C` : "";
+    const setpointText = showSetpoint ? `${Math.round(displayTemp(number("heater_target"))*10)/10}${tempUnit}` : "";
     if(setpoint.textContent !== setpointText) setpoint.textContent=setpointText;
     setAttributeIfChanged(preheater,"opacity", heating ? "1" : ".35");
     setAttributeIfChanged(preheater,"stroke", heating ? COLORS.error : COLORS.inactive);
@@ -1025,13 +1074,13 @@ ha-card.dark{background:#19212c}ha-card.dark.compact:not(.transparent){backgroun
       block.querySelector("title").textContent = label;
     }
     const heaterAction = this._node('[data-history="preheater"]');
-    const heaterExists = heaterAvailable && !!this._ids.preheater;
+    const heaterExists = heaterAvailable && !!this._hass.states?.[this._ids.preheater];
     heaterAction.style.display = heaterAvailable ? "" : "none";
     setAttributeIfChanged(heaterAction,"aria-disabled", String(!heaterExists));
     setAttributeIfChanged(heaterAction,"tabindex", heaterExists ? "0" : "-1");
     const heaterLabel = ru ? "Предподогрев: история" : "Preheater: history";
     setAttributeIfChanged(heaterAction,"aria-label", heaterLabel);
-    heaterAction.querySelector("title").textContent = [heaterLabel, known("preheater") ? (on("preheater") ? (ru?"Включено":"On") : (ru?"Выключено":"Off")) : (ru?"Нет данных":"No data"), extra("heater_target","Уставка нагрева","Heater setpoint","°C")].filter(Boolean).join("\n");
+    heaterAction.querySelector("title").textContent = [heaterLabel, binaryKnown("preheater") ? (on("preheater") ? (ru?"Включено":"On") : (ru?"Выключено":"Off")) : noData("preheater"), extra("heater_target","Уставка нагрева","Heater setpoint","°C")].filter(Boolean).join("\n");
     const power = this._node("[data-power]");
     const disabled = !!this._pending || !this._powerReady();
     setAttributeIfChanged(power,"aria-disabled", String(disabled));
@@ -1093,9 +1142,9 @@ ha-card.dark{background:#19212c}ha-card.dark.compact:not(.transparent){backgroun
         const assigned=!!this._ids[role];group.style.display=assigned?'':'none';
         if(!assigned) continue;
         const value=number(role),valid=Number.isFinite(value) && (kind==='humidity'?value>=0&&value<=100:Math.abs(value)<=1000);
-        const unit=kind==='humidity'?'%':'°C';
+        const unit=kind==='humidity'?'%':tempUnit;
         const label=ru?`${right?'Помещение':'Улица'}: ${kind==='humidity'?'влажность':'температура'}`:`${right?'Indoor':'Outdoor'} ${kind==='humidity'?'humidity':'temperature'}`;
-        const text=valid?`${Number(value.toFixed(1))}${unit}`:'—';
+        const text=valid?`${Number((kind==='temp'?displayTemp(value):value).toFixed(1))}${unit}`:'—';
         const x=right?(airflow?640:557):(airflow?164:125),y=(airflow?196:245)+row++*24;
         setAttributeIfChanged(group,'transform',`translate(${x} ${y})`);group.style.color=dark?'#b0bdb0':(airflow?'#52677a':'#66705d');
         const glyph=group.querySelector('.ambient-icon'),caption=group.querySelector('text'),hit=group.querySelector('rect');
@@ -1103,7 +1152,7 @@ ha-card.dark{background:#19212c}ha-card.dark.compact:not(.transparent){backgroun
         setAttributeIfChanged(glyph,'transform',`translate(${right?-6:6} 0)`);
         setAttributeIfChanged(caption,'x',right?-20:20);setAttributeIfChanged(caption,'text-anchor',right?'end':'start');setAttributeIfChanged(hit,'x',right?-100:0);
         if(caption.textContent!==text) caption.textContent=text;
-        group.querySelector('title').textContent=`${label}: ${valid?text:(ru?'Нет данных':'No data')}`;
+        group.querySelector('title').textContent=`${label}: ${valid?text:readingProblem(role)}`;
         setAttributeIfChanged(group,'aria-label',group.querySelector('title').textContent);
       }
     }
@@ -1120,7 +1169,7 @@ ha-card.dark{background:#19212c}ha-card.dark.compact:not(.transparent){backgroun
       const level=result.value===undefined?-1:result.value<50?0:result.value<70?1:result.value<85?2:3;
       recovery.querySelector('text').style.fill=level<0?(dark?'#a3b1bd':'#59616a'):colors[level];
       if(recovery.querySelector('text').textContent!==text) recovery.querySelector('text').textContent=text;
-      const reasons={offline:['Нет связи с рекуператором','No connection to the ventilator'],powered_off:['Рекуператор выключен','Ventilator is switched off'],bypass:['Байпас открыт или состояние неизвестно','Bypass open or state unknown'],defrost:['Разморозка или состояние неизвестно','Defrost or state unknown'],heater:['Предподогрев включён или состояние неизвестно','Preheater on or state unknown'],fault:['Ошибка или пожарный вход','Fault or fire input'],fans:['Нет подтверждения работы обоих вентиляторов','Both fans must be running'],temperature:['Температуры недоступны','Temperatures unavailable'],delta:['Разница улица/помещение меньше 3 °C','Outdoor/indoor difference below 3 °C'],range:['Расчёт вне диапазона 0–100%','Calculated value outside 0–100%']};
+      const reasons={offline:['Нет связи с рекуператором','No connection to the ventilator'],powered_off:['Рекуператор выключен','Ventilator is switched off'],bypass:['Байпас открыт или состояние неизвестно','Bypass open or state unknown'],defrost:['Разморозка или состояние неизвестно','Defrost or state unknown'],heater:['Предподогрев включён или состояние неизвестно','Preheater on or state unknown'],fault:['Ошибка или пожарный вход','Fault or fire input'],fans:['Нет подтверждения работы обоих вентиляторов','Both fans must be running'],temperature:['Температуры недоступны','Temperatures unavailable'],delta:[`Разница улица/помещение меньше ${tempUnit==='°F'?'5.4 °F':'3 °C'}`,`Outdoor/indoor difference below ${tempUnit==='°F'?'5.4 °F':'3 °C'}`],range:['Расчёт вне диапазона 0–100%','Calculated value outside 0–100%']};
       const title=result.reason ? `${ru?'Температурная эффективность неизвестна: ':'Temperature recovery unknown: '}${reasons[result.reason][ru?0:1]}` : `${ru?'Температурная эффективность':'Temperature recovery'} ≈${text}`;
       if(recovery.querySelector('title').textContent!==title) recovery.querySelector('title').textContent=title;
       setAttributeIfChanged(recovery,'aria-label',title);
@@ -1138,53 +1187,7 @@ ha-card.dark{background:#19212c}ha-card.dark.compact:not(.transparent){backgroun
       info.querySelector('button').textContent=ru?'Закрыть':'Close';
 
     }
-    if(this._config.show_recovery!==false && this._config.show_recovery_info===true) {
-    const analytics=this._node('.analysis-info');
-    analytics.querySelector('h3').textContent=ru?'Наблюдения и пояснения':'Observations and explanations';
-    analytics.querySelector('button').textContent=ru?'Закрыть':'Close';
-    this._node('.analysis-open').setAttribute('aria-label',ru?'Аналитика рекуператора':'Ventilation analysis');
-    this._node('.analysis-open').title=ru?'Наблюдения и пояснения':'Observations and explanations';
-    const observations=[];
-    const add=(russian,english,whyRu='',whyEn='')=>observations.push({title:ru?russian:english,detail:ru?whyRu:whyEn});
-    const temp=key=>numeric(key)&&Math.abs(number(key))<=1000;
-    const delta=(a,b)=>Number((number(a)-number(b)).toFixed(1));
-    if(!connected) add('Нет связи с рекуператором','No connection to the ventilator');
-    else if(!flowing) add('Рекуператор выключен','Ventilator is switched off');
-    for(const [key,russian,english] of [['bypass','Байпас открыт','Bypass is open'],['defrost','Включена разморозка','Defrost is active'],['preheater','Включён предподогрев','Preheater is active']]) if(connected&&on(key)) add(russian,english,'В этом режиме процент температурной эффективности не показывается.','Temperature recovery is not displayed in this mode.');
-    if(temp('ambient_indoor_temp')&&temp('return_temp')) {
-      const d=delta('return_temp','ambient_indoor_temp');
-      add(`Возврат относительно помещения: ${d>0?'+':''}${d} °C`,`Return relative to indoors: ${d>0?'+':''}${d} °C`,Math.abs(d)>=2?'Возможны теплообмен в воздуховоде, подсос воздуха или различие показаний и расположения датчиков. Сравните температуру у входа RA с комнатным датчиком.':'Температуры близки с учётом возможной погрешности датчиков.',Math.abs(d)>=2?'Possible duct heat exchange, air leakage, or differences in sensor readings and placement. Compare the RA inlet temperature with the room sensor.':'Temperatures are close within possible sensor uncertainty.');
-    }
-    if(temp('ambient_outdoor_temp')&&temp('outdoor_temp')) {
-      const d=delta('outdoor_temp','ambient_outdoor_temp');
-      add(`Забор воздуха относительно улицы: ${d>0?'+':''}${d} °C`,`Air intake relative to outdoors: ${d>0?'+':''}${d} °C`,Math.abs(d)>=2?'Возможны влияние воздуховода, солнца или расположения наружного датчика. Сравните условия у воздухозабора и у датчика.':'Показания наружного воздуха близки.',Math.abs(d)>=2?'Possible duct or sunlight effects, or different outdoor sensor placement. Compare conditions at the intake and sensor.':'Outdoor air readings are close.');
-    }
-    if(temp('ambient_indoor_temp')&&temp('supply_temp')) {
-      const d=delta('supply_temp','ambient_indoor_temp');
-      add(`Приток относительно помещения: ${d>0?'+':''}${d} °C`,`Supply relative to indoors: ${d>0?'+':''}${d} °C`,d<-1?'Приток может охлаждать помещение. Без расхода воздуха тепловую мощность определить нельзя.':d>1?'Приток может нагревать помещение.':'Температура притока близка к комнатной.',d<-1?'Supply air can cool the room. Airflow is needed to estimate thermal power.':d>1?'Supply air can warm the room.':'Supply temperature is close to room temperature.');
-    }
-    if(flowing&&temp('return_temp')&&temp('supply_temp')&&temp('outdoor_temp')) {
-      const denominator=number('return_temp')-number('outdoor_temp');
-      if(Math.abs(denominator)<3) add('Малая разница наружной и возвратной температур','Small outdoor/return temperature difference','Разница меньше 3 °C: погрешности датчиков сильно влияют на процент эффективности.','The difference is below 3 °C; sensor uncertainty strongly affects the recovery percentage.');
-      else if((number('supply_temp')-number('outdoor_temp'))/denominator>1) add('Приток выходит за температурный диапазон улица–возврат','Supply exceeds the outdoor–return temperature range','Возможны дополнительный нагрев, влияние вентиляторов, погрешность датчиков или переходный режим. Сравните показания со штатным пультом и историю после стабилизации режима.','Possible additional heating, fan heat, sensor uncertainty, or a transient. Compare with the original controller and inspect history after conditions settle.');
-    }
-    const humidityReady=['outdoor','indoor'].every(side=>temp(`ambient_${side}_temp`)&&number(`ambient_${side}_temp`)>=-60&&number(`ambient_${side}_temp`)<=60&&numeric(`ambient_${side}_humidity`)&&number(`ambient_${side}_humidity`)>=0&&number(`ambient_${side}_humidity`)<=100);
-    if(humidityReady) {
-      const vapor=t=>6.112*Math.exp(17.62*t/(243.12+t));
-      const equivalent=number('ambient_outdoor_humidity')*vapor(number('ambient_outdoor_temp'))/vapor(number('ambient_indoor_temp'));
-      const d=equivalent-number('ambient_indoor_humidity');
-      add(ru?'Оценка влажности':'Humidity assessment','Humidity assessment',`Наружный воздух при комнатной температуре: около ${Math.round(equivalent)}% относительной влажности. ${d<-5?'Вентиляция может способствовать снижению влажности помещения.':d>5?'Наружный воздух может добавлять влагу в помещение.':'Влагосодержание наружного и комнатного воздуха близко.'} ${equivalent>100?'При охлаждении до комнатной температуры возможна конденсация. ':''}Перенос влаги теплообменником и источники влаги в доме здесь не учтены.`,`Outdoor air at room temperature: about ${Math.round(equivalent)}% relative humidity. ${d<-5?'Ventilation may reduce indoor humidity.':d>5?'Outdoor air may add moisture indoors.':'Outdoor and indoor moisture contents are close.'} ${equivalent>100?'Cooling to room temperature may cause condensation. ':''}Moisture transfer through the exchanger and indoor moisture sources are excluded.`);
-    } else if(AMBIENT_KEYS.some(key=>this._ids[`ambient_${key}`])) add('Оценка влажности недоступна','Humidity assessment unavailable','Нужны доступные температура и влажность и улицы, и помещения.','Available outdoor and indoor temperature and humidity are required.');
-    if(!observations.length) add('Недостаточно доступных показаний для сравнения','Not enough available readings for comparison');
-    const content=analytics.querySelector('.analysis-content'),signature=JSON.stringify(observations);
-    if(this._analysisSignature!==signature) {
-      this._analysisSignature=signature;content.replaceChildren();
-      for(const item of observations) {
-        const title=document.createElement('h4');title.textContent=item.title;content.append(title);
-        if(item.detail){const paragraph=document.createElement('p');paragraph.textContent=item.detail;content.append(paragraph);}
-      }
-    }
-    }
+    if(this._config.show_recovery!==false && this._config.show_recovery_info===true) this._renderAnalysis({ru,connected,flowing,on,number,numeric,tempUnit});
     const dialog = this._node("dialog"), role = dialog.dataset.role;
     dialog.querySelector("h3").textContent = role === "supply_speed" ? (ru ? "Скорость притока" : "Supply speed") : (ru ? "Скорость вытяжки" : "Exhaust speed");
     dialog.querySelector("[data-speed-close]").textContent = ru ? "Отмена" : "Cancel";
@@ -1200,6 +1203,7 @@ ha-card.dark{background:#19212c}ha-card.dark.compact:not(.transparent){backgroun
   }
 }
 const EDITOR_LABELS = {
+  animation:["Анимация","Animation"],
   show_recovery_info:["Показывать строку пояснения рекуперации","Show recovery explanation below card"],
   show_recovery:["Показывать процент рекуперации","Show recovery percentage"],
   view:["Вид карточки","Card view"],prefix:["Префикс ПВУ","Ventilation prefix"],esp_prefix:["Префикс ESP32","ESP32 prefix"],
@@ -1217,7 +1221,7 @@ for(const [key,,,,ru,en] of INDICATORS) EDITOR_LABELS[key]=[ru,en];
 class RoyalClimaCardEditor extends HTMLElement {
   constructor() {
     super(); this.attachShadow({mode:"open"});
-    this.shadowRoot.innerHTML='<style>:host{display:block}.detect{font:inherit;padding:8px 12px;border:1px solid var(--divider-color,#ccd3d7);border-radius:8px;background:var(--secondary-background-color,#f2f5f5);color:var(--primary-text-color,#222);cursor:pointer}p{color:var(--secondary-text-color);font-size:14px;line-height:1.4}</style><p></p><button type="button" class="detect"></button><p class="detection" role="status"></p><ha-form></ha-form>';
+    this.shadowRoot.innerHTML='<style>:host{display:block}.detect{font:inherit;padding:8px 12px;border:1px solid var(--divider-color,#ccd3d7);border-radius:8px;background:var(--secondary-background-color,#f2f5f5);color:var(--primary-text-color,#222);cursor:pointer}p{color:var(--secondary-text-color);font-size:14px;line-height:1.4}</style><p></p><button type="button" class="detect"></button><p class="detection" role="status"></p><div class="bindings" role="status"></div><ha-form></ha-form>';
     this._form=this.shadowRoot.querySelector('ha-form');
     this.shadowRoot.querySelector('.detect').addEventListener('click',()=> {
       const detected=detectPrefixes(this._hass),ru=this._language?.toLowerCase().startsWith('ru');
@@ -1234,7 +1238,7 @@ class RoyalClimaCardEditor extends HTMLElement {
       if(!value || typeof value!=="object") return;
       const config={...this._config,...value,type:"custom:royal-clima-card"};
       for(const key of ['entities','show_icons','ambient']) config[key]={...this._config?.[key],...value[key]};
-      this._config=config;
+      this._config=config;this._refreshBindings();
       this.dispatchEvent(new CustomEvent('config-changed',{detail:{config},bubbles:true,composed:true}));
     });
   }
@@ -1242,7 +1246,33 @@ class RoyalClimaCardEditor extends HTMLElement {
   set hass(hass) {
     this._hass=hass;this._form.hass=hass;
     const language=String(hass.locale?.language || hass.language || 'en');
-    if(this._language!==language) {this._language=language;this._refresh();}
+    if(this._language!==language) {this._language=language;this._refresh();} else this._refreshBindings();
+  }
+  _refreshBindings() {
+    if(!this._config || !this._hass) return;
+    const root=this.shadowRoot.querySelector('.bindings'),ru=this._language?.toLowerCase().startsWith('ru');
+    let ids;
+    try { ids=resolveEntities(this._config); } catch(error) {root.textContent=error.message;this._bindingsSignature=null;return;}
+    const primary=['api_connected','online','power','outdoor_temp','return_temp','exhaust_temp','supply_temp','exhaust_speed','supply_speed'];
+    const groups=[{title:ru?'Основные сущности':'Main entities',keys:primary},{title:ru?'Дополнительные сущности':'Additional entities',keys:Object.keys(ROLES).filter(key=>!primary.includes(key))},{title:ru?'Внешние показания':'External readings',keys:AMBIENT_KEYS.map(key=>`ambient_${key}`)}];
+    const lines=[];
+    for(const group of groups) {
+      const bound=[...new Set(group.keys.map(key=>ids[key]).filter(Boolean))];
+      const found=bound.filter(id=>this._hass.states?.[id]);
+      const unavailable=found.filter(id=>['unknown','unavailable'].includes(this._hass.states[id].state));
+      lines.push(`${group.title}: ${found.length}/${bound.length}${unavailable.length?` · ${ru?'нет данных':'no data'}: ${unavailable.length}`:''}`);
+    }
+    const important=[...new Set([...primary.map(key=>ids[key]),...Object.keys(this._config.entities||{}).filter(key=>this._config.entities[key]?.trim()).map(key=>ids[key]),...AMBIENT_KEYS.map(key=>ids[`ambient_${key}`])].filter(Boolean))];
+    const details=important.flatMap(id=>!this._hass.states?.[id]?[`${ru?'Не найдена':'Not found'}: ${id}`]:['unknown','unavailable'].includes(this._hass.states[id].state)?[`${ru?'Нет данных':'No data'}: ${id}`]:[]);
+    for(const [key,id] of Object.entries(ids)) {
+      if(!id || !(TEMPERATURE_ROLES.has(key) || (key.startsWith('ambient_')&&key.endsWith('_temp'))))continue;
+      const state=this._hass.states?.[id],fallback=TEMPERATURE_ROLES.has(key)&&!this._config.entities?.[key]?.trim()?'°C':undefined;
+      if(Number.isFinite(stateNumber(state?.state))&&!Number.isFinite(celsiusValue(state,fallback))) details.push(`${ru?'Не указаны или не поддерживаются единицы температуры':'Missing or unsupported temperature unit'}: ${id}`);
+    }
+    const signature=JSON.stringify([lines,details]);if(this._bindingsSignature===signature)return;this._bindingsSignature=signature;
+    root.replaceChildren();
+    for(const text of lines) {const paragraph=document.createElement('p');paragraph.textContent=text;root.append(paragraph);}
+    if(details.length) {const section=document.createElement('details'),summary=document.createElement('summary');summary.textContent=ru?'Подробности привязок':'Binding details';section.append(summary);for(const text of details){const paragraph=document.createElement('p');paragraph.textContent=text;section.append(paragraph);}root.append(section);}
   }
   _refresh() {
     if(!this._config || !this._hass) return;
@@ -1255,6 +1285,7 @@ class RoyalClimaCardEditor extends HTMLElement {
       select('view', [['control','Пульт','Control panel'],['airflow','Потоки','Airflow']]),
       {type:'grid',name:'',schema:[{name:'prefix',selector:{text:{}}},{name:'esp_prefix',selector:{text:{}}}]},
       {type:'grid',name:'',schema:[select('theme',[['auto','Авто','Auto'],['light','Светлая','Light'],['dark','Тёмная','Dark']]),select('language',[['auto','Авто','Auto'],['ru','Русский','Russian'],['en','Английский','English']])]},
+      select('animation',[['auto','Авто','Auto'],['on','Вкл','On'],['off','Выкл','Off']]),
       bool('transparent'),bool('flow_colormap'),bool('sensor_boost_co2'),bool('show_recovery'),bool('show_recovery_info'),
       {type:'expandable',name:'show_icons',title:label('show_icons'),schema:[...INDICATORS.map(d=>d[0]),'preheater'].map(bool)},
       {type:'expandable',name:'ambient',title:ru?'Внешние показания улицы и помещения':'Outdoor and indoor readings',schema:AMBIENT_KEYS.map(name=>({name,ambient:true,selector:{entity:{domain:'sensor'}}}))},
@@ -1270,7 +1301,8 @@ class RoyalClimaCardEditor extends HTMLElement {
       return `${ru?'По умолчанию':'Default'}: ${domain}.${String(prefix).trim().replace(/_+$/,'')}_${suffix}`;
     };
     const icons=Object.fromEntries([...INDICATORS.map(d=>d[0]),'preheater'].map(key=>[key,true]));
-    this._form.data={view:'control',prefix:'vent',esp_prefix:'royalclima',theme:'auto',language:'auto',transparent:false,flow_colormap:false,sensor_boost_co2:true,show_recovery:true,show_recovery_info:false,...this._config,show_icons:{...icons,...this._config.show_icons},entities:{...this._config.entities},ambient:{...this._config.ambient}};
+    this._refreshBindings();
+    this._form.data={view:'control',prefix:'vent',esp_prefix:'royalclima',theme:'auto',language:'auto',animation:'auto',transparent:false,flow_colormap:false,sensor_boost_co2:true,show_recovery:true,show_recovery_info:false,...this._config,show_icons:{...icons,...this._config.show_icons},entities:{...this._config.entities},ambient:{...this._config.ambient}};
     this.shadowRoot.querySelector('p').textContent=ru?'Обычно достаточно префиксов. Пустые поля сущностей используют стандартные имена; предподогрев без сенсора скрыт.':'Prefixes are normally enough. Empty entity fields use default IDs; the preheater stays hidden without a sensor.';
   }
 }

@@ -156,3 +156,20 @@ test("fan range follows firmware mode with selector-options fallback",()=>{
  assert.equal(c._speedMax("supply_speed"),3);
  assert.equal(c._speedMax("exhaust_speed"),10);
 });
+
+test("animation accepts only auto, on and off",()=>{
+ for(const animation of ["auto","on","off"])assert.equal(card({animation})._config.animation,animation);
+ for(const animation of [true,false,"yes",0,null])assert.throws(()=>card({animation}),/animation/);
+});
+
+vm.runInNewContext("globalThis.toCelsius=celsiusValue;globalThis.displayTemperature=temperatureDisplay;",context);
+test("temperature units are explicit and converted through Celsius",()=>{
+ assert.equal(context.toCelsius({state:"68",attributes:{unit_of_measurement:"°F"}}),20);
+ assert.equal(context.toCelsius({state:"-40",attributes:{unit_of_measurement:"°F"}}),-40);
+ assert.equal(context.toCelsius({state:"20",attributes:{unit_of_measurement:"°C"}}),20);
+ assert.equal(context.displayTemperature(20,"°F"),68);
+ assert(Number.isNaN(context.toCelsius({state:"20",attributes:{}})));
+ assert.equal(context.toCelsius({state:"20"},"°C"),20);
+ assert(Number.isNaN(context.toCelsius({state:"293",attributes:{unit_of_measurement:"K"}},"°C")));
+ assert(Number.isNaN(context.toCelsius({state:"bad",attributes:{unit_of_measurement:"°C"}})));
+});

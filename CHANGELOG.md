@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.1.5
+
+- Display temperatures in the Home Assistant system unit (Celsius or Fahrenheit), converting entity readings while keeping recovery, humidity and colormap calculations in Celsius;
+- Validate external temperature units and explain missing or unsupported units;
+- Distinguish off, unavailable and missing sensor states in tooltips;
+- Add an entity binding summary to the visual editor, including missing and unavailable entities;
+- Add the global animation option: auto, on or off;
+- Fix focus outlines after pointer interaction and dialog return while preserving keyboard focus indication;
+
 ## 0.1.4
 
 - Support fan speed ranges 0..3 and 0..10, detected from the firmware Fan speeds entity or speed selector options; restrict speed selection and commands to the supported range;
