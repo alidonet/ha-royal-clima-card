@@ -7,7 +7,9 @@
 
 [Русский](README.ru.md)
 
-A Home Assistant card for Royal Clima SOFFIO Primo ventilation units: temperatures, status indicators, power control and fan step selection. Two views: a control panel and an airflow diagram. ESPHome firmware for ESP32 and hardware wiring instructions: [ESPHome-RoyalClima](https://github.com/alidonet/ESPHome-RoyalClima).
+A general-purpose Home Assistant card for displaying the status and operation of a heat recovery ventilation unit. It supports additional sensor readings and power and fan speed control when the connected unit provides the corresponding control entities. Two views are available: a control panel and an airflow diagram.
+
+Works out of the box with Royal Clima SOFFIO Primo and compatible units using the [ESPHome-RoyalClima firmware](https://github.com/alidonet/ESPHome-RoyalClima). Entity bindings can be configured manually for other units.
 
 ![Control panel](images/control_panel.gif)
 ![Control panel](images/control_panel_dark.png)
