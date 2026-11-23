@@ -141,7 +141,7 @@ const AIRFLOW = `<svg class="airflow-art" x="80" y="-16" xmlns="http://www.w3.or
 </svg>`;
 const PANEL = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"680\" height=\"681\" viewBox=\"0 0 680 681\"><defs>\n\n\n\n<marker id=\"arrow\" viewBox=\"0 0 10 10\" refX=\"8\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\"><path d=\"M1 1 9 5 1 9\" fill=\"none\" stroke=\"#505b48\" stroke-width=\"1.5\"/></marker></defs>\n\n\n\n<g transform=\"translate(0 -35)\">\n<rect class=\"screen-layer\" data-screen-surface=\"\" x=\"51\" y=\"81\" width=\"578\" height=\"483\" rx=\"6\" fill=\"#e9ede2\" stroke=\"#f8faf3\" stroke-width=\"2\"/>\n\n<!-- Дом и наружная зона. Левая стена проходит через теплообменник. -->\n\n<g transform=\"translate(0 8)\" fill=\"none\" stroke=\"#a6ae9c\" stroke-width=\"3.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M324 194 466 112Q469 110 472 112L612 194\"/><path d=\"M340 184.76V257 M340 345V434 M598 185.8V434\"/></g>\n\n<g class=\"airflow-lines\" transform=\"translate(38 -56)\" fill=\"none\" stroke=\"#56614d\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n<path d=\"m302 327 38 38-38 38-38-38Z\" stroke-width=\"2\"/>\n<path d=\"M371 335H334L324 344 M318 349 284 380 M278 385 268 394H229\"/>\n<path d=\"M229 335H268L278 344 M285 350 298 362 M305 369 318 380 M325 386 334 394H371\"/><path d=\"m237 390-8 4 8 4 M363 390l8 4-8 4\" stroke-width=\"1.8\"/>\n</g><text class=\"airflow-label\" x=\"276\" y=\"267\" text-anchor=\"middle\" fill=\"#3b4533\" font-family=\"Arial,sans-serif\" font-size=\"16\" font-weight=\"700\">OA</text><text class=\"airflow-label\" x=\"403\" y=\"267\" text-anchor=\"middle\" fill=\"#3b4533\" font-family=\"Arial,sans-serif\" font-size=\"16\" font-weight=\"700\">RA</text><text class=\"airflow-label\" x=\"276\" y=\"362\" text-anchor=\"middle\" fill=\"#3b4533\" font-family=\"Arial,sans-serif\" font-size=\"16\" font-weight=\"700\">EA</text><text class=\"airflow-label\" x=\"403\" y=\"362\" text-anchor=\"middle\" fill=\"#3b4533\" font-family=\"Arial,sans-serif\" font-size=\"16\" font-weight=\"700\">SA</text>\n\n<path class=\"screen-layer fan-divider\" d=\"M74 449H606\" stroke=\"#d0d7ca\"/><g class=\"preheater\" transform=\"translate(45.58 -2.1) scale(.82)\" stroke=\"#77836b\" opacity=\".35\" fill=\"none\" stroke-width=\"1.7\" stroke-linecap=\"round\"><path d=\"M274 295q-5-5 0-10t0-10m7 20q-5-5 0-10t0-10m7 20q-5-5 0-10t0-10\"/><rect x=\"269\" y=\"300\" width=\"24\" height=\"5\" rx=\"1\"/></g><g fill=\"#66705d\" font-family=\"Arial,sans-serif\" font-size=\"15\"><text x=\"208\" y=\"245\">°C</text><text x=\"542\" y=\"245\">°C</text><text x=\"208\" y=\"386\">°C</text><text x=\"542\" y=\"386\">°C</text></g></g></svg>";
 const ICONS = {"chip": "<path d=\"M6,4H18V5H21V7H18V9H21V11H18V13H21V15H18V17H21V19H18V20H6V19H3V17H6V15H3V13H6V11H3V9H6V7H3V5H6V4M11,15V18H12V15H11M13,15V18H14V15H13M15,15V18H16V15H15Z\" />", "hvac": "<path d=\"M8.58 14C8.3 13.55 8.11 13.03 8.06 12.5H15.94C15.89 13.03 15.7 13.55 15.47 14H8.58M12 16C10.97 16 10.08 15.61 9.38 15H14.63C13.92 15.61 13.03 16 12 16M12 8C13.03 8 13.92 8.39 14.63 9H9.38C10.08 8.39 10.97 8 12 8M8.58 10H15.42C15.7 10.45 15.89 10.97 15.94 11.5H8.06C8.11 10.97 8.3 10.45 8.58 10M3 3V21H21V3H3M12 18C8.67 18 6 15.33 6 12S8.67 6 12 6 18 8.67 18 12 15.33 18 12 18Z\" />", "air-filter": "<path d=\"M4 3h16v18H4zm2 2v14h12V5zm1 2h10v2H7zm0 4h10v2H7zm0 4h10v2H7z\"/>", "alert-circle-outline": "<path d=\"M11,15H13V17H11V15M11,7H13V13H11V7M12,2C6.47,2 2,6.5 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20Z\" />", "fire-alert": "<path d=\"M15.66 11.2C15.43 10.9 15.15 10.64 14.89 10.38C14.22 9.78 13.46 9.35 12.82 8.72C11.33 7.26 11 4.85 11.95 3C11 3.23 10.17 3.75 9.46 4.32C6.87 6.4 5.85 10.07 7.07 13.22C7.11 13.32 7.15 13.42 7.15 13.55C7.15 13.77 7 13.97 6.8 14.05C6.57 14.15 6.33 14.09 6.14 13.93C6.08 13.88 6.04 13.83 6 13.76C4.87 12.33 4.69 10.28 5.45 8.64C3.78 10 2.87 12.3 3 14.47C3.06 14.97 3.12 15.47 3.29 15.97C3.43 16.57 3.7 17.17 4 17.7C5.08 19.43 6.95 20.67 8.96 20.92C11.1 21.19 13.39 20.8 15.03 19.32C16.86 17.66 17.5 15 16.56 12.72L16.43 12.46C16.22 12 15.66 11.2 15.66 11.2M12.5 17.5C12.22 17.74 11.76 18 11.4 18.1C10.28 18.5 9.16 17.94 8.5 17.28C9.69 17 10.4 16.12 10.61 15.23C10.78 14.43 10.46 13.77 10.33 13C10.21 12.26 10.23 11.63 10.5 10.94C10.69 11.32 10.89 11.7 11.13 12C11.9 13 13.11 13.44 13.37 14.8C13.41 14.94 13.43 15.08 13.43 15.23C13.46 16.05 13.1 16.95 12.5 17.5H12.5M21 13H19V7H21V13M21 17H19V15H21V17Z\" />", "valve": "<path d=\"M4 22H2V2H4M22 2H20V22H22M17.24 5.34L13.24 9.34A3 3 0 0 0 9.24 13.34L5.24 17.34L6.66 18.76L10.66 14.76A3 3 0 0 0 14.66 10.76L18.66 6.76Z\" />", "snowflake-melt": "<path d=\"M8 17.85C8 19.04 7.11 20 6 20S4 19.04 4 17.85C4 16.42 6 14 6 14S8 16.42 8 17.85M16.46 12V10.56L18.46 9.43L20.79 10.05L21.31 8.12L19.54 7.65L20 5.88L18.07 5.36L17.45 7.69L15.45 8.82L13 7.38V5.12L14.71 3.41L13.29 2L12 3.29L10.71 2L9.29 3.41L11 5.12V7.38L8.5 8.82L6.5 7.69L5.92 5.36L4 5.88L4.47 7.65L2.7 8.12L3.22 10.05L5.55 9.43L7.55 10.56V12H2V13H22V12H16.46M9.5 12V10.56L12 9.11L14.5 10.56V12H9.5M20 17.85C20 19.04 19.11 20 18 20S16 19.04 16 17.85C16 16.42 18 14 18 14S20 16.42 20 17.85M14 20.85C14 22.04 13.11 23 12 23S10 22.04 10 20.85C10 19.42 12 17 12 17S14 19.42 14 20.85Z\" />", "fan-plus": "<path d=\"M13 19C13 17.59 13.5 16.3 14.3 15.28C14.17 14.97 14.03 14.65 13.86 14.34C14.26 14 14.57 13.59 14.77 13.11C15.26 13.21 15.78 13.39 16.25 13.67C17.07 13.25 18 13 19 13C20.05 13 21.03 13.27 21.89 13.74C21.95 13.37 22 12.96 22 12.5C22 8.92 18.03 8.13 14.33 10.13C14 9.73 13.59 9.42 13.11 9.22C13.3 8.29 13.74 7.24 14.73 6.75C17.09 5.57 17 2 12.5 2C8.93 2 8.14 5.96 10.13 9.65C9.72 9.97 9.4 10.39 9.21 10.87C8.28 10.68 7.23 10.25 6.73 9.26C5.56 6.89 2 7 2 11.5C2 15.07 5.95 15.85 9.64 13.87C9.96 14.27 10.39 14.59 10.88 14.79C10.68 15.71 10.24 16.75 9.26 17.24C6.9 18.42 7 22 11.5 22C12.31 22 13 21.78 13.5 21.41C13.19 20.67 13 19.86 13 19M12 13C11.43 13 11 12.55 11 12S11.43 11 12 11C12.54 11 13 11.45 13 12S12.54 13 12 13M20 15V18H23V20H20V23H18V20H15V18H18V15H20Z\" />", "molecule-co2": "<path d=\"M5,7A2,2 0 0,0 3,9V15A2,2 0 0,0 5,17H8V15H5V9H8V7H5M11,7A2,2 0 0,0 9,9V15A2,2 0 0,0 11,17H13A2,2 0 0,0 15,15V9A2,2 0 0,0 13,7H11M11,9H13V15H11V9M16,10.5V12H19V13.5H17.5A1.5,1.5 0 0,0 16,15V18H20.5V16.5H17.5V15H19A1.5,1.5 0 0,0 20.5,13.5V12A1.5,1.5 0 0,0 19,10.5H16Z\" />", "power": "<path d=\"M16.56,5.44L15.11,6.89C16.84,7.94 18,9.83 18,12A6,6 0 0,1 12,18A6,6 0 0,1 6,12C6,9.83 7.16,7.94 8.88,6.88L7.44,5.44C5.36,6.88 4,9.28 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12C20,9.28 18.64,6.88 16.56,5.44M13,3H11V13H13\" />", "fan-chevron-up": "<path d=\"M13 19C13 17.59 13.5 16.3 14.3 15.28C14.17 14.97 14.03 14.65 13.86 14.34C14.26 14 14.57 13.59 14.77 13.11C15.26 13.21 15.78 13.39 16.25 13.67C17.07 13.25 18 13 19 13C20.05 13 21.03 13.27 21.89 13.74C21.95 13.37 22 12.96 22 12.5C22 8.92 18.03 8.13 14.33 10.13C14 9.73 13.59 9.42 13.11 9.22C13.3 8.29 13.74 7.24 14.73 6.75C17.09 5.57 17 2 12.5 2C8.93 2 8.14 5.96 10.13 9.65C9.72 9.97 9.4 10.39 9.21 10.87C8.28 10.68 7.23 10.25 6.73 9.26C5.56 6.89 2 7 2 11.5C2 15.07 5.95 15.85 9.64 13.87C9.96 14.27 10.39 14.59 10.88 14.79C10.68 15.71 10.24 16.75 9.26 17.24C6.9 18.42 7 22 11.5 22C12.31 22 13 21.78 13.5 21.41C13.19 20.67 13 19.86 13 19M12 13C11.43 13 11 12.55 11 12S11.43 11 12 11C12.54 11 13 11.45 13 12S12.54 13 12 13M19 17.83L15.83 21L14.41 19.59L19 15L23.59 19.59L22.17 21L19 17.83\" />", "fan-chevron-down": "<path d=\"M13 19C13 17.59 13.5 16.3 14.3 15.28C14.17 14.97 14.03 14.65 13.86 14.34C14.26 14 14.57 13.59 14.77 13.11C15.26 13.21 15.78 13.39 16.25 13.67C17.07 13.25 18 13 19 13C20.05 13 21.03 13.27 21.89 13.74C21.95 13.37 22 12.96 22 12.5C22 8.92 18.03 8.13 14.33 10.13C14 9.73 13.59 9.42 13.11 9.22C13.3 8.29 13.74 7.24 14.73 6.75C17.09 5.57 17 2 12.5 2C8.93 2 8.14 5.96 10.13 9.65C9.72 9.97 9.4 10.39 9.21 10.87C8.28 10.68 7.23 10.25 6.73 9.26C5.56 6.89 2 7 2 11.5C2 15.07 5.95 15.85 9.64 13.87C9.96 14.27 10.39 14.59 10.88 14.79C10.68 15.71 10.24 16.75 9.26 17.24C6.9 18.42 7 22 11.5 22C12.31 22 13 21.78 13.5 21.41C13.19 20.67 13 19.86 13 19M12 13C11.43 13 11 12.55 11 12S11.43 11 12 11C12.54 11 13 11.45 13 12S12.54 13 12 13M19 19.17L22.17 16L23.59 17.41L19 22L14.41 17.41L15.83 16L19 19.17\" />", "water": "<path d=\"M12 2C10 5 5 10.5 5 15a7 7 0 0 0 14 0c0-4.5-5-10-7-13Z\"/>"};
-const VERSION = "0.1.5";
+const VERSION = "0.1.6";
 const COLORS = {"inactive": "#77836b", "error": "#c24632", "blue": "#3e9dc4", "healthy": "#329455", "warning": "#e89828", "fan": "#42483b"};
 const AMBIENT_KEYS = ["outdoor_temp","outdoor_humidity","indoor_temp","indoor_humidity"];
 const ROLES = {
@@ -208,7 +208,7 @@ function celsiusValue(state, fallbackUnit) {
   return NaN;
 }
 function temperatureDisplay(value, unit) { return unit==='°F'?value*1.8+32:value; }
-function resolveEntities(config) {
+function resolveEntities(config, hass, registry) {
     const prefix = (key, fallback) => {
       const value = config[key] ?? fallback;
       if (typeof value !== "string" || !/^[a-z0-9_]+$/.test(value.trim().replace(/_+$/, ""))) throw new Error(`${key} must be an entity ID prefix`);
@@ -233,7 +233,70 @@ function resolveEntities(config) {
       if(typeof value!=="string" || (value.trim() && !/^sensor\.[a-z0-9_]+$/.test(value.trim()))) throw new Error(`Invalid ambient entity ID for ${key}`);
       ids[`ambient_${key}`]=value.trim() || undefined;
     }
+    for(const key of ['device','esp_device']) if(config[key]!=null && typeof config[key]!=='string') throw new Error(`${key} must be a device ID`);
+    const device=config.device?.trim(),selectedEsp=config.esp_device?.trim();
+    if(device || selectedEsp) {
+      const entries=registry || Object.values(hass?.entities || {});
+      const espDevice=selectedEsp || linkedEspDevice(device,hass,entries);
+      for(const [key,[domain,suffix,group]] of Object.entries(ROLES)) {
+        if(overrides[key]?.trim() || key==='preheater')continue;
+        if(group==='esp' ? device||selectedEsp : device) ids[key]=deviceEntity(entries,group==='esp'?espDevice:device,domain,suffix);
+      }
+    }
     return ids;
+}
+const ENTITY_REGISTRY_CACHE=new WeakMap();
+function registryEntries(hass) {
+  if(typeof hass?.callWS!=='function')return Promise.reject(new Error('Entity registry unavailable'));
+  const connection=hass.connection || hass.callWS;
+  let entry=ENTITY_REGISTRY_CACHE.get(connection);
+  if(!entry || entry.source!==hass.entities) {
+    entry={source:hass.entities,promise:Promise.resolve().then(()=>hass.callWS({type:'config/entity_registry/list'})).then(value=>{
+      if(!Array.isArray(value))throw new Error('Invalid entity registry');return value;
+    })};
+    ENTITY_REGISTRY_CACHE.set(connection,entry);
+  }
+  return entry.promise;
+}
+function requestRegistry(owner) {
+  if(!owner._hass || (!owner._config?.device && !owner._config?.esp_device))return;
+  const promise=registryEntries(owner._hass);
+  if(owner._registryRequest===promise)return;
+  owner._registryRequest=promise;
+  promise.then(entries=>{
+    if(owner._registryRequest!==promise)return;
+    owner._registry=entries;owner._registryError=false;owner._registryUpdated();
+  }).catch(()=>{
+    if(owner._registryRequest!==promise)return;
+    owner._registryError=true;owner._registryUpdated();
+  });
+}
+function deviceEntity(entries, device, domain, suffix) {
+  if(!device)return undefined;
+  const candidates=entries.filter(entry=>entry.device_id===device && entry.entity_id?.startsWith(domain+'.'));
+  const normalize=value=>String(value||'').toLowerCase().replace(/[^a-z0-9]+/g,'_').replace(/^_+|_+$/g,'');
+  const matches=value=>{const name=normalize(value);return name===suffix || name.endsWith('_'+suffix);};
+  for(const field of ['original_name','unique_id','entity_id']) {
+    const found=candidates.filter(entry=>matches(entry[field]));
+    if(found.length)return found.length===1?found[0].entity_id:undefined;
+  }
+  return undefined;
+}
+function linkedEspDevice(device, hass, entries) {
+  if(!device)return undefined;
+  const parent=hass?.devices?.[device]?.via_device_id;
+  if(parent)return parent;
+  if(deviceEntity(entries,device,'binary_sensor','api_connected'))return device;
+  const configEntries=hass?.devices?.[device]?.config_entries || [];
+  const candidates=Object.values(hass?.devices || {}).filter(item=>
+    item.config_entries?.some(id=>configEntries.includes(id)) && deviceEntity(entries,item.id,'binary_sensor','api_connected'));
+  return candidates.length===1?candidates[0].id:undefined;
+}
+function detectDevice(hass, registry) {
+  const entries=registry || Object.values(hass?.entities || {});
+  const devices=[...new Set(entries.map(entry=>entry.device_id).filter(Boolean))].filter(device=>
+    ['outdoor_temp','return_temp','supply_temp','exhaust_temp'].every(key=>deviceEntity(entries,device,'sensor',key)));
+  return devices.length===1?{device:devices[0]}:{};
 }
 function configBoolean(value, key) {
   if (value === true || value === 1 || value === "true") return true;
@@ -356,7 +419,7 @@ class RoyalClimaCard extends HTMLElement {
       .data-flash{position:absolute;top:10px;right:10px;width:12px;height:12px;border-radius:50%;background:#35a9ed;opacity:0;pointer-events:none}
       ha-card.dark ~ .recovery-info{background:#263444;color:#d5ded8;border-color:#627080}
       .recovery{pointer-events:none}.recovery-disc{pointer-events:all}
-      .recovery-disc{fill:#f8fafc;fill-opacity:.88;stroke:#52677a;stroke-width:.5;stroke-opacity:.24}.airflow .recovery-disc{fill-opacity:.72}.compact .recovery-disc{fill:#e9ede2}.recovery text{fill:#34465b;pointer-events:none}.dark .recovery-disc{fill:#26362d;fill-opacity:.92;stroke:#c0d0c7}.dark.airflow .recovery-disc{fill:#263444;fill-opacity:.78}.dark .recovery text{fill:#d5ded8}
+      .recovery-disc{fill:#f8fafc;fill-opacity:.88;stroke:#52677a;stroke-width:3;stroke-opacity:.24}.recovery-progress{fill:none;stroke-width:3;stroke-linecap:round;pointer-events:none;transform:rotate(-90deg)}.airflow .recovery-disc{fill-opacity:.72}.compact .recovery-disc{fill:#e9ede2}.recovery text{fill:#34465b;pointer-events:none}.dark .recovery-disc{fill:#26362d;fill-opacity:.92;stroke:#c0d0c7}.dark.airflow .recovery-disc{fill:#263444;fill-opacity:.78}.dark .recovery text{fill:#d5ded8}
       .recovery-footer{display:flex;align-items:center;gap:4px}.recovery-footer .recovery-note{flex:1;min-width:0}.analysis-open{order:-1;flex:none;display:flex;align-items:center;justify-content:center;width:40px;height:40px;border:0;border-radius:8px;background:transparent;color:#3e9dc4;cursor:pointer}.analysis-info{width:min(760px,calc(100vw - 32px));max-width:calc(100vw - 32px);max-height:calc(100dvh - 32px);overflow:auto;overflow-wrap:anywhere;font-size:14px;padding:20px}.analysis-info h3{font-size:18px;margin:0 0 14px}.analysis-info h4{font-size:14px;line-height:1.4;margin:14px 0 5px}.analysis-info p{line-height:1.45;margin:5px 0}@media(max-width:480px){.analysis-info{padding:16px}}ha-card.dark ~ .recovery-footer .recovery-note{color:#b0bdc8}ha-card.dark ~ .analysis-info{background:#263444;color:#d5ded8}
       .recovery-note{width:100%;border:0;background:transparent;padding:8px 12px;color:var(--secondary-text-color,#52616d);font:13px/1.4 Arial,sans-serif;text-align:center;cursor:pointer;white-space:normal;overflow-wrap:anywhere;min-height:52px}.recovery-note:focus-visible{outline:1px solid currentColor;outline-offset:-2px}ha-card.dark ~ .recovery-note{color:var(--secondary-text-color,#b0bdc8)}
       :host{display:block}ha-card{position:relative;display:block;background:#f8fafc;border:0;box-shadow:none;overflow:hidden;border-radius:10px}
@@ -391,6 +454,9 @@ ha-card.dark{background:#19212c}ha-card.dark.compact:not(.transparent){backgroun
     for(const fan of this.shadowRoot.querySelectorAll('[data-fan]')) {
       const background=document.createElementNS("http://www.w3.org/2000/svg","circle");background.classList.add("fan-background");background.setAttribute("r",28);background.setAttribute("fill","#f8fafc");background.setAttribute("fill-opacity",".65");fan.prepend(background);
     }
+    const filterPercent=document.createElementNS('http://www.w3.org/2000/svg','text');filterPercent.classList.add('filter-percent');
+    for(const [key,value] of Object.entries({x:182.5,y:78.5,'dominant-baseline':'central','font-family':'Arial,sans-serif','font-size':13,'pointer-events':'none'})) filterPercent.setAttribute(key,value);
+    this.shadowRoot.querySelector('[data-indicator="filter_usage"]').append(filterPercent);
     const airflowScene=this.shadowRoot.querySelector(".airflow-art .scene");
     for(const [label,x,y] of [["OA",200.75,FLOW_LAYOUT.upper-41],["RA",599.25,FLOW_LAYOUT.upper-41],["EA",200.75,FLOW_LAYOUT.lower+7],["SA",599.25,FLOW_LAYOUT.lower+7]]) {
       const text=document.createElementNS("http://www.w3.org/2000/svg","text");text.classList.add('flow-port-label');text.textContent=label;
@@ -452,7 +518,7 @@ ha-card.dark{background:#19212c}ha-card.dark.compact:not(.transparent){backgroun
     };
     this.shadowRoot.addEventListener('click',fanHistory);this.shadowRoot.addEventListener('keydown',fanHistory);
     const recovery=document.createElementNS("http://www.w3.org/2000/svg","g");recovery.classList.add('recovery');
-    recovery.innerHTML='<title></title><circle class="recovery-disc" r="25"/><text text-anchor="middle" dominant-baseline="central" font-family="Arial,sans-serif" font-size="16" font-weight="600"></text>';
+    recovery.innerHTML='<title></title><circle class="recovery-disc" r="25"/><circle class="recovery-progress" r="25" pathLength="100"/><text text-anchor="middle" dominant-baseline="central" font-family="Arial,sans-serif" font-size="16" font-weight="600"></text>';
     this.shadowRoot.querySelector('svg.panel').append(recovery);
     recovery.setAttribute('role','button');recovery.setAttribute('tabindex','0');recovery.style.cursor='pointer';
     const info=document.createElement('dialog');info.className='recovery-info';info.setAttribute('aria-labelledby','recovery-info-heading');
@@ -497,7 +563,7 @@ ha-card.dark{background:#19212c}ha-card.dark.compact:not(.transparent){backgroun
     const powerAction = event => {
       if (!event.target.closest?.("[data-power]") || (event.type === "keydown" && !["Enter", " "].includes(event.key))) return;
       event.preventDefault();
-      if (!event.repeat) this._togglePower();
+      if (!event.repeat) this._openPowerInfo();
     };
     this.shadowRoot.addEventListener("click", powerAction);
     this.shadowRoot.addEventListener("keydown", powerAction);
@@ -523,10 +589,10 @@ ha-card.dark{background:#19212c}ha-card.dark.compact:not(.transparent){backgroun
     });
   }
   static getConfigElement() { return document.createElement("royal-clima-card-editor"); }
-  static getStubConfig(hass) { return { prefix: "vent", esp_prefix: "royalclima", ...detectPrefixes(hass) }; }
+  static getStubConfig(hass) { return { prefix: "vent", esp_prefix: "royalclima", ...detectPrefixes(hass),...detectDevice(hass) }; }
   setConfig(config) {
     if (!config || typeof config !== "object" || Array.isArray(config)) throw new Error("Invalid card configuration");
-    const ids=resolveEntities(config);
+    const ids=resolveEntities(config,this._hass,this._registry);
     if (config.view !== undefined && !["control", "airflow"].includes(config.view)) throw new Error("view must be control or airflow");
     if(config.theme !== undefined && !["auto","light","dark"].includes(config.theme)) throw new Error("theme must be auto, light or dark");
     if(config.animation !== undefined && !["auto","on","off"].includes(config.animation)) throw new Error("animation must be auto, on or off");
@@ -537,9 +603,9 @@ ha-card.dark{background:#19212c}ha-card.dark.compact:not(.transparent){backgroun
     const iconKeys = [...INDICATORS.map(item=>item[0]), "preheater"];
     if(typeof icons !== "object" || Array.isArray(icons) || Object.keys(icons).some(key=>!iconKeys.includes(key))) throw new Error("show_icons must map icon names to booleans");
     config.show_icons = Object.fromEntries(Object.entries(icons).map(([key, value]) => [key, configBoolean(value, `show_icons.${key}`)]));
-    this._clearPending(); this._clearSpeeds(); this._clearErrors();
+    this._clearSpeeds(); this._clearErrors();
     this.dataset.version = VERSION;
-    this._config = config; this._ids = ids; this._applyLayout(); this._render();
+    this._config = config; this._ids = ids; this._applyLayout(); this._render();requestRegistry(this);
   }
   _applyLayout() {
     this._gradientKeys={};this._displayKeys={};this._captionKey=null;this._noticeKey=null;this._topLayoutKey=null;
@@ -655,6 +721,15 @@ ha-card.dark{background:#19212c}ha-card.dark.compact:not(.transparent){backgroun
     attrs(root.querySelector('.preheater'),{transform:`translate(63.99 ${FLOW_LAYOUT.upper-135.25}) scale(.6)`});
     attrs(root.querySelector('[data-history="preheater"] rect'),{x:214,y:FLOW_LAYOUT.upper-20,width:36,height:40});
   }
+  _bindDevices() {
+    if(!this._config?.device && !this._config?.esp_device)return false;
+    if(this._bindingConfig===this._config && this._bindingEntities===this._hass?.entities && this._bindingDevices===this._hass?.devices && this._bindingRegistry===this._registry)return false;
+    this._bindingConfig=this._config;this._bindingEntities=this._hass?.entities;this._bindingDevices=this._hass?.devices;this._bindingRegistry=this._registry;
+    const ids=resolveEntities(this._config,this._hass,this._registry);
+    if(JSON.stringify(ids)===JSON.stringify(this._ids))return false;
+    this._ids=ids;this._clearSpeeds();this._clearErrors();return true;
+  }
+  _registryUpdated() { if(this._bindDevices())this._render(); }
   set hass(value) {
     const previous=this._hass;
     const telemetry=["outdoor_temp","return_temp","exhaust_temp","supply_temp","exhaust_speed","supply_speed","power","bypass","defrost","external_boost","sensor_boost","fault","fire_alarm"];
@@ -663,11 +738,12 @@ ha-card.dark{background:#19212c}ha-card.dark.compact:not(.transparent){backgroun
       return a && b && !["unknown","unavailable"].includes(b.state) && (a.state!==b.state || (a.last_updated && b.last_updated && a.last_updated!==b.last_updated));
     });
     this._hass=value;
+    const bindingsChanged=this._bindDevices();requestRegistry(this);
     if(received && this.isConnected) {
       const dot=this._node('.data-flash');
       if(dot) { this._dataFlash?.cancel();this._dataFlash=dot.animate([{opacity:.5},{opacity:0}],{duration:1000,easing:'ease-out'}); }
     }
-    if (!this._ids || !previous || !value ||
+    if (bindingsChanged || !this._ids || !previous || !value ||
         this._lastTemperatureUnit !== (value.config?.unit_system?.temperature==='°F'?'°F':'°C') || this._lastDarkMode !== value.themes?.darkMode || previous.locale?.language !== value.locale?.language || previous.language !== value.language ||
         previous.callService !== value.callService ||
         Object.values(this._ids).some(id => id && previous.states?.[id] !== value.states?.[id])) this._render();
@@ -678,14 +754,10 @@ ha-card.dark{background:#19212c}ha-card.dark.compact:not(.transparent){backgroun
     this._colorScheme.addEventListener("change",this._themeListener);
     this._render();
   }
-  disconnectedCallback() { this._dataFlash?.cancel();this._colorScheme?.removeEventListener("change",this._themeListener); this._clearPending(); this._clearSpeeds(); this._clearErrors(); this._render(); }
+  disconnectedCallback() { this._dataFlash?.cancel();this._colorScheme?.removeEventListener("change",this._themeListener); this._clearSpeeds(); this._clearErrors(); this._render(); }
   _clearErrors() {
     clearTimeout(this._errorTimer); this._errorTimer = null; this._errorKey = null;
-    this._powerError = null; this._speedErrors = {};
-  }
-  _clearPending() {
-    if (this._pending) clearTimeout(this._pending.timer);
-    this._pending = null;
+    this._speedErrors = {};
   }
   _powerReady() {
     const state = key => this._hass?.states?.[this._ids?.[key]]?.state;
@@ -693,23 +765,10 @@ ha-card.dark{background:#19212c}ha-card.dark.compact:not(.transparent){backgroun
       ["on", "off"].includes(state("power")) && ["on", "off"].includes(state("power_control")) &&
       this._ids.power_control?.startsWith("switch.") && typeof this._hass.callService === "function";
   }
-  async _togglePower() {
-    if (this._pending || !this._powerReady()) return;
-    const expected = this._hass.states[this._ids.power].state === "on" ? "off" : "on";
-    this._clearErrors();
-    const pending = { expected };
-    this._pending = pending;
-    pending.timer = setTimeout(() => {
-      if (this._pending !== pending) return;
-      this._clearPending(); this._powerError = "timeout"; this._render();
-    }, 20000);
-    this._render();
-    try {
-      await this._hass.callService("switch", expected === "on" ? "turn_on" : "turn_off", { entity_id: this._ids.power_control });
-    } catch {
-      if (this._pending !== pending) return;
-      this._clearPending(); this._powerError = "failed"; this._render();
-    }
+  _openPowerInfo() {
+    const entityId=this._ids?.power_control || this._ids?.power;
+    if(!entityId || !this._hass?.states?.[entityId])return;
+    this.dispatchEvent(new CustomEvent('hass-more-info',{detail:{entityId},bubbles:true,composed:true}));
   }
   _clearSpeeds() {
     for (const pending of Object.values(this._speedPending || {})) clearTimeout(pending.timer);
@@ -860,7 +919,6 @@ ha-card.dark{background:#19212c}ha-card.dark.compact:not(.transparent){backgroun
     const duration = seconds => { const n=Math.max(0,Math.floor(seconds));return `${Math.floor(n/86400)}${ru?" д":"d"} ${Math.floor(n%86400/3600)}${ru?" ч":"h"} ${Math.floor(n%3600/60)}${ru?" мин":"m"}`; };
 
     const connected = on("api_connected") && on("online");
-    if (this._pending && raw("power") === this._pending.expected) this._clearPending();
     for (const [role, pending] of Object.entries(this._speedPending || {})) {
       if (connected && known(role) && number(role) === pending.expected) { clearTimeout(pending.timer); delete this._speedPending[role]; }
     }
@@ -1035,14 +1093,21 @@ ha-card.dark{background:#19212c}ha-card.dark.compact:not(.transparent){backgroun
       }
     }
     const airflowView=this._config.view === "airflow";
-    const topKeys=["api_connected","online","filter_usage","bypass","fault","fire_alarm"];
+    const topKeys=["api_connected","online","bypass","fault","fire_alarm","filter_usage"];
     const visibleTop=topKeys.filter(key=>this._node(`[data-indicator="${key}"]`).style.display!=="none");
-    const topLayoutKey=`${airflowView}:${visibleTop.join(":")}`;
+    const usage=number('filter_usage'),filter=this._node('[data-indicator="filter_usage"]');
+    const percentText=connected&&numeric('filter_usage')&&usage>0?(usage<.1?'<0.1%':`${rounded(usage)}%`):'';
+    const percent=this._node('.filter-percent');
+    if(percent.textContent!==percentText)percent.textContent=percentText;
+    percent.style.display=percentText?'':'none';
+    const extraWidth=percentText&&visibleTop.includes('filter_usage')?percentText.length*8+1:0;
+    setAttributeIfChanged(filter.querySelector('.indicator-hit'),'width',34+extraWidth);
+    const topLayoutKey=`${airflowView}:${visibleTop.join(":")}:${extraWidth}`;
     if(this._topLayoutKey!==topLayoutKey) {
       this._topLayoutKey=topLayoutKey;
       visibleTop.forEach((key,i)=> {
         const spec=INDICATORS.find(d=>d[0]===key);
-        const x=airflowView?400+(i-(visibleTop.length-1)/2)*27:104.5+i*33;
+        const x=airflowView?400+(i-(visibleTop.length-1)/2)*27-extraWidth/2:104.5+i*33;
         this._node(`[data-indicator="${key}"]`).setAttribute("transform",`translate(${x-spec[2]} ${(airflowView?47:82.5)-spec[3]})`);
       });
     }
@@ -1082,17 +1147,16 @@ ha-card.dark{background:#19212c}ha-card.dark.compact:not(.transparent){backgroun
     setAttributeIfChanged(heaterAction,"aria-label", heaterLabel);
     heaterAction.querySelector("title").textContent = [heaterLabel, binaryKnown("preheater") ? (on("preheater") ? (ru?"Включено":"On") : (ru?"Выключено":"Off")) : noData("preheater"), extra("heater_target","Уставка нагрева","Heater setpoint","°C")].filter(Boolean).join("\n");
     const power = this._node("[data-power]");
-    const disabled = !!this._pending || !this._powerReady();
+    const disabled = !this._hass.states?.[this._ids.power_control || this._ids.power];
     setAttributeIfChanged(power,"aria-disabled", String(disabled));
-    setAttributeIfChanged(power,"aria-busy", String(!!this._pending));
+    setAttributeIfChanged(power,"aria-busy", "false");
     setAttributeIfChanged(power,"tabindex", disabled ? "-1" : "0");
-    power.classList.toggle("pending", !!this._pending);
-    power.querySelector("title").textContent = this._pending ? (ru ? "Ожидание подтверждения" : "Waiting for confirmation") : (ru ? "Включить / выключить ПВУ" : "Turn ventilation on / off");
+    power.querySelector("title").textContent = ru ? "Питание: открыть управление в Home Assistant" : "Power: open controls in Home Assistant";
     setAttributeIfChanged(power,"aria-label", power.querySelector("title").textContent);
     const powerGlyph = this._node("[data-power-icon]");
-    setAttributeIfChanged(powerGlyph,"opacity", this._pending ? "0" : "1");
+    setAttributeIfChanged(powerGlyph,"opacity", "1");
     setAttributeIfChanged(powerGlyph,"fill", !this._powerReady() ? "#9a9a9a" : on("power") ? "#23863f" : "#111111");
-    let error = this._powerError, context = "";
+    let error = null, context = "";
     for (const [role, message] of Object.entries(this._speedErrors || {})) {
       error = message; context = role === "supply_speed" ? (ru ? "Приток: " : "Supply: ") : (ru ? "Вытяжка: " : "Exhaust: ");
     }
@@ -1163,11 +1227,17 @@ ha-card.dark{background:#19212c}ha-card.dark.compact:not(.transparent){backgroun
     if(this._config.show_recovery!==false) {
       const result=temperatureRecovery({outdoor:number('outdoor_temp'),indoor:number('return_temp'),supply:number('supply_temp'),connected,power:raw('power'),bypass:raw('bypass'),defrost:raw('defrost'),preheater:this._ids.preheater?raw('preheater')??'unknown':undefined,fault:raw('fault'),fire:raw('fire_alarm'),supplySpeed:number('supply_speed'),exhaustSpeed:number('exhaust_speed')});
       setAttributeIfChanged(recovery,'transform',airflowViewRecovery?`translate(400 ${FLOW_LAYOUT.center+FLOW_LAYOUT.artOffset})`:'translate(340 256)');
-      setAttributeIfChanged(recovery.querySelector('circle'),'r',airflowViewRecovery?26:23);
+      for(const circle of recovery.querySelectorAll('circle')) setAttributeIfChanged(circle,'r',airflowViewRecovery?26:23);
       const text=result.value===undefined?'≈':`${result.value}%`;
       const colors=dark?['#e4a363','#ddc16c','#62c7bd','#70d884']:['#d36b22','#957600','#158c86','#208b35'];
       const level=result.value===undefined?-1:result.value<50?0:result.value<70?1:result.value<85?2:3;
       recovery.querySelector('text').style.fill=level<0?(dark?'#a3b1bd':'#59616a'):colors[level];
+      const progress=recovery.querySelector('.recovery-progress');
+      progress.style.display=level>=0 && result.value>0?'':'none';
+      if(level>=0) {
+        setAttributeIfChanged(progress,'stroke',colors[level]);
+        setAttributeIfChanged(progress,'stroke-dasharray',`${result.value} 100`);
+      }
       if(recovery.querySelector('text').textContent!==text) recovery.querySelector('text').textContent=text;
       const reasons={offline:['Нет связи с рекуператором','No connection to the ventilator'],powered_off:['Рекуператор выключен','Ventilator is switched off'],bypass:['Байпас открыт или состояние неизвестно','Bypass open or state unknown'],defrost:['Разморозка или состояние неизвестно','Defrost or state unknown'],heater:['Предподогрев включён или состояние неизвестно','Preheater on or state unknown'],fault:['Ошибка или пожарный вход','Fault or fire input'],fans:['Нет подтверждения работы обоих вентиляторов','Both fans must be running'],temperature:['Температуры недоступны','Temperatures unavailable'],delta:[`Разница улица/помещение меньше ${tempUnit==='°F'?'5.4 °F':'3 °C'}`,`Outdoor/indoor difference below ${tempUnit==='°F'?'5.4 °F':'3 °C'}`],range:['Расчёт вне диапазона 0–100%','Calculated value outside 0–100%']};
       const title=result.reason ? `${ru?'Температурная эффективность неизвестна: ':'Temperature recovery unknown: '}${reasons[result.reason][ru?0:1]}` : `${ru?'Температурная эффективность':'Temperature recovery'} ≈${text}`;
@@ -1206,6 +1276,7 @@ const EDITOR_LABELS = {
   animation:["Анимация","Animation"],
   show_recovery_info:["Показывать строку пояснения рекуперации","Show recovery explanation below card"],
   show_recovery:["Показывать процент рекуперации","Show recovery percentage"],
+  device:["Рекуператор","Ventilation unit"],esp_device:["ESP32 (необязательно)","ESP32 (optional)"],
   view:["Вид карточки","Card view"],prefix:["Префикс ПВУ","Ventilation prefix"],esp_prefix:["Префикс ESP32","ESP32 prefix"],
   theme:["Тема","Theme"],language:["Язык","Language"],transparent:["Прозрачный фон","Transparent background"],
   flow_colormap:["Температурная палитра потоков","Temperature flow colors"],sensor_boost_co2:["Форсирование по CO₂ (выкл — влажность)","CO₂ boost icon (off — humidity)"],
@@ -1223,13 +1294,15 @@ class RoyalClimaCardEditor extends HTMLElement {
     super(); this.attachShadow({mode:"open"});
     this.shadowRoot.innerHTML='<style>:host{display:block}.detect{font:inherit;padding:8px 12px;border:1px solid var(--divider-color,#ccd3d7);border-radius:8px;background:var(--secondary-background-color,#f2f5f5);color:var(--primary-text-color,#222);cursor:pointer}p{color:var(--secondary-text-color);font-size:14px;line-height:1.4}</style><p></p><button type="button" class="detect"></button><p class="detection" role="status"></p><div class="bindings" role="status"></div><ha-form></ha-form>';
     this._form=this.shadowRoot.querySelector('ha-form');
-    this.shadowRoot.querySelector('.detect').addEventListener('click',()=> {
-      const detected=detectPrefixes(this._hass),ru=this._language?.toLowerCase().startsWith('ru');
-      if(!detected.prefix) {
-        this.shadowRoot.querySelector('.detection').textContent=ru?'Не найдена единственная подходящая установка. Укажите префиксы вручную.':'No unique matching unit found. Enter the prefixes manually.';return;
+    this.shadowRoot.querySelector('.detect').addEventListener('click',async()=> {
+      const ru=this._language?.toLowerCase().startsWith('ru');
+      try {this._registry=await registryEntries(this._hass);}catch{ /* Prefix detection remains available without registry access. */ }
+      const detected={...detectPrefixes(this._hass),...detectDevice(this._hass,this._registry)};
+      if(!detected.prefix && !detected.device) {
+        this.shadowRoot.querySelector('.detection').textContent=ru?'Не найдена единственная подходящая установка. Выберите устройство или укажите префиксы.':'No unique matching unit found. Select a device or enter prefixes.';return;
       }
       this._config={...this._config,...detected};this._refresh();
-      this.shadowRoot.querySelector('.detection').textContent=ru?'Префиксы определены. Явные привязки сущностей сохранены.':'Prefixes detected. Explicit entity overrides were preserved.';
+      this.shadowRoot.querySelector('.detection').textContent=ru?'Установка определена. Явные привязки сущностей сохранены.':'Unit detected. Explicit entity overrides were preserved.';
       this.dispatchEvent(new CustomEvent('config-changed',{detail:{config:this._config},bubbles:true,composed:true}));
     });
     this._form.addEventListener('value-changed',event=>{
@@ -1238,32 +1311,35 @@ class RoyalClimaCardEditor extends HTMLElement {
       if(!value || typeof value!=="object") return;
       const config={...this._config,...value,type:"custom:royal-clima-card"};
       for(const key of ['entities','show_icons','ambient']) config[key]={...this._config?.[key],...value[key]};
-      this._config=config;this._refreshBindings();
+      this._config=config;this._refreshBindings();requestRegistry(this);
       this.dispatchEvent(new CustomEvent('config-changed',{detail:{config},bubbles:true,composed:true}));
     });
   }
-  setConfig(config) { this._config={...config};this._refresh(); }
+  setConfig(config) { this._config={...config};this._refresh();requestRegistry(this); }
   set hass(hass) {
-    this._hass=hass;this._form.hass=hass;
+    this._hass=hass;this._form.hass=hass;requestRegistry(this);
     const language=String(hass.locale?.language || hass.language || 'en');
     if(this._language!==language) {this._language=language;this._refresh();} else this._refreshBindings();
   }
+  _registryUpdated() { this._refreshBindings();this._form.requestUpdate?.(); }
   _refreshBindings() {
     if(!this._config || !this._hass) return;
     const root=this.shadowRoot.querySelector('.bindings'),ru=this._language?.toLowerCase().startsWith('ru');
     let ids;
-    try { ids=resolveEntities(this._config); } catch(error) {root.textContent=error.message;this._bindingsSignature=null;return;}
+    try { ids=resolveEntities(this._config,this._hass,this._registry);this._resolvedIds=ids; } catch(error) {root.textContent=error.message;this._bindingsSignature=null;return;}
     const primary=['api_connected','online','power','outdoor_temp','return_temp','exhaust_temp','supply_temp','exhaust_speed','supply_speed'];
     const groups=[{title:ru?'Основные сущности':'Main entities',keys:primary},{title:ru?'Дополнительные сущности':'Additional entities',keys:Object.keys(ROLES).filter(key=>!primary.includes(key))},{title:ru?'Внешние показания':'External readings',keys:AMBIENT_KEYS.map(key=>`ambient_${key}`)}];
     const lines=[];
+    if(this._registryError && (this._config.device || this._config.esp_device)) lines.push(ru?'Не удалось загрузить полный реестр. Проверьте привязки или задайте их вручную.':'Could not load the full registry. Check bindings or set them manually.');
     for(const group of groups) {
       const bound=[...new Set(group.keys.map(key=>ids[key]).filter(Boolean))];
       const found=bound.filter(id=>this._hass.states?.[id]);
       const unavailable=found.filter(id=>['unknown','unavailable'].includes(this._hass.states[id].state));
-      lines.push(`${group.title}: ${found.length}/${bound.length}${unavailable.length?` · ${ru?'нет данных':'no data'}: ${unavailable.length}`:''}`);
+      lines.push(`${group.title}: ${found.length}/${group.keys===primary?primary.length:bound.length}${unavailable.length?` · ${ru?'нет данных':'no data'}: ${unavailable.length}`:''}`);
     }
     const important=[...new Set([...primary.map(key=>ids[key]),...Object.keys(this._config.entities||{}).filter(key=>this._config.entities[key]?.trim()).map(key=>ids[key]),...AMBIENT_KEYS.map(key=>ids[`ambient_${key}`])].filter(Boolean))];
     const details=important.flatMap(id=>!this._hass.states?.[id]?[`${ru?'Не найдена':'Not found'}: ${id}`]:['unknown','unavailable'].includes(this._hass.states[id].state)?[`${ru?'Нет данных':'No data'}: ${id}`]:[]);
+    for(const key of primary) if(!ids[key]) details.push(`${ru?'Не сопоставлена':'Not matched'}: ${EDITOR_LABELS[key]?.[ru?0:1] || key}`);
     for(const [key,id] of Object.entries(ids)) {
       if(!id || !(TEMPERATURE_ROLES.has(key) || (key.startsWith('ambient_')&&key.endsWith('_temp'))))continue;
       const state=this._hass.states?.[id],fallback=TEMPERATURE_ROLES.has(key)&&!this._config.entities?.[key]?.trim()?'°C':undefined;
@@ -1278,11 +1354,12 @@ class RoyalClimaCardEditor extends HTMLElement {
     if(!this._config || !this._hass) return;
     const ru=this._language?.toLowerCase().startsWith('ru'),index=ru?0:1;
     const label=key=>EDITOR_LABELS[key]?.[index] || key;
-    this.shadowRoot.querySelector('.detect').textContent=ru?'Определить префиксы автоматически':'Detect prefixes automatically';
+    this.shadowRoot.querySelector('.detect').textContent=ru?'Определить установку автоматически':'Detect unit automatically';
     const select=(name,options)=>({name,selector:{select:{mode:'dropdown',options:options.map(([value,russian,english])=>({value,label:ru?russian:english}))}}});
     const bool=name=>({name,selector:{boolean:{}}});
     this._form.schema=[
       select('view', [['control','Пульт','Control panel'],['airflow','Потоки','Airflow']]),
+      {type:'grid',name:'',schema:[{name:'device',selector:{device:{}}},{name:'esp_device',selector:{device:{}}}]},
       {type:'grid',name:'',schema:[{name:'prefix',selector:{text:{}}},{name:'esp_prefix',selector:{text:{}}}]},
       {type:'grid',name:'',schema:[select('theme',[['auto','Авто','Auto'],['light','Светлая','Light'],['dark','Тёмная','Dark']]),select('language',[['auto','Авто','Auto'],['ru','Русский','Russian'],['en','Английский','English']])]},
       select('animation',[['auto','Авто','Auto'],['on','Вкл','On'],['off','Выкл','Off']]),
@@ -1293,9 +1370,12 @@ class RoyalClimaCardEditor extends HTMLElement {
     ];
     this._form.computeLabel=schema=>schema.ambient && schema.name==='outdoor_temp'?(ru?'Температура улицы':'Outdoor temperature'):({outdoor_humidity:ru?'Влажность улицы':'Outdoor humidity',indoor_temp:ru?'Температура помещения':'Indoor temperature',indoor_humidity:ru?'Влажность помещения':'Indoor humidity'}[schema.name] || label(schema.name));
     this._form.computeHelper=schema=> {
+      if(schema.name==='device')return ru?'Выбор устройства имеет приоритет над префиксом.':'Device selection takes priority over the prefix.';
+      if(schema.name==='esp_device')return ru?'Не задан — определяется по связи с рекуператором.':'When empty, detected from the ventilation unit relationship.';
       if(schema.ambient) return ru?'Не задан — строка скрыта.':'Not set — the row is hidden.';
       if(!ROLES[schema.name]) return undefined;
       const [domain,suffix,group]=ROLES[schema.name];
+      if(group==='esp'?(this._config.device || this._config.esp_device):this._config.device)return this._resolvedIds?.[schema.name]?`${ru?'Привязка':'Binding'}: ${this._resolvedIds[schema.name]}`:(ru?'Не сопоставлено — укажите сущность вручную.':'Not matched — select an entity manually.');
       if(schema.name==='preheater') return ru?'Не задан — значок скрыт.':'Not set — the icon is hidden.';
       const prefix=this._config[group==='esp'?'esp_prefix':'prefix'] || (group==='esp'?'royalclima':'vent');
       return `${ru?'По умолчанию':'Default'}: ${domain}.${String(prefix).trim().replace(/_+$/,'')}_${suffix}`;
@@ -1303,7 +1383,7 @@ class RoyalClimaCardEditor extends HTMLElement {
     const icons=Object.fromEntries([...INDICATORS.map(d=>d[0]),'preheater'].map(key=>[key,true]));
     this._refreshBindings();
     this._form.data={view:'control',prefix:'vent',esp_prefix:'royalclima',theme:'auto',language:'auto',animation:'auto',transparent:false,flow_colormap:false,sensor_boost_co2:true,show_recovery:true,show_recovery_info:false,...this._config,show_icons:{...icons,...this._config.show_icons},entities:{...this._config.entities},ambient:{...this._config.ambient}};
-    this.shadowRoot.querySelector('p').textContent=ru?'Обычно достаточно префиксов. Пустые поля сущностей используют стандартные имена; предподогрев без сенсора скрыт.':'Prefixes are normally enough. Empty entity fields use default IDs; the preheater stays hidden without a sensor.';
+    this.shadowRoot.querySelector('p').textContent=ru?'Выберите устройство или укажите префиксы. Явные привязки сущностей имеют приоритет; предподогрев без сенсора скрыт.':'Select a device or enter prefixes. Explicit entity bindings take priority; preheating is hidden without a sensor.';
   }
 }
 if(!customElements.get('royal-clima-card-editor')) customElements.define('royal-clima-card-editor',RoyalClimaCardEditor);

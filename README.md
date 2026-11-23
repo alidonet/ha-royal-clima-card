@@ -38,11 +38,11 @@ type: custom:royal-clima-card
 
 ## Visual editor
 
-Configure the card in the HA editor: view, prefixes, theme, language, appearance and icon visibility. The expandable advanced entities section provides standard entity pickers. Empty fields use automatic bindings; preheating is hidden without a sensor. YAML editing remains available. Editor labels follow the HA profile language.
+Configure the card in the HA editor: view, devices or prefixes, theme, language, appearance and icon visibility. The expandable advanced entities section provides standard entity pickers. Empty fields use automatic bindings; preheating is hidden without a sensor. YAML editing remains available. Editor labels follow the HA profile language.
 
 ## Full configuration
 
-All settings are shown below with their defaults and English explicitly selected (`language: auto`). Without `language`, the card follows the HA profile language. Usually the minimal YAML or a change of prefixes is enough. Explicit `entities` override prefixes: if you copy the full example, update the corresponding entity IDs too.
+All settings are shown below with their defaults and English explicitly selected (`language: auto`). Without `language`, the card follows the HA profile language. Usually minimal YAML, device selection or a change of prefixes is enough. Explicit `entities` override device selection and prefixes: if you copy the full example, update the corresponding entity IDs too.
 
 ```yaml
 type: custom:royal-clima-card
@@ -109,6 +109,7 @@ entities:
 |---|---|
 | `type` | Required: `custom:royal-clima-card`. |
 | `view` | `control` — control panel; `airflow` — airflow diagram. |
+| `device`, `esp_device` | HA ventilation and ESP32 device IDs; unset by default. ESP32 can be resolved from its relationship to the unit. |
 | `prefix`, `esp_prefix` | Ventilation and ESP32 entity prefixes: `vent`, `royalclima`. Omit the domain; lowercase ASCII letters, digits and underscores are accepted. |
 | `theme` | `auto` by default follows HA; `light` / `dark` force a theme. Falls back to the system preference when HA theme information is unavailable. |
 | `language` | `auto` by default follows HA; `ru` / `en` force a language. Other values select English. |
@@ -129,7 +130,7 @@ Domains and full default IDs are shown in the YAML above. By default, readings a
 | `outdoor_temp`, `return_temp`, `supply_temp`, `exhaust_temp` | Outdoor, return, supply and exhaust air temperatures. |
 | `supply_speed`, `exhaust_speed` | Actual supply and exhaust fan steps, integers from 0 to 10. |
 | `supply_speed_control`, `exhaust_speed_control` | Supply and exhaust fan step selection. |
-| `power`, `power_control` | Confirmed power state and commands; the same switch by default. |
+| `power`, `power_control` | Power state and the entity opened in native HA controls; the same switch by default. |
 | `api_connected`, `online` | HA-to-ESP32 connection and ESP32-to-ventilation connection over Modbus. |
 | `fault`, `fault_details`, `status` | Error flag, error description and ventilation status text. |
 | `bypass`, `defrost`, `fire_alarm` | Open bypass, defrost and fire input. |
@@ -151,7 +152,7 @@ If you use custom control wrappers, set them in `entities.power_control`, `entit
 
 A blue dot in the upper-right corner flashes on received changes to primary ventilation readings and fades over one second. It indicates HA entity updates, not every Modbus packet; unchanged readings may not reach the frontend.
 
-When adding a card, the ventilation prefix is detected if exactly one standard set of temperature and connection entities exists. The ESP32 prefix uses device registry links or a unique `*_api_connected` entity. Ambiguous results retain the normal defaults rather than selecting an arbitrary unit. The editor includes a detect-prefixes button; explicit `entities` overrides are preserved. Discovery does not depend on current sensor availability.
+When adding a card, the ventilation prefix is detected if exactly one standard set of temperature and connection entities exists. The ESP32 prefix uses device registry links or a unique `*_api_connected` entity. Ambiguous results retain the normal defaults rather than selecting an arbitrary unit. The editor includes an automatic device/prefix detection button; explicit `entities` overrides are preserved. Discovery does not depend on current sensor availability.
 
 ## Project status
 
@@ -188,3 +189,17 @@ The speed range follows `select.<prefix>_fan_speeds` (3 or 10), overridable with
 The `animation` option accepts `auto` (default, respects the system reduced-motion preference), `on` (enables animation regardless of that preference), or `off` (disables animation). Only running fans animate. This option is available in the visual editor. Analysis combines active modes into one explanation and reports possible condensation at saturation instead of relative humidity above 100%.
 
 Temperatures follow the HA system unit (°C/°F), converting each entity from its own unit. Analysis, recovery and colormap calculations use Celsius; temperature differences are displayed in the system unit. External temperature sensors require `unit_of_measurement` (°C or °F); missing or unsupported units make the reading unusable. Only default firmware temperature bindings assume Celsius when that attribute is absent. The editor summarizes found, missing and unavailable entities; unassigned optional bindings are excluded. Tooltips distinguish off from unknown states; an explicitly bound but missing preheater sensor retains a pale icon.
+
+## Device selection
+
+Select the ventilation unit in the editor. ESP32 is resolved through its device relationship or a unique matching device in the same integration entry; select ESP32 separately if necessary. No additional components or Python are required.
+
+```yaml
+type: custom:royal-clima-card
+device: YOUR_VENT_DEVICE_ID
+# esp_device: YOUR_ESP_DEVICE_ID
+```
+
+Binding priority: explicit `entities` → selected device → prefixes when no device is selected. Compatible firmware is matched using original names and registry identifiers, so manually renamed entity IDs are supported. Missing or ambiguous matches are reported in the editor rather than replaced by another unit's sensors. Use `entities` for other sensor naming schemes. External `ambient` readings remain independently configured. The full registry is requested through the existing HA connection and cached; if access is denied, use explicit bindings or prefixes.
+
+The power button opens native HA controls for `power_control`; it no longer switches power immediately. Fan speeds still use the card's selection dialog.

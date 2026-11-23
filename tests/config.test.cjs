@@ -3,7 +3,7 @@ const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const vm = require("node:vm");
 const source = fs.readFileSync(require("node:path").join(__dirname, "../dist/ha-royal-clima-card.js"), "utf8");
-const context = { HTMLElement: class {}, customElements: { get: () => true }, setTimeout, clearTimeout };
+const context = { CustomEvent: class { constructor(type, options) { this.type=type;Object.assign(this,options); } }, HTMLElement: class {}, customElements: { get: () => true }, setTimeout, clearTimeout };
 vm.runInNewContext(source + "\nglobalThis.cardClass = RoyalClimaCard; globalThis.roles = ROLES;", context);
 
 function card(config = {}) {
@@ -50,7 +50,7 @@ test("entity keys preserve generated entity IDs", () => {
   assert.throws(() => card({ entities: { defrost_temperature: "sensor.old_key" } }), /Unknown entity role/);
 });
 
-test("power and fan commands use the same entities as their confirmed readings", async () => {
+test("power opens HA information while fan commands use the confirmed entities", async () => {
   const result = card();
   const calls = [];
   result._hass = { states: {}, async callService(...args) { calls.push(args); } };
@@ -69,11 +69,11 @@ test("power and fan commands use the same entities as their confirmed readings",
     assert.equal(data.option, "7");
     clearTimeout(result._speedPending[role].timer);
   }
-  await result._togglePower();
-  assert.equal(calls.at(-1)[0], "switch");
-  assert.equal(calls.at(-1)[1], "turn_off");
-  assert.equal(calls.at(-1)[2].entity_id, result._ids.power_control);
-  clearTimeout(result._pending.timer);
+  const events=[],before=calls.length;result.dispatchEvent=event=>events.push(event);
+  result._openPowerInfo();
+  assert.equal(calls.length,before);
+  assert.equal(events[0].type,"hass-more-info");
+  assert.equal(events[0].detail.entityId,result._ids.power_control);
   result._hass.states[result._ids.power].state = "off";
   assert.equal(result._speedProblem("supply_speed"), "power");
 });
@@ -172,4 +172,29 @@ test("temperature units are explicit and converted through Celsius",()=>{
  assert.equal(context.toCelsius({state:"20"},"°C"),20);
  assert(Number.isNaN(context.toCelsius({state:"293",attributes:{unit_of_measurement:"K"}},"°C")));
  assert(Number.isNaN(context.toCelsius({state:"bad",attributes:{unit_of_measurement:"°C"}})));
+});
+
+vm.runInNewContext("globalThis.resolveBindings=resolveEntities;globalThis.detectUnit=detectDevice;",context);
+test("device bindings remain scoped and survive renamed entity IDs",()=>{
+ const registry=[
+  {entity_id:"sensor.renamed_outside",device_id:"vent_a",original_name:"Outdoor temp"},
+  {entity_id:"sensor.renamed_return",device_id:"vent_a",original_name:"Return temp"},
+  {entity_id:"sensor.renamed_supply",device_id:"vent_a",original_name:"Supply temp"},
+  {entity_id:"sensor.renamed_exhaust",device_id:"vent_a",original_name:"Exhaust temp"},
+  {entity_id:"switch.renamed_power",device_id:"vent_a",unique_id:"mac-switch-power"},
+  {entity_id:"binary_sensor.renamed_api",device_id:"esp_a",original_name:"API connected"},
+  {entity_id:"sensor.other_outdoor_temp",device_id:"vent_b",original_name:"Outdoor temp"},
+  {entity_id:"binary_sensor.other_api_connected",device_id:"esp_b",original_name:"API connected"}
+ ];
+ const hass={devices:{vent_a:{id:"vent_a",via_device_id:"esp_a"}}};
+ const ids=context.resolveBindings({device:"vent_a"},hass,registry);
+ assert.equal(ids.outdoor_temp,"sensor.renamed_outside");assert.equal(ids.api_connected,"binary_sensor.renamed_api");
+ assert.equal(ids.power_control,"switch.renamed_power");assert.equal(ids.online,undefined);
+ assert.equal(context.detectUnit(hass,registry).device,"vent_a");
+ assert.equal(context.resolveBindings({device:"vent_a",entities:{supply_temp:"sensor.custom"}},hass,registry).supply_temp,"sensor.custom");
+ assert.equal(context.resolveBindings({device:"vent_a",esp_device:"esp_b"},hass,registry).api_connected,"binary_sensor.other_api_connected");
+ const ambiguous=[...registry,{entity_id:"sensor.duplicate",device_id:"vent_a",original_name:"Return temp"}];
+ assert.equal(context.resolveBindings({device:"vent_a"},hass,ambiguous).return_temp,undefined);
+ assert.equal(context.resolveBindings({device:"absent"},hass,registry).outdoor_temp,undefined);
+ assert.throws(()=>context.resolveBindings({device:42}),/device/);
 });

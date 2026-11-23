@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.1.6
+
+- Add ventilation unit and optional ESP32 device selection in the visual editor, with automatic entity matching through the Home Assistant registry;
+- Open native Home Assistant entity controls from the power button instead of switching power immediately;
+- Display recovery efficiency as a color-matched circular progress ring, with a pale ring when no valid value is available;
+- Move the filter indicator to the end of the status row and display its usage percentage when known and greater than zero;
+
 ## 0.1.5
 
 - Display temperatures in the Home Assistant system unit (Celsius or Fahrenheit), converting entity readings while keeping recovery, humidity and colormap calculations in Celsius;
